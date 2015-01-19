@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>開團成功內容頁面</title>
+<title>開團成功內容頁面!</title>
 <style type="text/css">
 .gray
 {
