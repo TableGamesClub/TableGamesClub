@@ -161,8 +161,8 @@ public class GroupService {
 		int count = list.size();
 		return count;
 	}
-
-	public int countGroupRoomsByGroupSerialNumber(GroupRoom bean) {// 查某團的已加入人數
+	
+	public int countGroupRoomsByGroupSerialNumber(GroupRoom bean) {// 查某團已加入的人數--by groupSerialNumber
 		List<Joiner_Info> list = new ArrayList<Joiner_Info>();
 		list = jidao.findByGroupSerialNumber(bean.getGroupSerialNumber());
 		int count = list.size();

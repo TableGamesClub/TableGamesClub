@@ -21,8 +21,6 @@ import model.Interface.GroupRoomDAO_Interface;
 import model.Interface.StoreInformationDAO_Interface;
 import model.service.*;
 
-import org.hibernate.SessionFactory;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

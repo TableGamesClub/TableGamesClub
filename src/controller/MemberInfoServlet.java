@@ -20,11 +20,8 @@ import model.Joiner_Info;
 import model.Member;
 import model.Interface.BoardGameKindDAO_Interface;
 import model.Interface.GroupChoiceGamesDAO_Interface;
-import model.Interface.GroupRoomDAO_Interface;
+
 import model.Interface.Joiner_InfoDAO_Interface;
-import model.Interface.MemberDAO_Interface;
-import model.Interface.StoreInformationDAO_Interface;
-import model.Interface.StoreMemberDAO_Interface;
 import model.service.GroupService;
 
 import org.springframework.context.ApplicationContext;
