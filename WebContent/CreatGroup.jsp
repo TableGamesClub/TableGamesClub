@@ -1,17 +1,46 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="controller.*"%>
+<%@ page import="model.*"%>
+<%@ page import="model.service.*"%>
+<%@ page import="model.Interface.*"%>
+<%@ page import="org.springframework.context.ApplicationContext"%>
+<%@ page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+
+<%
+	ApplicationContext context = new ClassPathXmlApplicationContext(
+			"model-config1-DriverManagerDataSource.xml");
+	BoardGameKindDAO_Interface dao = (BoardGameKindDAO_Interface) context
+			.getBean("BoardGameKindDAO");
+	BoardGamesDAO_Interface dao2 = (BoardGamesDAO_Interface) context
+			.getBean("BoardGamesDAO");
+	StoreInformationDAO_Interface dao3 = (StoreInformationDAO_Interface) context
+			.getBean("StoreInformationDAO");
+	List<BoardGameKind> list = dao.getAll();
+	List<StoreInformation> list2 = dao3.getAll();
+	pageContext.setAttribute("list",list);
+	pageContext.setAttribute("list2",list2);
+	
+%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<link href='Scripts/jquery-ui-timepicker-addon.css' rel='stylesheet'>
+<script type="text/javascript" src="Scripts/jquery-ui-timepicker-addon.js"></script>
+<script type='text/javascript' src='Scripts/jquery-ui-sliderAccess.js'></script>
 <title>開團</title>
 <style type="text/css">
 .red{color:red;}
@@ -254,6 +283,7 @@ li.MemInfo{
    font-size:18px;
    color:#2c539e;
    font-family:Microsoft JhengHei;
+   overflow: scroll
 }
 </style>
 
@@ -372,6 +402,8 @@ $(function(){//使用者特效
 	$('a').focus(function(){
 		this.blur();
 	});
+	
+	
 });
 
 
@@ -401,61 +433,184 @@ $(function() {
       <a href="register.jsp" id="a1">註冊</a>
     </li>
     <li class="User">
-    	<c:if test="${empty username}">
+    	<c:if test="${empty Member.username}">
 			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
-		<c:if test="${ ! empty username }">
+		<c:if test="${ ! empty Member.username }">
 			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
           			<a href="#" id="a2">會員資料</a>
           			
-        		</li><br /><br />
+        		</li><br><br>
         		<li>
           			<a href="loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
-      	
+      	</c:if>
 	</li>
+	<c:if test="${ ! empty Member.username }">
 	<li class="MemInfo">
-		<img src="${pageContext.servletContext.contextPath}/controller/GetMemberImage?username=${username}" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
-			<p class="font_style circle">${username}</p>
-			<p class="font_style circle">${nickname}</p>
+		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
+			<p class="font_style circle">${Member.username}</p>
+			<p class="font_style circle">${Member.nickname}</p>
 	</li>
 	</c:if>
   </ul>
 </div>
-<div  style="margin:0 auto;width:1300px;">
-  <div class="cgbody"><center><div><br/><br/>
-					<span>輸入您開的桌遊詳細資訊</span>	<br/>
-					<div>輸入您的桌遊團名</div><br/>
-					<div></div><input type="text" style="width:200px" style="width:200px" placeholder=""></div><br/><br/>
-					<span>桌遊團詳細資訊</span><br/>	
-					請輸入您所創的團詳細資訊<br/> 
-					<div><span>選擇店家:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>桌遊名稱:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>桌遊類型:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>最少人數:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>上限人數:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>預約日期:</span><span class="red">*</span></div>
-					<div><input type="text" id="datepicker" style="width:200px" placeholder="mm/dd/yyyy"></div>					
-					<div><span>預約租借開始時間:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>預約租借結束時間:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>團圖:</span><span class="red">*</span></div>
-					<div><input type="text" style="width:200px" placeholder=""></div>
-					<div><span>詳細介紹:</span><span class="red">*</span></div>
-					<div><textarea rows="3"></textarea></div><br/><br/>		
-					<button type="submit" style="width:240px;height:60px;font-size:20px;font-family:Microsoft JhengHei;color:#0a77d5;background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#feccb1), color-stop(62%,#f17432), color-stop(100%,#ea5507), color-stop(100%,#fb955e));color:#f8ffe8;">完成開團!</button>	
+<form enctype="multipart/form-data" action="<c:url value="/CreateRoomServletMB"/>" method="post"
+					id="createRoomJSP">
+	<div  style="margin:0 auto;width:1300px;">
+		<div class="cgbody">
+			<center>
+				<div><br/><br/>
+						<h1>開團資料</h1>
+				<div>輸入您的桌遊團名<span class="red">*</span></div>
+					<input type="text" style="width:200px" style="width:200px" placeholder="" name="roomName"></div>
+				<div><span>選擇店家:</span><span class="red">*</span></div>
+				<div>
+					<select id="boardGameStore" name="boardGameStore">
+						<option value="0">請選擇</option>
+						<c:forEach var="stores" items="${list2}">
+							<option value="${stores.storeId}">${stores.storeName}</option>
+						</c:forEach>
+					</select>
 				</div>
-				</center>
-  </div>
-</div>
+				<div style="display: inline" id="gametype">
+					<div><span>桌遊類型:</span><span class="red">*</span></div>
+					<div style="margin-left: 27px">
+						<select id="select1" style="width:80px" name="gamesType">
+							<option value="0">請選擇</option>
+							<c:forEach var="games" begin="0" end="6" items="${list}">
+								<option value="${games.boardGameSerialNumber}" name="">${games.boardGameStyle}</option>
+							</c:forEach>
+						</select>
+						<select id="select2" style="width:120px" name="gamesName">
+							<option value="volvo">請選擇</option>
+						</select>
+						<input type="button" id="CreateNewStylebutton" value="+" />
+					</div>
+						<div id="sapnType" style="width: 300px">
+					</div>
+				</div>
+				<div><span>開團人數:</span><span class="red">*</span></div>
+					<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;font-size: medium" name="roomNumber">
+					<div id="slider-range" style="width:200px"></div>
+				<div><span>預約時間:</span><span class="red">*</span></div>
+					<span><input id="datetimepicker1" type="text" style="width:100px" name="startTime" value="2015-02-01 10:00:00"/></span>
+					<span><input id="datetimepicker2" type="text" style="width:100px" name="endTime" value="2015-02-01 12:00:00"/></span>
+				<div><span>團圖:</span><span class="red">*</span></div>
+				<img id="blah" alt="your image" width="200" height="150" /><br>
+				<div style="margin: 2px 0 0 40px">
+					<input type="file" onchange="$('#blah')[0].src = window.URL.createObjectURL(this.files[0])" name="roomImg">
+				</div>
+				<div><span>開團說明:</span><span class="red">*</span></div>
+					<div><textarea rows="3" style="width:300px;height:100px;" name="roomString" value="歡迎大家一起來玩桌遊喔！"></textarea></div><br/><br/>		
+				<button type="submit" style="width:240px;height:60px;font-size:20px;font-family:Microsoft JhengHei;color:#0a77d5;background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#feccb1), color-stop(62%,#f17432), color-stop(100%,#ea5507), color-stop(100%,#fb955e));color:#f8ffe8;">完成開團!</button>	
+			</center>
+		</div>
+	</div>
+</form>
+  <script language="JavaScript">
+  //時間選擇器
+    $(document).ready(function(){ 
+//       var opt1={dateFormat: 'yy-mm-dd',
+// 	        showSecond: true,
+//                 timeFormat: 'HH:mm:ss',
+// 		stepHour:2, 
+// 		stepMinute:5, 
+// 		stepSecond:10
+//                 };
+//       var opt2={dateFormat: 'yy-mm-dd',
+// 	        showSecond: true,
+//                 timeFormat: 'HH:mm:ss',
+// 		controlType:"select"
+//                 };
+      var opt3={dateFormat: 'yy-mm-dd',
+	        showSecond: false,
+	        showMinute:false,
+                timeFormat: 'HH:mm:ss',
+		addSliderAccess:true,
+		sliderAccessArgs:{touchonly:false}
+                };
+      $('#datetimepicker1').datetimepicker(opt3);
+      $('#datetimepicker2').datetimepicker(opt3);
+//       $('#datetimepicker3').datetimepicker(opt3);
+      });
+  </script>
+  <script>
+  //選擇桌遊ajax
+        var btnLoad = document.getElementById("select1");
+        var a1 = $('#select1');
+        btnLoad.addEventListener("click",beforeload,false);
+        var xhr;
+        
+        function beforeload(){
+			if($(this).val()==a1.val()){
+				btnLoad.addEventListener("click",load,false);
+			}
+        }
+        
+        function load(){    
+//         	alert($(this).val());
+			var boardGameStore = document.getElementById("boardGameStore");//抓取店家號碼
+        	xhr = new XMLHttpRequest();
+        	xhr.addEventListener("readystatechange",callback,false);
+            var url = "GetGamesJson?storeId="+boardGameStore.value+"&type="+$(this).val();     //url要改
+        	xhr.open("get",url,true); 
+        	xhr.send();
+        }
+        function callback(){
+        	if(xhr.readyState == 4){
+        		if(xhr.status == 200){
+	      		var data = xhr.responseText
+	      		var datas=JSON.parse(data);
+	      		var txtLi
+	          	var myDiv = document.getElementById("select2");
+	      		$('#select2').empty();
+	      		$('#select2').append("<option>請選擇</option>");
+	          	for(var i=0;i<datas.length;i++){
+				var txtLi = document.createTextNode(datas[i]);
+	       	  	var eleLi = document.createElement("option");
+				eleLi.appendChild(txtLi);
+				console.log(txtLi);
+	          	 	myDiv.appendChild(eleLi);	            	 
+	          	 }
+        		}else{
+        			alert(xhr.status + ":" + xhr.statusText);
+                }
+        	}
+        }
+        
+      //按鈕
+    	$('#CreateNewStylebutton').bind('click',function(){
+    			$('#sapnType')
+    			.append("<span>"+"<input type='checkbox' name='games' value="+$('#select2').val()+" checked >"+$('#select2').val()+
+    				   "<a href=# class='del'><input type='button' value='刪除'></a><br></span>");
+//     			alert($('span[name="games"]').text())
+//     			$('input[name="games"]').after(123);
+    		});
+    		
+    		$('#gametype').on('click','.del',function(){
+//     			alert(123)
+        		$(this).parents('span').remove();
+        		$(this).parents('br').remove();
+        	})
+        	
+    	//滑動條
+		var u = 2;
+		var l = 60;
+	    $( "#slider-range" ).slider({
+	      range: true,
+	      min: u,
+	      max: l,
+	      values: [ 5, 15 ],
+	      slide: function( event, ui ) {
+	        $( "#amount" ).val( ui.values[ 0 ] + " ~ " + ui.values[ 1 ] );
+	      }
+	    });
+	    $( "#amount" ).val(   $( "#slider-range" ).slider( "values", 0 ) +
+	      " ~ " + $( "#slider-range" ).slider( "values", 1 ) );
+   </script>
 </body>
 </html>
