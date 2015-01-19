@@ -14,11 +14,11 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		<!-- 本機的MS SQL -->
-		<property name="url"
-		value="jdbc:sqlserver://localhost:1433;DatabaseName=TGC" />
+		<!-- <property name="url" -->
+		<!-- value="jdbc:sqlserver://localhost:1433;DatabaseName=TGC" /> -->
 		<!-- 虛擬機器裡的MS SQL -->
-<!-- 		<property name="url" -->
-<!-- 			value="jdbc:sqlserver://192.168.111.128:1433;DatabaseName=TGC" /> -->
+		<property name="url"
+			value="jdbc:sqlserver://192.168.111.128:1433;DatabaseName=TGC" />
 		<property name="username" value="sa" />
 		<property name="password" value="123456" />
 	</bean>
