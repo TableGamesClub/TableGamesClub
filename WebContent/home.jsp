@@ -911,7 +911,7 @@ $(function() {
     </div>
     <div class="bodyleftinsidetwo">
       <div>
-        <p class="bodyleftinsidep">想找什麼團呢?</p>
+        <p class="bodyleftinsidep">想找什麼團呢????????</p>
           <div class="bodyleftlimbo"><p>
             <input type="text" id="textone" placeholder="團名稱"><br>
       
