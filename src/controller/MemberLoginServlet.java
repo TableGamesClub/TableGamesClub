@@ -20,10 +20,6 @@ import model.service.MemberService;
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public MemberLoginServlet() {
-		super();
-	}
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// this.doPost(request, response);

@@ -20,6 +20,7 @@ import model.Joiner_Info;
 import model.Member;
 import model.Interface.BoardGameKindDAO_Interface;
 import model.Interface.GroupChoiceGamesDAO_Interface;
+
 import model.Interface.Joiner_InfoDAO_Interface;
 import model.service.GroupService;
 

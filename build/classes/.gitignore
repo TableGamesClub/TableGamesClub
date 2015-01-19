@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /boardgamesfiles/
 /controller/
 /log4j.properties
@@ -5,3 +6,17 @@
 /model-config1-DriverManagerDataSource.xml
 /model-config2-JndiObjectFactoryBean.xml
 /sql/
+=======
+<<<<<<< HEAD
+/controller/
+/model/
+=======
+/boardgamesfiles/
+/controller/
+/log4j.properties
+/model/
+/model-config1-DriverManagerDataSource.xml
+/model-config2-JndiObjectFactoryBean.xml
+/sql/
+>>>>>>> refs/heads/sunfish12
+>>>>>>> refs/heads/dev
