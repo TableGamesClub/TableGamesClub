@@ -132,7 +132,7 @@ public class InsertDataService {
 		beanMember1.setNickname("あかいつき");
 		beanMember1.setBirthday(java.sql.Date.valueOf("1990-10-24"));
 		beanMember1.setIdCard("A154730489");
-		beanMember1.setJoinDate(java.sql.Timestamp.valueOf("2007-2-28"));
+		beanMember1.setJoinDate(java.sql.Date.valueOf("2007-2-28"));
 		beanMember1.setPhone("0986731905");
 		beanMember1.setMemberAddress("106台北市大安區復興南路一段390號");
 		String filenameMember1 = "Member1.gif";

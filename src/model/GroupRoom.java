@@ -19,6 +19,7 @@ public class GroupRoom implements java.io.Serializable {
 	private Date groupEndTime;
 	private String groupRoomName;
 	private String groupSuggestNumber;
+	private String groupString;
 	private Integer groupLowerLimit;
 	private Integer groupUpperLimit;
 	private Date groupGameTime;
@@ -39,7 +40,7 @@ public class GroupRoom implements java.io.Serializable {
 
 	public GroupRoom(int groupSerialNumber, StoreMember storeMember,
 			Member member, String storeName, Date groupStartTime,
-			Date groupEndTime, String groupRoomName, String groupSuggestNumber,
+			Date groupEndTime, String groupRoomName, String groupSuggestNumber,String groupString,
 			Integer groupLowerLimit, Integer groupUpperLimit, Date groupGameTime,
 			Date reserveGroupStartTime, Date reserveGroupEndTime, Integer roomState) {
 		this.groupSerialNumber = groupSerialNumber;
@@ -50,6 +51,7 @@ public class GroupRoom implements java.io.Serializable {
 		this.groupEndTime = groupEndTime;
 		this.groupRoomName = groupRoomName;
 		this.groupSuggestNumber = groupSuggestNumber;
+		this.groupString = groupString;
 		this.groupLowerLimit = groupLowerLimit;
 		this.groupUpperLimit = groupUpperLimit;
 		this.groupGameTime = groupGameTime;
@@ -60,7 +62,7 @@ public class GroupRoom implements java.io.Serializable {
 
 	public GroupRoom(int groupSerialNumber, StoreMember storeMember,
 			Member member, String storeName, Date groupStartTime,
-			Date groupEndTime, String groupRoomName, String groupSuggestNumber,
+			Date groupEndTime, String groupRoomName, String groupSuggestNumber,String groupString,
 			Integer groupLowerLimit, Integer groupUpperLimit, Date groupGameTime,
 			Date reserveGroupStartTime, Date reserveGroupEndTime,
 			Integer roomState, String imgFileName, byte[] privateGroupImage,
@@ -75,6 +77,7 @@ public class GroupRoom implements java.io.Serializable {
 		this.groupEndTime = groupEndTime;
 		this.groupRoomName = groupRoomName;
 		this.groupSuggestNumber = groupSuggestNumber;
+		this.groupString = groupString;
 		this.groupLowerLimit = groupLowerLimit;
 		this.groupUpperLimit = groupUpperLimit;
 		this.groupGameTime = groupGameTime;
@@ -151,6 +154,14 @@ public class GroupRoom implements java.io.Serializable {
 
 	public void setGroupSuggestNumber(String groupSuggestNumber) {
 		this.groupSuggestNumber = groupSuggestNumber;
+	}
+
+	public String getGroupString() {
+		return groupString;
+	}
+
+	public void setGroupString(String groupString) {
+		this.groupString = groupString;
 	}
 
 	public Integer getGroupLowerLimit() {

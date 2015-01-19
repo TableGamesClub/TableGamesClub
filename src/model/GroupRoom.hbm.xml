@@ -29,6 +29,9 @@
         <property name="groupSuggestNumber" type="string">
             <column name="groupSuggestNumber" length="20" not-null="true" />
         </property>
+        <property name="groupString" type="string">
+            <column name="groupString"/>
+        </property>
         <property name="groupLowerLimit" type="int">
             <column name="groupLowerLimit" not-null="true" />
         </property>
