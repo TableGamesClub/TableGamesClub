@@ -130,5 +130,30 @@ public class LookForGroupServlet extends HttpServlet {
 			}// end of if (gametype == "小品遊戲")
 			
 			
+			
+			if(gamenamesearch.equals("10人以下")){
+				GroupService groupservice = new GroupService();
+				List<GroupRoom> grouproomall = groupservice.getAll(); // get出所有的有開的團
+				for (GroupRoom list : grouproomall){
+	
+				}
+
+			}
+			
+			
+			
+			GroupService groupservice_v2 = new GroupService();
+			List<GroupRoom> allgroup =groupservice_v2.getAll();
+			for (GroupRoom alllist : allgroup){
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
 	}
 }
