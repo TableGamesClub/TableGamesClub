@@ -1078,7 +1078,6 @@ li.MemInfo {
         function load(){    
 //         	alert($(this).val());
 			var boardGameStore = document.getElementById("boardGameStore");//抓取店家號碼
-// 			alert(boardGameStore.value)
         	xhr = new XMLHttpRequest();
         	xhr.addEventListener("readystatechange",callback,false);
             var url = "GetGamesJson?storeId="+boardGameStore.value+"&type="+$(this).val();     //url要改
