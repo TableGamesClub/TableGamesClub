@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
-<title>查看此間專賣店資訊</title>
+<title>查看此間專賣店資訊~</title>
 <style type="text/css">
 
 #feedback { font-size: 1.4em; }
