@@ -1,15 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<style>
+</style>
 <table border="0">    
  <tr>
   <%if (rowsPerPage<rowNumber) {%>
     <%if(pageIndex>=rowsPerPage){%>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=1" style="color:black;font-size:16px;margin-left:25px;margin-right:10px;">至第一頁</A>&nbsp;&nbsp;</td>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>" style="color:black;margin-left:-15px;font-size:16px;">上一頁 </A>&nbsp;</td>
+        <td class="intro"><A href="<%=request.getRequestURI()%>?whichPage=1" style="color:black;font-size:16px;margin-left:25px;margin-right:10px;">至第一頁</A>&nbsp;&nbsp;</td>
+        <td class="intro"><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>" style="color:black;margin-left:-15px;font-size:16px;">上一頁 </A>&nbsp;</td>
     <%}%>
   
     <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>" style="color:black;font-size:16px;margin-left:25px;">下一頁 </A>&nbsp;</td>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>" style="color:black;font-size:16px;">至最後一頁</A>&nbsp;</td>
+        <td class="intro"><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>" style="color:black;font-size:16px;margin-left:25px;">下一頁 </A>&nbsp;</td>
+        <td class="intro"><A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>" style="color:black;font-size:16px;">至最後一頁</A>&nbsp;</td>
     <%}%>
   <%}%>  
  </tr>
@@ -18,13 +20,13 @@
 <table border="0" class="bottom">   
  <tr> 
    <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>" >   
-        <td style="color:black;font-size:16px;">
-           <select size="1" name="whichPage">
+        <td style="color:black;font-size:16px;"  class="intro">
+           <select size="1" name="whichPage" style="width:100px;height:25px;">
         <%for (int i=1; i<=pageNumber; i++){%>
            <option value="<%=i%>">跳至第<%=i%>頁
         <%}%> 
            </select>
-           <input type="submit" value="確定"  style="font-size:16px;width:120px;height:30px;">  
+           <input type="submit" value="確定"  style="margin-top: -25px;margin-left: 115px;color:white;font-size:16px;width:120px;height:25px;background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,183,161,1)), color-stop(0%,rgba(191,110,78,1)), color-stop(50%,rgba(140,51,16,1)), color-stop(100%,rgba(117,34,1,1)));">  
         </td>
    </FORM>
  </tr>
