@@ -205,9 +205,23 @@ body
 .bottom{
     margin-top: 5px;
     margin-left:25px;
-	border:1px solid black;
 	width:220px;
 	height:35px;
+}
+.smbodybottom
+{
+    border-radius:10px 10px 10px 10px;
+    border:3px solid green;
+    margin-top:15px;
+}
+.smbdrtllimbo
+{
+    margin-left:15px;
+}
+.gameintro
+{
+    border:3px solid green;
+    margin:5px;
 }
 </style>
 
@@ -248,8 +262,7 @@ $(function() {
       </div>
       <div class="smbodyrighttopleft">
         <div class="smbdrtllimbo">
-         <p style="font-size:20px;color:blue;">遊戲類型：</p><br>
-         <input type="checkbox" id="gametypeone">不分
+         <p style="font-size:20px;color:blue;margin-top:10px;font-family:Microsoft JhengHei;">遊戲類型：</p><br>
          <input type="checkbox" id="gametypetwo">策略遊戲
          <input type="checkbox" id="gametypethree">益智遊戲
          <input type="checkbox" id="gametypefour">推理遊戲
@@ -271,8 +284,8 @@ $(function() {
 <!-- 		</tr> -->
 		<%n++;%>
 			<td align='center' valign='middle' ${(BoardGames.boardGamesId==param.boardGamesId) ? 'bgcolor=#CCCCFF':''}>
-				<a href="${pageContext.servletContext.contextPath}/controller/GetImageInfo?id=${BoardGames.boardGamesId}">
-					<img src="${pageContext.servletContext.contextPath}/controller/GetImage?id=${BoardGames.boardGamesId}" style="height:120px;width:150px;">
+				<a href="${pageContext.servletContext.contextPath}/controller/GetImageInfo?id=${BoardGames.boardGamesId}" style="">
+					<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${BoardGames.boardGamesId}&type=BOARDGAMES" style="height:120px;width:150px;margin-top:20px;border:3px solid green;">
 				</a>
 			<br>
 			${BoardGames.boardGameName}

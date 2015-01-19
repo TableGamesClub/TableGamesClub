@@ -988,42 +988,42 @@ li.MemInfo {
 					action="<c:url value="/CteateGroupServlet"/>" method="post"
 					id="formbody">
 					<br /> <b>填寫開團資料</b> <br /> 店家帳號: <br /> <input type="text"
-						id="storeUsername" name="storeUsername" value="littleworld">
+						id="storeUsername" name="storeUsername" placeholder="littleworld">
 					<div style="display: inline"></div>
 					<br /> 店家名: <br /> <input type="text" id="storeName"
-						name="storeName" value="瘋桌遊-益智遊戲專賣店(汐止店)">
+						name="storeName" placeholder="瘋桌遊-益智遊戲專賣店(汐止店)">
 					<div style="display: inline"></div>
 					<br /> 會員帳號: <br /> <input type="text" id="groupUsername"
-						name="groupUsername" value="pewdiepie">
+						name="groupUsername" placeholder="pewdiepie">
 					<div style="display: inline"></div>
 					<br /> 開團開始時間: <br /> <input type="text" id="groupStartTime"
-						name="groupStartTime" value="2014-12-24">
+						name="groupStartTime" placeholder="2014-12-24">
 					<div style="display: inline"></div>
 					<br /> 開團結束時間: <br /> <input type="text" id="groupEndTime"
-						name="groupEndTime" value="2014-12-31">
+						name="groupEndTime" placeholder="2014-12-31">
 					<div style="display: inline"></div>
 					<br /> 房間名稱: <br /> <input type="text" id="groupRoomName"
-						name="groupRoomName" value="一起打桌遊八!">
+						name="groupRoomName" placeholder="一起打桌遊八!">
 					<div style="display: inline"></div>
 					<br /> 遊玩人數: <br /> <input type="text" id="groupSuggestNumber"
-						name="groupSuggestNumber" value="6-15">
+						name="groupSuggestNumber" placeholder="6-15">
 					<div style="display: inline"></div>
 					<br /> 遊玩最低下限: <br /> <input type="text" id="groupLowerLimit"
-						name="groupLowerLimit" value="6">
+						name="groupLowerLimit" placeholder="6">
 					<div style="display: inline"></div>
 					<br /> 遊玩上限人數: <br /> <input type="text" id="groupUpperLimit"
-						name="groupUpperLimit" value="15">
+						name="groupUpperLimit" placeholder="15">
 					<div style="display: inline"></div>
 					<br /> 遊玩時間: <br /> <input type="text" id="groupGameTime"
-						name="groupGameTime" value="03:00:00">
+						name="groupGameTime" placeholder="03:00:00">
 					<div style="display: inline"></div>
 					<br /> 預約場地開始時間: <br /> <input type="text"
 						id="reserveGroupStartTime" name="reserveGroupStartTime"
-						value="2015-1-1 13:00:00">
+						placeholder="2015-1-1 13:00:00">
 					<div style="display: inline"></div>
 					<br /> 預約場地結束時間: <br /> <input type="text"
 						id="reserveGroupEndTime" name="reserveGroupEndTime"
-						value="2015-1-1 16:00:00">
+						placeholder="2015-1-1 16:00:00">
 					<div style="display: inline" id="gametype">
 					<div style="display: inline">
 					<br /> 遊玩店家: <br />

@@ -252,6 +252,10 @@ li.MemInfo {
 	height: 250px;
 	margin-left: 50px;
 	background: #C4E1FF;
+	background-image:url(images/memberintroimg.jpg);
+	border-radius:10px 10px 10px 10px;
+	box-shadow: 3px 3px 3px rgba(20%, 20%, 40%, 0.4);
+	opacity:0.9;
 }
 
 .imageiconin {
@@ -259,6 +263,7 @@ li.MemInfo {
 	margin-top: 25px;
 	width: 180px;
 	height: 150px;
+	border-radius:10px 10px 10px 10px;
 }
 
 .nickname {
@@ -266,57 +271,76 @@ li.MemInfo {
 	margin-top: 25px;
 	width: 180px;
 	height: 30px;
-	border: 2px solid #000000;
 }
 
 .text {
 	width: 360px;
 	height: 30px;
-	border: 1px solid #000000;
 	font-size: 20px;
 }
 
 .textone {
-	margin-top: -160px;
+    font-size:28px;
+	margin-top: -190px;
 	margin-left: 220px;
+	color:#1F4EDD;
+	font-weight:900;
+	font-family: Microsoft JhengHei;
 }
 
 .texttwo {
-	margin-top: 20px;
+
+	margin-top: 25px;
 	margin-left: 220px;
+	color:white;
+	font-weight:600;
+	font-family: Microsoft JhengHei;
 }
 
 .textthree {
-	margin-top: 20px;
+	margin-top: 15px;
 	margin-left: 220px;
+	color:white;
+	font-weight:600;
+	font-family: Microsoft JhengHei;
 }
 
 .textfour {
 	float: right;
-	margin-top: -84px;
+	margin-top: -75px;
 	margin-right: 180px;
+	color:white;
+	font-weight:600;
+	font-family: Microsoft JhengHei;
 }
 
 .textfive {
 	float: right;
 	margin-right: 180px;
 	margin-top: -32px;
+	color:white;
+	font-weight:600;
+	font-family: Microsoft JhengHei;
 }
 
 .middlebodyone {
 	margin-top: -30px;
 	width: 1200px;
-	height: 550px;
+	height: 300px;
 	background: white;
 	margin-left: 50px;
+	border-radius:10px 10px 10px 10px;
+	margin-bottom: 50px;
+	box-shadow: 3px 3px 3px rgba(20%, 20%, 40%, 0.4);
 }
 
 .middlebodytwo {
 	margin-top: 30px;
-	width: 1200px;
-	height: 200px;
-	background: white;
+	width: 900px;
+    height: 140px;
+	background: rgba(240,249,255,0.3);
 	margin-left: 50px;
+	border-radius:10px 10px 10px 10px;
 }
 
 .middlebodyheadone {
@@ -326,18 +350,22 @@ li.MemInfo {
 	background: #E0FFFF;
 	margin-left: 50px;
 	position: relative;
+	border-radius:10px 10px 10px 10px;
+	box-shadow: 3px 3px 3px rgba(20%, 20%, 40%, 0.4);
 }
 
 .middlebodyoneline {
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
 	margin-top: -10px;
 	width: 1186px;
-	border: 7px solid #2828FF;
+	border: 7px solid #E0FFFF;
 }
 
 .middlebodyinsideone {
-	width: 1120px;
+	width: 285px;
 	height: 230px;
-	border: 5px solid #2828FF;
+	border: 5px solid #1E5799;
 	margin-top: 15px;
 	margin-left: 35px;
 }
@@ -366,20 +394,45 @@ li.MemInfo {
 	margin-left: 35px;
 }
 
+.intromain
+{ 
+    padding:20px;
+    width: 800px;
+    height: 200px;
+    background: -webkit-gradient(linear, left top, left bottom, 
+                color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(32,124,202,1)), 
+                color-stop(100%,rgba(125,185,232,1)));
+    margin-left: 330px;
+    margin-top: -240px;
+    border-top-right-radius:10px 10px;
+    border-bottom-right-radius:10px 10px;
+}
+
 .groupimage {
 	margin-top: -195px;
 	width: 220px;
 	height: 150px;
 	margin-left: 75px;
 }
-/* .groupname{margin-top: -220px;margin-left: 315px;width:300px;height:60px;border:1px solid #2828FF;} */
-/* .groupgametype{margin-top: 10px;margin-left: 315px;width:300px;height:60px;border:1px solid #2828FF;} */
-/* .groupgamename{margin-top: 10px;margin-left: 315px;width:300px;height:60px;border:1px solid #2828FF;} */
-/* .groupgamedate{width:300px;height:60px;border:1px solid #2828FF;float: right;margin-right: 235px;margin-top: -170px;} */
-/* .groupgamenumber{width:300px;height:60px;border:1px solid #2828FF;float: right;margin-top: -95px;margin-right: 235px;} */
-/* .buttoncheck{width:150px;height:50px;margin-top: -55px;float: right;margin-right: 60px;} */
-/* .lookforgroup{width:360px;height:120px;margin-top: 32px;margin-left: 60px;} */
-/* .creategroup{width:360px;height:120px;float:right;margin-top: 32px;margin-right: 60px;} */
+.lookforgroup
+{
+    width:200px;
+    height:65px;
+    margin-top: 50px; 
+    background:#074B99;
+    color:#ffffff;
+    border-radius:10px 10px 10px 10px;
+    }
+.creategroup{
+    width:200px;
+    height:65px;
+    float: right;
+    margin-top: 50px;
+    margin-right: 200px;
+    background:#1f3b08;
+    color:#ffffff;
+    border-radius:10px 10px 10px 10px;
+    }
 </style>
 
 <script type="text/javascript">
@@ -545,9 +598,6 @@ li.MemInfo {
 	</div>
 
 	<div style="margin: 0 auto; width: 1300px;">
-
-
-
 		<div class="headbodyimage">
 			<div>
 				<img
@@ -556,7 +606,7 @@ li.MemInfo {
 			</div>
 			<div class="nickname">
 				<center>
-					<p style="font-size: 18px">暱稱:${Member.nickname}</p>
+					<p style="font-size: 18px;font-weight:900;">暱稱 : ${Member.nickname}</p>
 				</center>
 			</div>
 			<div class="text textone">
@@ -577,28 +627,29 @@ li.MemInfo {
 		</div>
 		<div class="middlebodyheadone">
 			<center>
-				<p style="font-size: 20px; color: #A20055; padding-top: 25px">現有加入團</p>
+				<p style="font-size: 20px; color: #1f3b08; padding-top: 25px; font-weight:900;font-family: Microsoft JhengHei;">現有加入團</p>
 			</center>
 		</div>
 
-
+        <c:set var="temp1" value="0" />
+			<c:forEach var="GroupRooms" items="${memgroupall}">
 		<div class="middlebodyone">
 			<div class="middlebodyoneline"></div>
 			<div class="middlebodyinsideone"></div>
 			<div>
-				<img src="images/0007.jpg" class="groupimage">
+				<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${GroupRooms.groupSerialNumber}&type=GroupRoom" class="groupimage">
 			</div>
-			<c:set var="temp1" value="0" />
-			<c:forEach var="GroupRooms" items="${memgroupall}">
+			<div class="intromain">
+			
 				<div>
 					<div class="groupname">
 						<center>
-							<p style="font-size: 20px; padding-top: 15px">團名稱:${GroupRooms.groupRoomName}</p>
+							<p style="font-size: 20px; padding-top: 15px; color:#e9e9ce; font-weight:900;font-family: Microsoft JhengHei;">團名稱:${GroupRooms.groupRoomName}</p>
 						</center>
 					</div>
 					<div class="groupgametype">
 						<center>
-							<p style="font-size: 20px; padding-top: 15px">
+							<p style="font-size: 20px; padding-top: 15px; color:#e9e9ce; font-weight:900;font-family: Microsoft JhengHei;">
 								遊戲類型:
 								<c:if test="${temp1==0}">${typeList.kind00}</c:if>
 								<c:if test="${temp1==0}">${typeList.kind01}</c:if>
@@ -638,7 +689,7 @@ li.MemInfo {
 					</div>
 					<div class="groupgamename">
 						<center>
-							<p style="font-size: 20px; padding-top: 15px">
+							<p style="font-size: 20px; padding-top: 15px; color:#e9e9ce; font-weight:900;font-family: Microsoft JhengHei;">
 								遊戲名稱:
 								<c:if test="${temp1==0}">
 									<c:forEach var="GroupChoiceGames"
@@ -702,12 +753,12 @@ li.MemInfo {
 
 				<div class="groupgamedate">
 					<center>
-						<p style="font-size: 20px; padding-top: 15px">開團時間:${GroupRooms.groupStartTime}</p>
+						<p style="font-size: 20px; padding-top: 15px; color:#e9e9ce; font-weight:900;font-family: Microsoft JhengHei;">開團時間:${GroupRooms.groupStartTime}</p>
 					</center>
 				</div>
 				<div class="groupgamenumber">
 					<center>
-						<p style="font-size: 20px; padding-top: 15px">
+						<p style="font-size: 20px; padding-top: 15px; color:#e9e9ce; font-weight:900;font-family: Microsoft JhengHei;">
 							加團人數:
 							<c:if test="${temp1==0}">${map_count.count0}</c:if>
 							<c:if test="${temp1==1}">${map_count.count1}</c:if>
@@ -723,12 +774,14 @@ li.MemInfo {
 						</p>
 					</center>
 				</div>
-				<c:set var="temp1" value="${temp1+1}" />
-			</c:forEach>
-			<div>
-				<input type="button" value="查看" class="buttoncheck">
-			</div>
 
+<!-- 			  <div> -->
+<!-- 				<input type="button" value="查看" class="buttoncheck"> -->
+<!-- 			  </div> -->
+			</div>
+			</div>
+			<c:set var="temp1" value="${temp1+1}" />
+			</c:forEach>
 			<!--     <div class="middlebodyinsidetwo"></div> -->
 			<!--     <div><img src="images/0007.jpg" class="groupimage"></div> -->
 			<!--     <div class="groupname"> -->
@@ -749,14 +802,14 @@ li.MemInfo {
 			<!--     <div> -->
 			<!--        <input type="button" value="查看" class="buttoncheck"> -->
 			<!--     </div> -->
-		</div>
-		<div class="middlebodytwo">
-			<div class="middlebodyoneline"></div>
+	
+		<center><div class="middlebodytwo">
 			<input type="button" value="找團" class="lookforgroup"
-				style="font-size: 36px; color: #2828FF;"> <input
+				style="font-size: 36px; color: #feffff;font-family: Microsoft JhengHei;"> <input
 				type="button" value="開團" class="creategroup"
-				style="font-size: 36px; color: #2828FF;">
-		</div>
+				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;">
+		</div></center>
 	</div>
+	
 </body>
 </html>
