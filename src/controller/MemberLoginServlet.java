@@ -1,43 +1,24 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import model.BoardGameKind;
-import model.GroupChoiceGames;
-import model.GroupRoom;
-import model.Joiner_Info;
 import model.Member;
-import model.Interface.BoardGameKindDAO_Interface;
-import model.Interface.GroupChoiceGamesDAO_Interface;
-import model.Interface.Joiner_InfoDAO_Interface;
-import model.dao.Joiner_InfoDAOHibernate;
-import model.service.GroupService;
 import model.service.MemberService;
 
 @WebServlet("/LoginMemberServlet.do")
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public MemberLoginServlet() {
-		super();
-	}
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
