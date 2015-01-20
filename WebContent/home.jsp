@@ -469,14 +469,10 @@ div#abgne_marqueeright div#marquee_prev_btn {
 	right: 5px;
 }
 
-.advbodyleft
-{
-    width:580px;
-    height:30px;
-    border:1px solid #750000;
-}
 .advshowleft
 {
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
     margin-top:-45px;
     width:200px;
     height:40px;
@@ -489,6 +485,8 @@ div#abgne_marqueeright div#marquee_prev_btn {
 
 .advshowright
 {
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
     margin-right: 409px;
     float:right;
     margin-top:-72px;
@@ -534,6 +532,56 @@ li.MemInfo{
     color:#ffffff;
     font-weight:bolder;
     font-family:Microsoft JhengHei;
+}
+.bodythree
+{
+    margin-top:25px;
+    width:1300px;
+    height:180px;
+    background:-webkit-gradient(linear, left top, 
+                                        right bottom, 
+                                        color-stop(0%,#feffff), 
+                                        color-stop(35%,#ddf1f9), 
+                                        color-stop(100%,#a0d8ef));
+    border-radius:10px 10px 10px 10px;
+    box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
+}
+.bodythreehead
+{
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    width:1300px;
+    height:50px;
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#4ca3ce), color-stop(100%,#17315b));
+}
+.advshowtext{font-size:24px;color:#ffffff;font-weight:bolder;font-family:Microsoft JhengHei;text-shadow:1px 1px #cccccc;}
+.advshowtexttwo{padding-top:15px;padding-left:40px;}
+.advshowtextthree{margin-right: 40px;margin-top: -30px;}
+.groupshow
+{
+    border-radius:10px 10px 10px 10px;
+    width:380px;
+    height:110px;
+    border-top:5px solid #1E5799;
+    border-bottom:5px solid #1E5799;
+    border-right:5px solid #1E5799;
+    box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
+}
+.gsone{margin-top:5px;margin-left:15px;}
+.gstwo{margin-top: -120px;margin-left: 421px;}
+.gsthree{float: right;margin-top: -120px;margin-right: 89px;}
+.gsimage{width:120px;height:90px;margin-left:10px; margin-top:10px;border-radius:5px 5px 5px 5px;border:1px solid #01297A;}
+.groupintro{width:230px;height:90px;margin-top: -90px;margin-left: 140px;}
+.groupintrotext{font-family:Microsoft JhengHei;font-weight:bold;color:#26558b;}
+.gameshow{width:180px;height:110px;border-radius:5px 5px 5px 5px;border:3px solid #002400;box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);}
+.gameshowimage{width:180px;height:90px;}
+.gameshowintitle{font-size:16px;color:#002400;font-family:Microsoft JhengHei;font-family:Microsoft JhengHei;font-weight:bolder;}
+.gshowone{margin-top: 10px;margin-left: 20px;}
+.gshowtwo{margin-top: -116px;margin-left: 221px;}
+.gshowthree{margin-top: -116px;margin-left: 422px;}
+.gshowfour{margin-top: -116px;float: right;margin-right: 495px;}
+.gshowfive{margin-top: -116px;float: right;margin-right: 294px;}
+.gshowsix{margin-top: -116px;float: right;margin-right: 93px;
 }
 </style>
 
@@ -988,6 +1036,69 @@ $(function() {
 		</ul>
 		<div class="marquee_btn" id="marquee_prev_btn"><img src="images/marquee_prev_btn.jpg" /></div>
 	  </div>
+  </div>
+</div>
+<div style="margin:0 auto;width:1300px;">
+  <div class="bodythree">
+    <div class="bodythreehead">
+      <p class="advshowtext advshowtexttwo">近十天新開遊戲團</p><p class="advshowtext advshowtextthree" style="float:right;">MORE</p>
+    </div>
+    <div class="groupshow gsone">
+      <img src="images/groupho.jpg" class="gsimage">
+      <div class="groupintro">
+        <p class="groupintrotext">團名稱：一起打桌遊八!</p>
+        <p class="groupintrotext">遊戲名稱：西部無間</p>
+        <p class="groupintrotext">遊戲人數：6-15</p>
+        <p class="groupintrotext">開團時間：2014-12-24</p>
+      </div>
+    </div>
+    <div class="groupshow gstwo">
+      <img src="images/grouphtw.jpg" class="gsimage">
+       <div class="groupintro">
+        <p class="groupintrotext">團名稱：來打桌遊</p>
+        <p class="groupintrotext">遊戲名稱：富饒之城</p>
+        <p class="groupintrotext">遊戲人數：4-10</p>
+        <p class="groupintrotext">開團時間：2014-01-01</p>
+      </div>
+    </div>
+    <div class="groupshow gsthree">
+      <img src="images/grouphth.jpg" class="gsimage">
+       <div class="groupintro">
+        <p class="groupintrotext">團名稱：GO桌遊</p>
+        <p class="groupintrotext">遊戲名稱：卡卡頌（卡卡城，卡卡送）</p>
+        <p class="groupintrotext">遊戲人數：4-12</p>
+        <p class="groupintrotext">開團時間：2014-11-28</p>
+       </div>
+    </div>
+  </div>
+  <div class="bodythree">
+    <div class="bodythreehead">
+      <p class="advshowtext advshowtexttwo">桌遊遊戲資訊</p><p class="advshowtext advshowtextthree" style="float:right;">MORE</p>
+    </div>
+    <div class="gameshow gshowone">
+      <img src="images/gshowimage1.jpg" class="gameshowimage">
+      <center><p style="font-size:16px;color:#002400;font-family:Microsoft JhengHei;font-weight:bolder;">抵抗組織：阿瓦隆</p></center>
+    </div>
+    <div class="gameshow gshowtwo">
+      <img src="images/gshowimage2.jpg" class="gameshowimage">
+      <center><p class="gameshowintitle">落跑修女;修女也瘋狂</p></center>
+    </div>
+    <div class="gameshow gshowthree">
+      <img src="images/gshowimage3.jpg" class="gameshowimage">
+      <center><p class="gameshowintitle">空中花園</p></center>
+    </div>
+    <div class="gameshow gshowfour">
+      <img src="images/gshowimage4.jpg" class="gameshowimage">
+      <center><p class="gameshowintitle">克莉絲蒂瑣事遊戲</p></center>
+    </div>
+    <div class="gameshow gshowfive">
+      <img src="images/gshowimage5.jpg" class="gameshowimage">
+      <center><p class="gameshowintitle">開膛手傑克</p></center>
+    </div>
+    <div class="gameshow gshowsix">
+      <img src="images/gshowimage6.jpg" class="gameshowimage">
+      <center><p class="gameshowintitle">頭等車廂謀殺案</p></center>
+    </div>
   </div>
 </div>
 </body>

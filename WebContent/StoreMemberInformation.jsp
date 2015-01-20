@@ -18,7 +18,7 @@
 #feedback { font-size: 1.4em; }
 #selectable .ui-selecting { border: 0;background: #4EFEB3;height:35px;border-radius:5px;padding-top: 5px; box-shadow: 3px 3px 3px rgba(117,34,1,0.4);}
 #selectable .ui-selected { border: 0;background: #02DF82; color: white;height:35px;border-radius:5px;padding-top: 5px;box-shadow: 3px 3px 3px rgba(117,34,1,0.4);}
-#selectable { border: 0;list-style-type: none;margin: 35px;padding: 0;width: 75%;border-radius:5px;padding-top: 5px; }
+/* #selectable { border: 0;list-style-type: none;margin: 35px;padding: 0;width: 75%;border-radius:5px;padding-top: 5px; } */
 #selectable li { border: 0;margin: 3px; padding: 0.4em; font-size: 1.4em; height: 35px;border-radius:5px;padding-top: 5px;box-shadow: 3px 3px 3px rgba(117,34,1,0.4); }
 
 .font-size1
@@ -87,7 +87,6 @@ body
     margin-left: 21px;
     height: 620px;
     width: 250px;
-    border: 3px Solid #FFFFFF;
 }
 .smbodyright
 {
@@ -168,19 +167,23 @@ body
 }
 .smbodyleftinsidetext
 { 
+    width:250px;
+    height:40px;
+    background:white;
     margin-top:40px;
-    font-size:20px;
-    color:black;
-    font-wight:bolder;
-    border:0;
+    padding-top:25px;
+    font-size:24px;
+    color:#006e2e;
+    border-radius:10px 10px 10px 10px;
+    box-shadow: 3px 3px 3px rgba(117,34,1,0.4);
+    font-weight:bolder;
 }
-
+.selectoption
+{font-size:20px;color:#006e2e;font-family:Microsoft JhengHei;}
 </style>
 
 <script type="text/javascript">
-$(function() {
-    $( "#selectable" ).selectable();
-  });
+
 </script>
 </head>
 <body>
@@ -195,14 +198,13 @@ $(function() {
       </div>
       <div class="memberstatus">
             <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">帳號</p></center>
-            <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">暱稱</p></center> 
             <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">登入時間</p></center> 
       </div>
       <div class="smbodyleftinsidebottom" id="selectable">
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="#" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">個人資訊</a></center></div>
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="#" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">專賣店資訊</a></center></div>
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="http://yahoo.com.tw" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">查看所有團</a></center></div>
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="#" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">登出</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">個人資訊</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">專賣店資訊</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="http://yahoo.com.tw" class="selectoption">查看所有團</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">登出</a></center></div>
       </div>
     </div>
   </div>

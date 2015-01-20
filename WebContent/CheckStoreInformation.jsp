@@ -18,7 +18,7 @@
 #feedback { font-size: 1.4em; }
 #selectable .ui-selecting { border: 0;background: #4EFEB3;height:35px;border-radius:5px;padding-top: 5px; box-shadow: 3px 3px 3px rgba(117,34,1,0.4);}
 #selectable .ui-selected { border: 0;background: #02DF82; color: white;height:35px;border-radius:5px;padding-top: 5px;box-shadow: 3px 3px 3px rgba(117,34,1,0.4);}
-#selectable { border: 0;list-style-type: none;margin: 35px;padding: 0;width: 75%;border-radius:5px;padding-top: 5px; }
+/* #selectable { border: 0;list-style-type: none;margin: 35px;padding: 0;width: 75%;border-radius:5px;padding-top: 5px; } */
 #selectable li { border: 0;margin: 3px; padding: 0.4em; font-size: 1.4em; height: 35px;border-radius:5px;padding-top: 5px;box-shadow: 3px 3px 3px rgba(117,34,1,0.4); }
 
 .font-size1
@@ -87,7 +87,6 @@ body
     margin-left: 21px;
     height: 620px;
     width: 250px;
-    border: 3px Solid #FFFFFF;
 }
 .smbodyright
 {
@@ -168,11 +167,16 @@ body
 }
 .smbodyleftinsidetext
 { 
+    width:250px;
+    height:40px;
+    background:white;
     margin-top:40px;
-    font-size:20px;
-    color:black;
-    font-wight:bolder;
-    border:0;
+    padding-top:25px;
+    font-size:24px;
+    color:#006e2e;
+    border-radius:10px 10px 10px 10px;
+    box-shadow: 3px 3px 3px rgba(117,34,1,0.4);
+    font-weight:bolder;
 }
 
 .headimageinfo
@@ -180,13 +184,13 @@ body
     width:180px;
     height:120px;
     border:2px solid black;
-    margin-left: 20px;
-    margin-top: 20px;
+    margin-left: 100px;
+    margin-top: 3px;
 }
 .introimageone
 {
-    margin-left: 20px;
-    margin-top: 25px;
+    margin-left: 100px;
+    margin-top: 18px;
     width:180px;
     height:120px;
     border:2px solid black;
@@ -196,14 +200,14 @@ body
     width:180px;
     height:120px;
     border:2px solid black;
-    margin-left: 220px;
+    margin-left: 302px;
     margin-top: -124px;
 }
 
 .introimagethree
 {
-    margin-top: -123px;
-    margin-left: 422px;
+    margin-top: -124px;
+    margin-left: 504px;
     width:180px;
     height:120px;
     border:2px solid black;
@@ -211,18 +215,34 @@ body
 .introbody
 {
     border-radius:10px;
-    margin-left: 20px;
     margin-top: 20px;
     width: 850px;
     height: 500px;
     background-image: url(images/woodbody.jpg);
 }
+.selectoption{font-size:20px;color:#006e2e;font-family:Microsoft JhengHei;}
+.sbrtintroimg
+{
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+    background-image:url(images/woodstoreintro.png);
+    width:850px;
+    height:280px;
+    border:1px solid #fcfff4;
+}
+.introinfotitle
+{width: 440px;height: 40px;border-bottom: 3px dashed #fefcea;padding-top: 20px;margin-left: 25px;}
+.introtitle{font-size:20px;color:#fefcea;font-family:Microsoft JhengHei;}
+.introaddress{width: 440px;height: 40px;padding-top: 5px;margin-left: 12px;font-size:18px;color:#fefcea;font-family:Microsoft JhengHei;}
+.introphone{width: 440px;height: 40px;padding-top: 5px;margin-left: 12px;font-size:18px;color:#fefcea;font-family:Microsoft JhengHei;}
+.introtime{width: 440px;height: 40px;padding-top: 5px;margin-left: 23px;}
+.introtimein{font-size:18px;color:#fefcea;font-family:Microsoft JhengHei;border-bottom: 3px dashed #fefcea;padding-bottom:10px;}
+.introdetail{width: 440px;height: 220px;border-bottom:3px dashed #fefcea;margin-left:23px;}
 </style>
 
 <script type="text/javascript">
-$(function() {
-    $( "#selectable" ).selectable();
-  });
+
 </script>
 </head>
 <body>
@@ -237,26 +257,42 @@ $(function() {
       </div>
       <div class="memberstatus">
             <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">帳號</p></center>
-            <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">暱稱</p></center> 
             <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">登入時間</p></center> 
       </div>
       <div class="smbodyleftinsidebottom" id="selectable">
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="#" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">個人資訊</a></center></div>
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="#" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">專賣店資訊</a></center></div>
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="http://yahoo.com.tw" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">查看所有團</a></center></div>
-         <div class="smbodyleftinsidetext ui-widget-content"><center><a href="#" style="font-size:20px;color:black;font-family:Microsoft JhengHei;">登出</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">個人資訊</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">專賣店資訊</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="http://yahoo.com.tw" class="selectoption">查看所有團</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">登出</a></center></div>
       </div>
     </div>
   </div>
   <div class="smbodyright">
     <div class="smbodyrighttop">
-       <div class="headimageinfo">
-       </div>
-       <p style="font-size:24px">此間專賣店資訊</p>
-       <div class="introimageone"></div>
-       <div class="introimagetwo"></div>
-       <div class="introimagethree"></div>
-       <div class="introbody"></div>
+      <div class="sbrtintroimg">
+        <div class="headimageinfo">
+          <img src="images/store01.jpg" style="width:180px;height:120px;">
+        </div>
+        <div class="introimageone">
+          <img src="images/store02.jpg" style="width:180px;height:120px;">
+        </div>
+        <div class="introimagetwo">
+          <img src="images/store03.jpg" style="width:180px;height:120px;">
+        </div>
+        <div class="introimagethree">
+          <img src="images/store04.jpg" style="width:180px;height:120px;">
+        </div>
+        <div class="introbody">
+          <div class="introinfotitle"><p class="introtitle">瘋桌遊-益智遊戲專賣店(新店分店)</p></div>
+          <div class="introaddress"><p class="introaddress">地址&nbsp;：&nbsp;新北市新店區三民路157號</p></div>
+          <div class="introphone"><p class="introphone">連絡電話&nbsp;：&nbsp;(02)2915-7725</p></div>
+          <div class="introtime"><p class="introtimein">營業時間&nbsp;：&nbsp;平日 13:00 - 22:00 六日 10:00 - 22:00</p></div>
+          <div class="introdetail">
+            <p style="font-size:28px;color:#b7df2d;font-family:Microsoft JhengHei;">店家介紹</p><br/>
+            <p style="color:#b7df2d;font-family:Microsoft JhengHei;">為了讓推廣桌上遊戲的夢想實現，我們決定投注實體店家，讓跟多的人可接觸到桌上遊戲，進而愛上桌遊。並且從多元豐富的遊戲中，體驗到各種不同的樂趣。透過推廣桌遊，希望讓全世界的人因為桌上遊戲得到真正的快樂。 桌遊有時不只是一場遊戲，他更能夠增進彼此的關係，不論是家人，情侶，夫妻，朋友，親子。透過桌遊的魅力，讓所有人不分男女老少，緊緊相連在一起。</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
