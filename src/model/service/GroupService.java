@@ -44,9 +44,11 @@ public class GroupService {
 				.getBean("StoreInformationDAO");
 		grdao = (GroupRoomDAO_Interface) context.getBean("GroupRoomDAO");
 		jidao = (Joiner_InfoDAO_Interface) context.getBean("Joiner_InfoDAO");
-		gcgdao = (GroupChoiceGamesDAO_Interface)context.getBean("GroupChoiceGamesDAO");
+		gcgdao = (GroupChoiceGamesDAO_Interface) context
+				.getBean("GroupChoiceGamesDAO");
 	}
-	public List<Integer> getgametype(Integer choiceGamesSerialNumber){  //丟已開團流水號查開團所有類型
+
+	public List<Integer> getgametype(Integer choiceGamesSerialNumber) { // 丟已開團流水號查開團所有類型
 		return gcgdao.getTypeFromRoom(choiceGamesSerialNumber);
 	}
 
@@ -126,8 +128,14 @@ public class GroupService {
 		return grdao.findByPrimeKey(groupSerialNumber);
 	}
 
-	public List<GroupRoom> getGroupRooms(GroupRoom bean) {// 查詢單筆揪團房(非主鍵(傳bean)-groupRoomName)
+	public List<GroupRoom> getGroupRooms(GroupRoom bean) {// 查詢揪團房(非主鍵(傳bean)-groupRoomName)
 		return grdao.findByGroupRoomName(bean.getGroupRoomName());
+	}
+
+	public List<Joiner_Info> getJoiner_Infos(GroupRoom bean) {// 查詢加團人員資料(非主鍵(傳bean)-groupSerialNumber)
+		List<Joiner_Info> list = jidao.findByGroupSerialNumber(bean
+				.getGroupSerialNumber());
+		return list;
 	}
 
 	public List<GroupRoom> getGroupRooms(String unknown) {// 模糊查詢揪團房(非主鍵-unknown)
@@ -150,6 +158,13 @@ public class GroupService {
 	public int countGroupRoomsMyJoined(Member bean) {// 查我加的團人數
 		List<Joiner_Info> list = new ArrayList<Joiner_Info>();
 		list = jidao.findByUsername(bean.getUsername());
+		int count = list.size();
+		return count;
+	}
+	
+	public int countGroupRoomsByGroupSerialNumber(GroupRoom bean) {// 查某團已加入的人數--by groupSerialNumber
+		List<Joiner_Info> list = new ArrayList<Joiner_Info>();
+		list = jidao.findByGroupSerialNumber(bean.getGroupSerialNumber());
 		int count = list.size();
 		return count;
 	}
