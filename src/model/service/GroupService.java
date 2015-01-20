@@ -13,6 +13,7 @@ import model.Joiner_Info;
 import model.Member;
 import model.StoreInformation;
 import model.StoreMember;
+import model.Interface.BoardGameKindDAO_Interface;
 import model.Interface.GroupChoiceGamesDAO_Interface;
 import model.Interface.GroupRoomDAO_Interface;
 import model.Interface.Joiner_InfoDAO_Interface;
@@ -27,12 +28,14 @@ public class GroupService {
 	private GroupRoomDAO_Interface grdao;
 	private Joiner_InfoDAO_Interface jidao;
 	private GroupChoiceGamesDAO_Interface gcgdao;
+	private BoardGameKindDAO_Interface bgkdao;
 
 	private int roomMaxNumber = 0;
 	private int thisTimeJoinedNumber = 0;
 	private int leftNumber = 0;
 
 	public GroupService() {// 建構子
+
 							// (初始化所使用到DAO-StoreInformationDAO_Interface，GroupRoomDAO_Interface，Joiner_InfoDAO_Interface)
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
@@ -46,9 +49,28 @@ public class GroupService {
 		jidao = (Joiner_InfoDAO_Interface) context.getBean("Joiner_InfoDAO");
 		gcgdao = (GroupChoiceGamesDAO_Interface) context
 				.getBean("GroupChoiceGamesDAO");
+		bgkdao = (BoardGameKindDAO_Interface) context
+				.getBean("BoardGameKindDAO");
+		
+	}
+	
+	public List<Integer> sequenceandselecttypedesc(int boardGameSerialNumber){ //時間排序-倒敘(傳Grouproom流水號)
+		return bgkdao.sequenceandselecttypedesc(boardGameSerialNumber);
+	} 
+	
+	public List<Integer> sequenceandselecttype(int boardGameSerialNumber){  //時間排序-正序(傳Grouproom流水號)
+		return bgkdao.sequenceandselecttype(boardGameSerialNumber);
+	}
+	
+	public List<GroupRoom> sequencestarttimedesc(GroupRoom bean){    //時間排序-倒敘(傳Grouproom)
+		return grdao.sequencestarttimedesc(bean);
+	}
+	
+	public List<GroupRoom> sequencestarttime(GroupRoom bean){   //時間排序-正序(傳Grouproom)
+		return grdao.sequencestarttime(bean);
 	}
 
-	public List<Integer> getgametype(Integer choiceGamesSerialNumber) { // 丟已開團流水號查開團所有類型
+	public List<Integer> getgametype(Integer choiceGamesSerialNumber) { // 丟已開團流水號 查開團所有類型
 		return gcgdao.getTypeFromRoom(choiceGamesSerialNumber);
 	}
 
@@ -161,6 +183,14 @@ public class GroupService {
 		int count = list.size();
 		return count;
 	}
+	
+	public int countGroupRoomsByGroupSerialNumber(Integer groupserialnumber) {// 傳groupserialnumber 查某團已加入的人數--by groupSerialNumber
+		List<Joiner_Info> list = new ArrayList<Joiner_Info>();
+		list = jidao.findByGroupSerialNumber(groupserialnumber);
+		int count = list.size();
+		return count;
+	}
+	
 	
 	public int countGroupRoomsByGroupSerialNumber(GroupRoom bean) {// 查某團已加入的人數--by groupSerialNumber
 		List<Joiner_Info> list = new ArrayList<Joiner_Info>();

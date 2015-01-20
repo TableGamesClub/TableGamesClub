@@ -2615,6 +2615,7 @@ public class InsertDataService {
 		beanGroupRoom1.setGroupEndTime(java.sql.Date.valueOf("2014-12-31"));
 		beanGroupRoom1.setGroupRoomName("一起打桌遊八!");
 		beanGroupRoom1.setGroupSuggestNumber("6-15");
+		beanGroupRoom1.setGroupString("慶祝新年一月一日, 發揚桌遊");
 		beanGroupRoom1.setGroupLowerLimit(6);
 		beanGroupRoom1.setGroupUpperLimit(15);
 		beanGroupRoom1.setGroupGameTime(java.sql.Time.valueOf("03:00:00"));
@@ -2654,6 +2655,7 @@ public class InsertDataService {
 		beanGroupRoom2.setGroupEndTime(java.sql.Date.valueOf("2014-1-8"));
 		beanGroupRoom2.setGroupRoomName("來打桌遊");
 		beanGroupRoom2.setGroupSuggestNumber("4-10");
+		beanGroupRoom2.setGroupString("老人團, 新手慎入.");
 		beanGroupRoom2.setGroupLowerLimit(4);
 		beanGroupRoom2.setGroupUpperLimit(10);
 		beanGroupRoom2.setGroupGameTime(java.sql.Time.valueOf("02:00:00"));
@@ -2694,6 +2696,7 @@ public class InsertDataService {
 		beanGroupRoom3.setGroupEndTime(java.sql.Date.valueOf("2014-12-5"));
 		beanGroupRoom3.setGroupRoomName("GO桌遊");
 		beanGroupRoom3.setGroupSuggestNumber("4-12");
+		beanGroupRoom3.setGroupString("第一次開團請多指教");
 		beanGroupRoom3.setGroupLowerLimit(4);
 		beanGroupRoom3.setGroupUpperLimit(12);
 		beanGroupRoom3.setGroupGameTime(java.sql.Time.valueOf("03:00:00"));
@@ -2733,6 +2736,7 @@ public class InsertDataService {
 		beanGroupRoom4.setGroupEndTime(java.sql.Date.valueOf("2014-12-12"));
 		beanGroupRoom4.setGroupRoomName("D&D團");
 		beanGroupRoom4.setGroupSuggestNumber("5-10");
+		beanGroupRoom4.setGroupString("龍與地下城團為主, 新手可.");
 		beanGroupRoom4.setGroupLowerLimit(5);
 		beanGroupRoom4.setGroupUpperLimit(10);
 		beanGroupRoom4.setGroupGameTime(java.sql.Time.valueOf("02:00:00"));
@@ -2772,6 +2776,7 @@ public class InsertDataService {
 		beanGroupRoom5.setGroupEndTime(java.sql.Date.valueOf("2014-10-1"));
 		beanGroupRoom5.setGroupRoomName("桌遊FUN");
 		beanGroupRoom5.setGroupSuggestNumber("8-12");
+		beanGroupRoom5.setGroupString("主要介紹抵抗組織和西部無間, 歡迎新手加入");
 		beanGroupRoom5.setGroupLowerLimit(8);
 		beanGroupRoom5.setGroupUpperLimit(12);
 		beanGroupRoom5.setGroupGameTime(java.sql.Time.valueOf("02:00:00"));
@@ -2812,6 +2817,7 @@ public class InsertDataService {
 		beanGroupRoom6.setGroupEndTime(java.sql.Date.valueOf("2014-12-8"));
 		beanGroupRoom6.setGroupRoomName("新桌遊組團玩");
 		beanGroupRoom6.setGroupSuggestNumber("10-14");
+		beanGroupRoom6.setGroupString("陷阱團, 心裡不夠堅定者慎入");
 		beanGroupRoom6.setGroupLowerLimit(10);
 		beanGroupRoom6.setGroupUpperLimit(14);
 		beanGroupRoom6.setGroupGameTime(java.sql.Time.valueOf("02:00:00"));
@@ -2851,6 +2857,7 @@ public class InsertDataService {
 		beanGroupRoom7.setGroupEndTime(java.sql.Date.valueOf("2015-1-9"));
 		beanGroupRoom7.setGroupRoomName("就是愛桌遊");
 		beanGroupRoom7.setGroupSuggestNumber("6-14");
+		beanGroupRoom7.setGroupString("桌遊是神, 是藝術!");
 		beanGroupRoom7.setGroupLowerLimit(6);
 		beanGroupRoom7.setGroupUpperLimit(14);
 		beanGroupRoom7.setGroupGameTime(java.sql.Time.valueOf("03:00:00"));
@@ -2890,6 +2897,7 @@ public class InsertDataService {
 		beanGroupRoom8.setGroupEndTime(java.sql.Date.valueOf("2014-12-26"));
 		beanGroupRoom8.setGroupRoomName("Play Fun ~");
 		beanGroupRoom8.setGroupSuggestNumber("4-8");
+		beanGroupRoom8.setGroupString("只玩矮人礦坑, 新手老手都可以進來.");
 		beanGroupRoom8.setGroupLowerLimit(4);
 		beanGroupRoom8.setGroupUpperLimit(8);
 		beanGroupRoom8.setGroupGameTime(java.sql.Time.valueOf("01:00:00"));

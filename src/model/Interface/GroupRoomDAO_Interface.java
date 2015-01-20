@@ -10,6 +10,11 @@ import model.GroupRoom_Message;
 import model.Joiner_Info;
 
 public interface GroupRoomDAO_Interface {
+		
+	public abstract List<GroupRoom> sequencestarttimedesc(GroupRoom bean);
+	
+	public abstract List<GroupRoom> sequencestarttime(GroupRoom bean);
+	
 	public abstract GroupRoom findByPrimeKey(Integer groupSerialNumber);
 	
 	public abstract List<GroupRoom> findByGroupRoomName(String groupRoomName);
