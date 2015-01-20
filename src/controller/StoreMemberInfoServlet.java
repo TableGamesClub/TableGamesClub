@@ -17,11 +17,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import model.BoardGameKind;
+import model.GroupRoom;
 import model.StoreInformation;
 import model.StoreMember;
 import model.Interface.BoardGameKindDAO_Interface;
 import model.Interface.BoardGamesDAO_Interface;
 import model.Interface.GroupChoiceGamesDAO_Interface;
+import model.Interface.GroupRoomDAO_Interface;
 import model.Interface.Joiner_InfoDAO_Interface;
 import model.Interface.RentalTimeDAO_Interface;
 import model.Interface.StoreInformationDAO_Interface;
@@ -31,12 +34,15 @@ import model.service.StoreMemberService;
 
 @WebServlet("/StoreMemberInfoServlet")
 public class StoreMemberInfoServlet extends HttpServlet {
-
-	private StoreMemberDAO_Interface dao1 = null;
-	private StoreInformationDAO_Interface dao2 = null;
-	private RentalTimeDAO_Interface dao3 = null;
-	private StoreScoreDAO_Interface dao4 = null;
-	private BoardGamesDAO_Interface dao5 = null;
+	private StoreMemberDAO_Interface dao1;
+	private StoreInformationDAO_Interface dao2;
+	private RentalTimeDAO_Interface dao3;
+	private StoreScoreDAO_Interface dao4;
+	private BoardGamesDAO_Interface dao5;
+	private Joiner_InfoDAO_Interface jidao;
+	private GroupChoiceGamesDAO_Interface gcgdao;
+	private BoardGameKindDAO_Interface bgkdao;
+	private GroupRoomDAO_Interface grdao;
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,6 +57,12 @@ public class StoreMemberInfoServlet extends HttpServlet {
 		dao3 = (RentalTimeDAO_Interface) context.getBean("RentalTimeDAO");
 		dao4 = (StoreScoreDAO_Interface) context.getBean("StoreScoreDAO");
 		dao5 = (BoardGamesDAO_Interface) context.getBean("BoardGamesDAO");
+		jidao = (Joiner_InfoDAO_Interface) context.getBean("Joiner_InfoDAO");
+		gcgdao = (GroupChoiceGamesDAO_Interface) context
+				.getBean("GroupChoiceGamesDAO");
+		bgkdao = (BoardGameKindDAO_Interface) context
+				.getBean("BoardGameKindDAO");
+		grdao = (GroupRoomDAO_Interface) context.getBean("GroupRoomDAO");
 	}
 
 	protected void doGet(HttpServletRequest request,
@@ -74,18 +86,35 @@ public class StoreMemberInfoServlet extends HttpServlet {
 			// 利用店家找一下專賣店ID
 			Set<StoreInformation> list = storeMember.getStoreInformations();
 			List<StoreInformation> storeInfoList = new ArrayList<StoreInformation>();
+			List<BoardGameKind> gamesKindList = new ArrayList<BoardGameKind>();
+			List<GroupRoom> listResult = new ArrayList<GroupRoom>();
 			for (StoreInformation vo : list) {
-				System.out.println("1");
+				// System.out.println("1");
 				StoreInformation sInformation = dao2.findByPrimeKey(vo
 						.getStoreId());
 				storeInfoList.add(sInformation);// 裝滿店家專賣店資料
-				System.out.println(sInformation.getStoreId());
-				System.out.println(sInformation.getStoreName());
+				// sInformation.getStoreName();// 拿到店家名
+				List<GroupRoom> gRoomList = grdao.findByUnknown(sInformation
+						.getStoreName());
+				for (GroupRoom g : gRoomList) {
+					if (g.getStoreMember().getStoreMemberId() == storeMember
+							.getStoreMemberId()) {
+						List<Integer> kindNumber = gcgdao
+								.findByGroupSerialNumber(g
+										.getGroupSerialNumber());// 團主鍵
+						listResult.add(g);// 符合條件的放進list
+						for (Integer i : kindNumber) {// foreach拿到某團所選得遊戲種類
+							gamesKindList.add(bgkdao.findByPrimeKey(i));
+						}
+					}
+				}
 			}
-			session.setAttribute("StoreInfoList", storeInfoList);// 放此店家所屬的多筆專賣店
+			session.setAttribute("storeInfoList", storeInfoList);// 放此店家所屬的多筆專賣店
+			session.setAttribute("listResult", listResult);// 放此店家所屬的多筆專賣店
+			session.setAttribute("gamesKindList", gamesKindList);// 放此店家所屬的多筆專賣店
 
 			response.sendRedirect("StoreInformation.jsp");
-		}else{
+		} else {
 			response.sendRedirect("login.jsp");
 		}
 	}

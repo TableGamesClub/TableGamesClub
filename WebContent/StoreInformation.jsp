@@ -261,12 +261,12 @@ body {
 			<div class="smbodyrighttop">
 				<p style="font-size: 24px">多家專賣店資訊</p>
 				<!-- 多家專賣店填的位置 -->
-				<c:forEach var="StoreList" items="${StoreInfoList}" >
-					${StoreList.storeName}
-					${StoreList.storeAddress}
-					${StoreList.storeTel}
-					${StoreList.rentAreaCost}
-					${StoreList.groupUpperLimit}
+				<c:forEach var="StoreList" items="${storeInfoList}" >
+					${storeList.storeName}
+					${storeList.storeAddress}
+					${storeList.storeTel}
+					${storeList.rentAreaCost}
+					${storeList.groupUpperLimit}
 				</c:forEach>
 			</div>
 		</div>

@@ -36,7 +36,7 @@ public class MemberLoginServlet extends HttpServlet {
 		// 將errorMsgMap放入request物件內，識別字串為 "ErrorMsgKey"
 		request.setAttribute("ErrorMsgKey", errorMsgMap);
 		session.setAttribute("MsgOK", msgOK); // 顯示常訊息
-
+		
 		// 讀取使用者所輸入，由瀏覽器送來的 mId 欄位內的資料，注意大小寫
 		String id = request.getParameter("loginId");
 		// 讀取使用者所輸入，由瀏覽器送來的 pswd 欄位內的資料，注意大小寫
