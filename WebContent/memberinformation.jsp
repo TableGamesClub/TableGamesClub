@@ -581,7 +581,7 @@ li.MemInfo {
 							src="res/arror_down.png" height="16px"
 							style="position: relative; top: 2px; left: 52px"></font></a>
 					<ul>
-						<li><a href="#" id="a2">會員資料</a></li>
+						<li><a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a></li>
 						<br />
 						<br />
 						<li><a href="loginout.jsp" id="a2">登出</a></li>

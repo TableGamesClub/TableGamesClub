@@ -329,12 +329,12 @@ public class StoreMemberService {
 		
 		
 		// Select By Username
-//		StoreMember bean2 = new StoreMember();
-//		bean2.setStoreUsername("littleworld");
-//		List<StoreMember> list = service.findByUsername(bean2);
-//		for(StoreMember vo : list){
-//			System.out.println(vo.getStoreUsername());
-//		}
+		StoreMember bean2 = new StoreMember();
+		bean2.setStoreUsername("littleworld");
+		List<StoreMember> list = service.findByUsername(bean2);
+		for(StoreMember vo : list){
+			System.out.println(vo.getStoreUsername());
+		}
 		
 		
 		//addStore test

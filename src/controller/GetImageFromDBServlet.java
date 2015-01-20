@@ -60,7 +60,7 @@ public class GetImageFromDBServlet extends HttpServlet {
 				pstmt = conn
 						.prepareStatement("select imgFileName, storeImage from StoreInformation where storeId = ?");
 				pstmt.setInt(1, storeId);
-			} else if(type.equalsIgnoreCase("STORESMEMBER")){// 讀取storemember表格
+			} else if(type.equalsIgnoreCase("STOREMEMBER")){// 讀取storemember表格
 				// 讀取瀏覽器傳送來的帳號(storeMemberId)
 				Integer storeMemberId = new Integer(request.getParameter("id"));
 				pstmt = conn
