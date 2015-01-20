@@ -291,46 +291,46 @@ public class GroupService {
 	public static void main(String[] args) {
 		GroupService service = new GroupService();
 		// 創團測試
-		// StoreMember sMember = new StoreMember();
-		// sMember.setStoreMemberId(1);// 假想我找到1號店家
-		// Member member = new Member();
-		// member.setMemberId(1);// 假想我是1號會員，我想開團
-		// GroupRoom groupRoom_Create = new GroupRoom();
-		// groupRoom_Create.setStoreMember(sMember);
-		// groupRoom_Create.setMember(member);
-		// groupRoom_Create.setStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
-		// groupRoom_Create.setGroupStartTime(java.sql.Date.valueOf("2014-12-24"));
-		// groupRoom_Create.setGroupEndTime(java.sql.Date.valueOf("2014-12-31"));
-		// groupRoom_Create.setGroupRoomName("一起打桌遊八!");
-		// groupRoom_Create.setGroupSuggestNumber("6-15");
-		// groupRoom_Create.setGroupLowerLimit(6);
-		// groupRoom_Create.setGroupUpperLimit(15);
-		// groupRoom_Create.setGroupGameTime(java.sql.Time.valueOf("03:00:00"));
-		// groupRoom_Create.setReserveGroupStartTime(java.sql.Timestamp
-		// .valueOf("2015-1-1 13:00:00"));
-		// groupRoom_Create.setReserveGroupEndTime(java.sql.Timestamp
-		// .valueOf("2015-1-1 16:00:00"));
-		// groupRoom_Create.setRoomState(0);
-		// String filename1 = "boardgames.jpg";
-		// groupRoom_Create.setImgFileName(filename1);
-		// File f = new File("WebContent/res/" +
-		// groupRoom_Create.getImgFileName());
-		// try {
-		// InputStream is = new FileInputStream(f);
-		// ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-		// int nRead;
-		// byte[] data = new byte[1024];
-		// while ((nRead = is.read(data, 0, data.length)) != -1) {
-		// buffer.write(data, 0, nRead);
-		// buffer.flush();
-		// }
-		// data = buffer.toByteArray();
-		// is.close();
-		// groupRoom_Create.setPrivateGroupImage(data);
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// service.addGroupRoom(groupRoom_Create);
+		 StoreMember sMember = new StoreMember();
+		 sMember.setStoreMemberId(1);// 假想我找到1號店家
+		 Member member = new Member();
+		 member.setMemberId(1);// 假想我是1號會員，我想開團
+		 GroupRoom groupRoom_Create = new GroupRoom();
+		 groupRoom_Create.setStoreMember(sMember);
+		 groupRoom_Create.setMember(member);
+		 groupRoom_Create.setStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
+		 groupRoom_Create.setGroupStartTime(java.sql.Date.valueOf("2014-12-24"));
+		 groupRoom_Create.setGroupEndTime(java.sql.Date.valueOf("2014-12-31"));
+		 groupRoom_Create.setGroupRoomName("一起打桌遊八!");
+		 groupRoom_Create.setGroupSuggestNumber("6-15");
+		 groupRoom_Create.setGroupLowerLimit(6);
+		 groupRoom_Create.setGroupUpperLimit(15);
+		 groupRoom_Create.setGroupGameTime(java.sql.Time.valueOf("03:00:00"));
+		 groupRoom_Create.setReserveGroupStartTime(java.sql.Timestamp
+		 .valueOf("2015-1-1 13:00:00"));
+		 groupRoom_Create.setReserveGroupEndTime(java.sql.Timestamp
+		 .valueOf("2015-1-1 16:00:00"));
+		 groupRoom_Create.setRoomState(0);
+//		 String filename1 = "boardgames.jpg";
+//		 groupRoom_Create.setImgFileName(filename1);
+//		 File f = new File("WebContent/res/" +
+//		 groupRoom_Create.getImgFileName());
+//		 try {
+//		 InputStream is = new FileInputStream(f);
+//		 ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+//		 int nRead;
+//		 byte[] data = new byte[1024];
+//		 while ((nRead = is.read(data, 0, data.length)) != -1) {
+//		 buffer.write(data, 0, nRead);
+//		 buffer.flush();
+//		 }
+//		 data = buffer.toByteArray();
+//		 is.close();
+//		 groupRoom_Create.setPrivateGroupImage(data);
+//		 } catch (IOException e) {
+//		 e.printStackTrace();
+//		 }
+		 service.addGroupRoom(groupRoom_Create);
 		// 加團測試
 		// GroupRoom groupRoom_ToJoin = new GroupRoom();
 		// groupRoom_ToJoin.setGroupSerialNumber(1);
@@ -367,7 +367,7 @@ public class GroupService {
 //		int count = service.countGroupRoomsMyJoined(member);
 //		System.out.println(count);
 //		System.out.println(service.convertDate("2015-02-01 10:00:00"));
-		System.out.println(service.convertDate("2015-02-01 "+1+":00:00"));
+//		System.out.println(service.convertDate("2015-02-01 "+1+":00:00"));
 		
 	}
 }

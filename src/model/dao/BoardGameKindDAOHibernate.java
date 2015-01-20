@@ -30,7 +30,10 @@ public class BoardGameKindDAOHibernate implements BoardGameKindDAO_Interface {
 	private static final String GET_BY_NAME = "from BoardGameKind where boardGameStyle = ?";
 	public Integer findByGamesName(String boardGameStyle) {
 		List<BoardGameKind> list = hibernateTemplate.find(GET_BY_NAME,boardGameStyle);
-		return list.get(0).getBoardGameSerialNumber();
+		if(list != null){
+			return list.get(0).getBoardGameSerialNumber();
+		}
+		return null;
 	}
 
 	private static final String GET_ALL_STMT = "from BoardGameKind order by boardGameSerialNumber";
@@ -105,7 +108,7 @@ public class BoardGameKindDAOHibernate implements BoardGameKindDAO_Interface {
 //			System.out.println(vo.getBoardGameStyle());
 //		}
 		//查流水號By Name
-//		System.out.println(dao.findByGamesName("策略遊戲"));
+		System.out.println(dao.findByGamesName("策略遊戲"));
 	}
 
 	@Override

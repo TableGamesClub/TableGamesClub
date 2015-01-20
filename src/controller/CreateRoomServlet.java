@@ -26,6 +26,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import model.BoardGameKind;
+import model.BoardGames;
 import model.GroupChoiceGames;
 import model.GroupRoom;
 import model.Joiner_Info;
@@ -33,6 +34,7 @@ import model.Member;
 import model.StoreInformation;
 import model.StoreMember;
 import model.Interface.BoardGameKindDAO_Interface;
+import model.Interface.BoardGamesDAO_Interface;
 import model.Interface.GroupChoiceGamesDAO_Interface;
 import model.Interface.GroupRoomDAO_Interface;
 import model.Interface.Joiner_InfoDAO_Interface;
@@ -204,6 +206,8 @@ public class CreateRoomServlet extends HttpServlet {
 					(GroupChoiceGamesDAO_Interface) context.getBean("GroupChoiceGamesDAO");
 			BoardGameKindDAO_Interface bcdao = 
 					(BoardGameKindDAO_Interface) context.getBean("BoardGameKindDAO");
+			BoardGamesDAO_Interface bgcdao = 
+					(BoardGamesDAO_Interface) context.getBean("BoardGamesDAO");
 			GroupRoom bean = new GroupRoom();
 			//店家會員號碼
 			StoreMember sbean = new StoreMember();
@@ -253,49 +257,43 @@ public class CreateRoomServlet extends HttpServlet {
 			}
 				
 			
-			int thisTimeRoomNum = service.countJoinedMemberNumber(bean);//目前時間可容納的人數上限
-			if(thisTimeRoomNum >= lower){//檢查是否衝團
-				boolean isCreateRoom = service.addGroupRoom(bean);// 將GroupRoom bean寫入Database
-				if (isCreateRoom) {
-					msgOK.put("CreateOK",
-							"<Font color='red'>創立房間成功</Font>");
-					session.setAttribute("GroupRoom", bean);
-					
-					// RequestDispatcher rd = request
-					// .getRequestDispatcher("ShowMyMemberData.jsp");
-					// rd.forward(request, response);
-					return;
-				} else {
-					errorMsg.put("errorUserNameDup",
-							"創立房間失敗(CreateRoomServlet)");
+			
+			boolean isCreateRoom = service.addGroupRoom(bean);// 將GroupRoom bean寫入Database
+			if (isCreateRoom) {
+				msgOK.put("CreateOK",
+						"<Font color='red'>創立房間成功</Font>");
+				System.out.println("創立房間成功");
+				session.setAttribute("GroupRoom", bean);
+				
+				//開始新增房間桌遊
+				System.out.println("開始新增房間桌遊");
+				GroupChoiceGames games = new GroupChoiceGames();
+				BoardGameKind kinds = new BoardGameKind();
+				List<GroupRoom> room = service.getGroupRooms(bean);
+				
+				for(String s : gamesName){
+					kinds.setBoardGameSerialNumber(bgcdao.findNumberByGamesName(s));
+					games.setBoardGameName(s);
+					games.setBoardGameKind(kinds);
+					games.setGroupRoom(room.get(0));
 				}
-			}
-			else{
+				gcdao.insert(games);
+				
+				//增加開團者自己
+				Joiner_Info joiner = new Joiner_Info();
+				joiner.setGroupRoom(room.get(0));
+				joiner.setJoinTime(new Date());
+				joiner.setUsername(mbean.getUsername());
+				jdao.insert(joiner);
+				
+				response.sendRedirect("CreatGroupResult.jsp");
+				return;
+			} else {
 				errorMsg.put("errorNumberOfRoom",
 						"預約時間人數到達上限(CreateRoomServlet)");
+				System.out.println("預約時間人數到達上限(CreateRoomServlet)");
 			}
-				
-			//開始新增房間桌遊
-			GroupChoiceGames games = new GroupChoiceGames();
-			BoardGameKind kinds = new BoardGameKind();
-			List<GroupRoom> room = service.getGroupRooms(bean);
 			
-			for(String s : gamesName){
-				kinds.setBoardGameSerialNumber(bcdao.findByGamesName(s));
-				games.setBoardGameName(s);
-				games.setBoardGameKind(kinds);
-				games.setGroupRoom(room.get(0));
-			}
-			gcdao.insert(games);
-			
-			//增加開團者自己
-			Joiner_Info joiner = new Joiner_Info();
-			joiner.setGroupRoom(room.get(0));
-			joiner.setJoinTime(new Date());
-			joiner.setUsername(mbean.getUsername());
-			jdao.insert(joiner);
-			
-			response.sendRedirect("CreatGroupResult.jsp");
 			// 5.依照 Business Logic 運算結果來挑選適當的畫面
 			if (!errorMsg.isEmpty()) {
 				// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
