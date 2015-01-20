@@ -497,20 +497,14 @@ $(function() {
               <option>小品遊戲</option>
             </select>
       
-          <p class="discribtwo" name="gametime">遊戲時間：</p>
-            <select class="searchtwo">
-              <option>1小時</option>
-              <option>2小時</option>
-              <option>3小時</option>
-              <option>4小時</option>
-              <option>5小時</option>
-              <option>6小時</option>
-              <option>7小時</option>
-              <option>8小時</option>
+          <p class="discribtwo">開團時間：</p>
+            <select class="searchtwo" name="gametime">
+              <option>最近→最遠</option>
+              <option>最遠→最近</option>
             </select>
       
            <p class="discribthree">遊戲人數：</p>
-            <select class="searchthree">
+            <select class="searchthree" name="gamenumber">
               <option>10人以下</option>
               <option>10至20人</option>
               <option>20人以上</option>

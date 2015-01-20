@@ -6,8 +6,13 @@ import java.util.Set;
 import model.BoardGameKind;
 import model.BoardGames;
 import model.GroupChoiceGames;
+import model.GroupRoom;
 
 public interface BoardGameKindDAO_Interface {
+	public abstract List<Integer> sequenceandselecttypedesc(int boardGameSerialNumber);
+	
+	public abstract List<Integer> sequenceandselecttype(int boardGameSerialNumber);
+	
 	public abstract BoardGameKind findByPrimeKey(Integer boardGameSerialNumber);
 
 	public abstract List<BoardGameKind> getAll();
