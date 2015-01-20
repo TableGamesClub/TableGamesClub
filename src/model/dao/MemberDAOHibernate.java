@@ -178,8 +178,8 @@ public class MemberDAOHibernate implements MemberDAO_Interface {
 		// 刪除
 		// dao.delete(1);
 		// 查詢單筆
-		// Member b1 = dao.findByPrimeKey(1);
-		// System.out.println(b1.getUsername());
+		 Member b1 = dao.findByPrimeKey(1);
+		 System.out.println(b1.getUsername());
 		// Set<Member_FavoredType> mft = b1.getMemberFavoredTypes();
 		// for (Member_FavoredType vo : mft) {
 		// System.out.println(vo.getMemberFavoredId());
