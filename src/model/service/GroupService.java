@@ -1,7 +1,11 @@
 package model.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -181,7 +185,7 @@ public class GroupService {
 		return grdao.getAll();
 	}
 
-	private int countJoinedMemberNumber(GroupRoom bean) {// 查衝團(有交集的團)目前已加入的人數總合
+	public int countJoinedMemberNumber(GroupRoom bean) {// 查衝團(有交集的團)目前已加入的人數總合
 		int result = 0;
 		java.util.Date inputTimeEnd = bean.getReserveGroupEndTime();
 		java.util.Date inputTimeStart = bean.getReserveGroupStartTime();
@@ -247,7 +251,43 @@ public class GroupService {
 		}
 		return false;
 	}
-
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//時間格式
+	
+	public java.util.Date convertDate(String data) {//String 轉 util.Date
+		java.util.Date result = null;
+		try {
+			result = sdf.parse(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			result = new java.util.Date(0);
+		}
+		return result;
+	}
+	
+	public java.util.Date addDays(Date date, int num){//增加日期
+	    Calendar calendar = new GregorianCalendar();
+	    calendar.setTime(date);
+	    calendar.add(Calendar.DAY_OF_MONTH, num);
+	    return calendar.getTime();
+	} 
+	
+	private static final int oneDay = 60*60*1000;//一小時的毫秒數
+	
+	public String dateSubtract(Date date1, Date date2){//相差小時數
+		long hour=(date2.getTime()-date1.getTime())/(oneDay);
+		return String.valueOf(hour);
+	}
+	
+	public List<Integer> dismantle(String roomNumber){//拆房間範圍人數
+		String dismantle = "~";
+		List<Integer> list = new ArrayList<Integer>();
+		for(String s : roomNumber.split(dismantle)){
+			list.add(Integer.parseInt(s.trim()));
+		}
+		return list;
+	}
+	
 	public static void main(String[] args) {
 		GroupService service = new GroupService();
 		// 創團測試
@@ -314,17 +354,20 @@ public class GroupService {
 		// }
 		// 找我創的團測試
 		// 找我加的團測試
-		Member member = new Member();
-		member.setUsername("pewdiepie");// 假想我是1號會員
-		List<GroupRoom> list = service.getGroupRoomsMyJoined(member);
-		for (GroupRoom vo : list) {
-			System.out.println(vo.getGroupRoomName());
-		}
-		List<GroupRoom> list2 = service.getGroupRoomsMyCreate(member);
-		for (GroupRoom vo : list2) {
-			System.out.println(vo.getGroupRoomName());
-		}
-		int count = service.countGroupRoomsMyJoined(member);
-		System.out.println(count);
+//		Member member = new Member();
+//		member.setUsername("pewdiepie");// 假想我是1號會員
+//		List<GroupRoom> list = service.getGroupRoomsMyJoined(member);
+//		for (GroupRoom vo : list) {
+//			System.out.println(vo.getGroupRoomName());
+//		}
+//		List<GroupRoom> list2 = service.getGroupRoomsMyCreate(member);
+//		for (GroupRoom vo : list2) {
+//			System.out.println(vo.getGroupRoomName());
+//		}
+//		int count = service.countGroupRoomsMyJoined(member);
+//		System.out.println(count);
+//		System.out.println(service.convertDate("2015-02-01 10:00:00"));
+		System.out.println(service.convertDate("2015-02-01 "+1+":00:00"));
+		
 	}
 }

@@ -9,6 +9,8 @@ import model.GroupChoiceGames;
 
 public interface BoardGameKindDAO_Interface {
 	public abstract BoardGameKind findByPrimeKey(Integer boardGameSerialNumber);
+	
+	public Integer findByGamesName(String boardGameStyle);
 
 	public abstract List<BoardGameKind> getAll();
 

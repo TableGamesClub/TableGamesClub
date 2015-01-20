@@ -26,9 +26,14 @@ public class BoardGameKindDAOHibernate implements BoardGameKindDAO_Interface {
 				BoardGameKind.class, boardGameSerialNumber);
 		return boardGameKind;
 	}
+	
+	private static final String GET_BY_NAME = "from BoardGameKind where boardGameStyle = ?";
+	public Integer findByGamesName(String boardGameStyle) {
+		List<BoardGameKind> list = hibernateTemplate.find(GET_BY_NAME,boardGameStyle);
+		return list.get(0).getBoardGameSerialNumber();
+	}
 
 	private static final String GET_ALL_STMT = "from BoardGameKind order by boardGameSerialNumber";
-
 	@Override
 	public List<BoardGameKind> getAll() {
 		List<BoardGameKind> list = hibernateTemplate.find(GET_ALL_STMT);
@@ -59,30 +64,30 @@ public class BoardGameKindDAOHibernate implements BoardGameKindDAO_Interface {
 		BoardGameKindDAO_Interface dao = (BoardGameKindDAO_Interface) context
 				.getBean("BoardGameKindDAO");
 		// 新增
-		BoardGameKind bean1 = new BoardGameKind();
-		bean1.setBoardGameSerialNumber(1);
-		bean1.setBoardGameStyle("策略遊戲");
-		dao.insert(bean1);
-
-		BoardGameKind bean2 = new BoardGameKind();
-		bean2.setBoardGameSerialNumber(2);
-		bean2.setBoardGameStyle("益智遊戲");
-		dao.insert(bean2);
-
-		BoardGameKind bean3 = new BoardGameKind();
-		bean3.setBoardGameSerialNumber(3);
-		bean3.setBoardGameStyle("推理遊戲");
-		dao.insert(bean3);
-
-		BoardGameKind bean4 = new BoardGameKind();
-		bean4.setBoardGameSerialNumber(4);
-		bean4.setBoardGameStyle("角色扮演遊戲");
-		dao.insert(bean4);
-
-		BoardGameKind bean5 = new BoardGameKind();
-		bean5.setBoardGameSerialNumber(5);
-		bean5.setBoardGameStyle("小品遊戲");
-		dao.insert(bean5);
+//		BoardGameKind bean1 = new BoardGameKind();
+//		bean1.setBoardGameSerialNumber(1);
+//		bean1.setBoardGameStyle("策略遊戲");
+//		dao.insert(bean1);
+//
+//		BoardGameKind bean2 = new BoardGameKind();
+//		bean2.setBoardGameSerialNumber(2);
+//		bean2.setBoardGameStyle("益智遊戲");
+//		dao.insert(bean2);
+//
+//		BoardGameKind bean3 = new BoardGameKind();
+//		bean3.setBoardGameSerialNumber(3);
+//		bean3.setBoardGameStyle("推理遊戲");
+//		dao.insert(bean3);
+//
+//		BoardGameKind bean4 = new BoardGameKind();
+//		bean4.setBoardGameSerialNumber(4);
+//		bean4.setBoardGameStyle("角色扮演遊戲");
+//		dao.insert(bean4);
+//
+//		BoardGameKind bean5 = new BoardGameKind();
+//		bean5.setBoardGameSerialNumber(5);
+//		bean5.setBoardGameStyle("小品遊戲");
+//		dao.insert(bean5);
 		// 修改
 		// BoardGameKind bean6 = new BoardGameKind();
 		// bean6.setBoardGameNumber(1);
@@ -91,14 +96,16 @@ public class BoardGameKindDAOHibernate implements BoardGameKindDAO_Interface {
 		// 刪除
 		// dao.delete(1);
 		// 查詢單筆
-		BoardGameKind b1 = dao.findByPrimeKey(1);
-		System.out.println(b1.getBoardGameStyle());
+//		BoardGameKind b1 = dao.findByPrimeKey(1);
+//		System.out.println(b1.getBoardGameStyle());
 		// 查詢多筆
-		List<BoardGameKind> beans = dao.getAll();
-		for (BoardGameKind vo : beans) {
-			System.out.println(vo.getBoardGameSerialNumber());
-			System.out.println(vo.getBoardGameStyle());
-		}
+//		List<BoardGameKind> beans = dao.getAll();
+//		for (BoardGameKind vo : beans) {
+//			System.out.println(vo.getBoardGameSerialNumber());
+//			System.out.println(vo.getBoardGameStyle());
+//		}
+		//查流水號By Name
+//		System.out.println(dao.findByGamesName("策略遊戲"));
 	}
 
 	@Override
