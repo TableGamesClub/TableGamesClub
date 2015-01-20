@@ -37,6 +37,13 @@ public class BoardGamesDAOHibernate implements BoardGamesDAO_Interface {
 		return boardGames;
 	}
 	
+	private static final String GET_NUMBER_BY_GAMES_NAME = 
+			"select boardGameKind.boardGameSerialNumber from BoardGames where boardGameName = ? group by boardGameKind.boardGameSerialNumber";
+	public Integer findNumberByGamesName(String boardGameName){
+		List<Integer> list = hibernateTemplate.find(GET_NUMBER_BY_GAMES_NAME,boardGameName);
+		return list.get(0);
+	}
+	
 	private static final String GET_GAMES_BY_STOREID = "from BoardGames where storeId = ? order by boardGamesId";
 	
 	public List<BoardGames> findByStoreId(Integer storeId){
@@ -92,39 +99,39 @@ public class BoardGamesDAOHibernate implements BoardGamesDAO_Interface {
 		BoardGamesDAO_Interface dao = (BoardGamesDAO_Interface) context
 				.getBean("BoardGamesDAO");
 		// 新增
-		BoardGames bean1 = new BoardGames();
-		StoreInformationDAO_Interface sidao = (StoreInformationDAO_Interface) context
-				.getBean("StoreInformationDAO");
-		StoreInformation sibean1 = sidao.findByPrimeKey(1);
-		bean1.setStoreInformation(sibean1);
-		bean1.setStoreName(sibean1.getStoreName());
-		bean1.setBoardGameEnglishName("Bang!");
-		bean1.setBoardGameName("西部無間");
-		BoardGameKindDAO_Interface bgkdao = (BoardGameKindDAO_Interface) context
-				.getBean("BoardGameKindDAO");
-		BoardGameKind bgkbean1 = bgkdao.findByPrimeKey(1);
-		bean1.setBoardGameKind(bgkbean1);
-		bean1.setBoardGameNumber("4 - 7");
-		String filename1 = "Bang.png";
-		bean1.setImgFileName(filename1);
-		File f = new File("WebContent/res/" + bean1.getImgFileName());
-		try {
-			InputStream is = new FileInputStream(f);
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			int nRead;
-			byte[] data = new byte[1024];
-			while ((nRead = is.read(data, 0, data.length)) != -1) {
-				buffer.write(data, 0, nRead);
-				buffer.flush();
-			}
-			data = buffer.toByteArray();
-			is.close();
-			bean1.setBoardGameImage(data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		bean1.setBoardGameExplan("如果你活在華語圈，至少家裡會開電視，那麼想必就對上面的對白並不陌生﹔電影無間道在這兩年紅透了半邊天，並且成功地為臥底這個電影的老橋段賦予了新生命，而在 BANG! 這款遊戲中，玩家們來到美國拓荒時期的西部，面對同樣的主題，不同的人物，誰能夠瞞天過海贏得最後的勝利呢？");
-		dao.insert(bean1);
+//		BoardGames bean1 = new BoardGames();
+//		StoreInformationDAO_Interface sidao = (StoreInformationDAO_Interface) context
+//				.getBean("StoreInformationDAO");
+//		StoreInformation sibean1 = sidao.findByPrimeKey(1);
+//		bean1.setStoreInformation(sibean1);
+//		bean1.setStoreName(sibean1.getStoreName());
+//		bean1.setBoardGameEnglishName("Bang!");
+//		bean1.setBoardGameName("西部無間");
+//		BoardGameKindDAO_Interface bgkdao = (BoardGameKindDAO_Interface) context
+//				.getBean("BoardGameKindDAO");
+//		BoardGameKind bgkbean1 = bgkdao.findByPrimeKey(1);
+//		bean1.setBoardGameKind(bgkbean1);
+//		bean1.setBoardGameNumber("4 - 7");
+//		String filename1 = "Bang.png";
+//		bean1.setImgFileName(filename1);
+//		File f = new File("WebContent/res/" + bean1.getImgFileName());
+//		try {
+//			InputStream is = new FileInputStream(f);
+//			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+//			int nRead;
+//			byte[] data = new byte[1024];
+//			while ((nRead = is.read(data, 0, data.length)) != -1) {
+//				buffer.write(data, 0, nRead);
+//				buffer.flush();
+//			}
+//			data = buffer.toByteArray();
+//			is.close();
+//			bean1.setBoardGameImage(data);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		bean1.setBoardGameExplan("如果你活在華語圈，至少家裡會開電視，那麼想必就對上面的對白並不陌生﹔電影無間道在這兩年紅透了半邊天，並且成功地為臥底這個電影的老橋段賦予了新生命，而在 BANG! 這款遊戲中，玩家們來到美國拓荒時期的西部，面對同樣的主題，不同的人物，誰能夠瞞天過海贏得最後的勝利呢？");
+//		dao.insert(bean1);
 		// 修改
 		// BoardGames bean2 = new BoardGames();
 		// StoreInformationDAO_Interface sidao1 = new
@@ -164,14 +171,15 @@ public class BoardGamesDAOHibernate implements BoardGamesDAO_Interface {
 		// BoardGames b1 = dao.findByPrimeKey(2);
 		// System.out.println(b1.getBoardGameExplan());
 		// 查詢多筆
-		List<BoardGames> beans = dao.getAll();
-		for (BoardGames vo : beans) {
-			System.out.println(vo.getBoardGamesId());
-			System.out.println(vo.getBoardGameEnglishName());
-			System.out.println(vo.getBoardGameName());
-			System.out.println(vo.getBoardGameNumber());
-			System.out.println(vo.getBoardGameExplan());
-		}
+//		List<BoardGames> beans = dao.getAll();
+//		for (BoardGames vo : beans) {
+//			System.out.println(vo.getBoardGamesId());
+//			System.out.println(vo.getBoardGameEnglishName());
+//			System.out.println(vo.getBoardGameName());
+//			System.out.println(vo.getBoardGameNumber());
+//			System.out.println(vo.getBoardGameExplan());
+//		}
+//		System.out.println(dao.findNumberByGamesName("三國殺"));
 	}
 
 	@Override
