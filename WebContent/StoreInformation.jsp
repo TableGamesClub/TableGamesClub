@@ -241,7 +241,7 @@ body {
 					</div>
 					<div class="smbodyleftinsidetext">
 						<center>
-							<a href="StoreInformation.jsp" class="selectoption">專賣店資訊</a>
+							<a href="<c:url value='/StoreMemberInfoServlet'/>" class="selectoption">專賣店資訊</a>
 						</center>
 					</div>
 					<div class="smbodyleftinsidetext">
@@ -260,6 +260,14 @@ body {
 		<div class="smbodyright">
 			<div class="smbodyrighttop">
 				<p style="font-size: 24px">多家專賣店資訊</p>
+				<!-- 多家專賣店填的位置 -->
+				<c:forEach var="StoreList" items="${StoreInfoList}" >
+					${StoreList.storeName}
+					${StoreList.storeAddress}
+					${StoreList.storeTel}
+					${StoreList.rentAreaCost}
+					${StoreList.groupUpperLimit}
+				</c:forEach>
 			</div>
 		</div>
 	</div>

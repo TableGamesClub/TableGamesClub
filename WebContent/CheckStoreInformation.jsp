@@ -271,7 +271,7 @@ body {
 		<div class="smbodyleft">
 			<div class="smbodyleftinside">
 				<div class="smbodyleftinsidetop">
-					<img src="images/Asuka_Langley_Soryu.jpg" class="headimage"><br>
+					<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${storemem.storeMemberId}&type=storeMember" class="headimage"><br>
 				</div>
 				<div class="memberstatus">
 					<center>
@@ -289,7 +289,7 @@ body {
 					</div>
 					<div class="smbodyleftinsidetext">
 						<center>
-							<a href="StoreInformation.jsp" class="selectoption">專賣店資訊</a>
+							<a href="<c:url value='/StoreMemberInfoServlet'/>" class="selectoption">專賣店資訊</a>
 						</center>
 					</div>
 					<div class="smbodyleftinsidetext">

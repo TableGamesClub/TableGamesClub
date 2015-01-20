@@ -241,7 +241,7 @@ body {
 					</div>
 					<div class="smbodyleftinsidetext">
 						<center>
-							<a href="StoreInformation.jsp" class="selectoption">專賣店資訊</a>
+							<a href="<c:url value='/StoreMemberInfoServlet'/>" class="selectoption">專賣店資訊</a>
 						</center>
 					</div>
 					<div class="smbodyleftinsidetext">
