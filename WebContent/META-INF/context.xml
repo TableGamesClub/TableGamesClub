@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 本機的MS SQL -->
-<Context>
-	<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource"
-		maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="sa"
-		password="123456" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;database=TGC" />
-</Context>
-<!-- 虛擬機的MS SQL -->
 <!-- <Context> -->
-<!-- <Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource" -->
-<!-- maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="sa" -->
-<!-- password="123456" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" -->
-<!-- url="jdbc:sqlserver://192.168.111.128:1433;database=TGC" /> -->
+<!-- 	<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource" -->
+<!-- 		maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="sa" -->
+<!-- 		password="123456" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" -->
+<!-- 		url="jdbc:sqlserver://localhost:1433;database=TGC" /> -->
 <!-- </Context> -->
+<!-- 虛擬機的MS SQL -->
+<Context>
+<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource"
+maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="sa"
+password="123456" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url="jdbc:sqlserver://192.168.111.128:1433;database=TGC" />
+</Context>
 <!-- 雲端資料庫 Azure MS SQL -->
 <!-- <Context> -->
 <!-- <Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource" -->
