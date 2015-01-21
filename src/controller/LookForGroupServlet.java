@@ -1,25 +1,19 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import model.BoardGameKind;
 import model.GroupRoom;
-import model.Interface.BoardGameKindDAO_Interface;
 import model.service.GroupService;
 
 @WebServlet("/LookForGroupServlet.do")
@@ -49,67 +43,1830 @@ public class LookForGroupServlet extends HttpServlet {
 		// List<GroupRoom> currectgrouproomnumber = new ArrayList<GroupRoom>();
 		// List<GroupRoom> currectgrouptimer = new ArrayList<GroupRoom>();
 		GroupService groupservice = new GroupService();
-		List<GroupRoom> desclist = new ArrayList<GroupRoom>();
+//		List<GroupRoom> desclist = new ArrayList<GroupRoom>();
+		
+		// 圖片識別ID
+		Map<String, Integer> requestimage = new HashMap<String, Integer>();
+		request.setAttribute("requestimage", requestimage);
 
+		// 存取團名
+		Map<String, String> requestgroupname = new HashMap<String, String>();
+		request.setAttribute("requestgroupname", requestgroupname);
+		
+		// 存放人數
+		Map<String, String> requestnumberofpeople = new HashMap<String, String>();
+		request.setAttribute("numberofpeople", requestnumberofpeople);
+
+		// 存放類型
+		Map<String, String> requesttype = new HashMap<String, String>();
+		request.setAttribute("requestype", requesttype);
+
+		// 存放時間
+		Map<String, String> requesttime = new HashMap<String, String>();
+		request.setAttribute("requesttype", requesttime);
+		int y = 0;
+		int z = 0;
+		int a = 0;
+		int b = 0;
+		int c = 0;
+		
+		
+		if(!gamenamesearch.equals("")){
+			List<GroupRoom> fuzzysearch = groupservice.getGroupRooms(gamenamesearch);
+			for(GroupRoom all : fuzzysearch)
+			{
+				int list  = all.getGroupSerialNumber();
+				
+				requestimage.put("simpleimage" +String.valueOf(y), list);
+//				int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+				
+				
+				GroupRoom selectgroup = groupservice.getOneGroupRoom(list);
+				System.out.println(selectgroup.getGroupSerialNumber());
+				//取團名↓
+				String groupname = selectgroup.getGroupRoomName();
+				requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+				
+
+				// 取人數↓
+				int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+				
+				requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+				
+				// 取類型↓
+				List<Integer> typed = groupservice
+						.getgametype(selectgroup
+								.getGroupSerialNumber());// 類型
+				int i = 0;
+				for (int typelist : typed) {
+					String gamestype = groupservice
+							.selectGameKindName(typelist);
+					requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+					i++;
+				}
+				// 取時間↓
+				
+				Date starttime = selectgroup.getReserveGroupStartTime();
+				requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+				
+				y++;
+				z++;
+				a++;
+				b++;
+				c++;
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+			rd.forward(request, response);
+		}
+		else{
+		
 		if (gametime.equals("最近→最遠")) {
 			if (gametype.equals("策略遊戲")) {
-				int type = 1;
-				List<Integer> selectgroupdesc = groupservice.sequenceandselecttypedesc(type);
-				for (Integer list : selectgroupdesc){
-					System.out.print("團序號:" + list + " ");//get順序
+				if (gamenumber.equals("10人以下")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
 					
-					int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
 					
-					if(gamenumber.equals("10人以下")){
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("策略遊戲")) 
 			
-					} 
+			if (gametype.equals("益智遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 2;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
 
-				}
-				
-				
-				
-				
-				
-				
-//				for (Integer list : selectgroupdesc) {
-//					desclist.add(groupservice.getOneGroupRoom(list));
-//					System.out.print("團序號:" + list + " ");     //get順序
-//					
-//					
-//
-//					
-//					
-//					
-//					List<Integer> selectgrouptype = groupservice.getgametype(list);
-//					for(int j :selectgrouptype){
-//						
-//						ApplicationContext context = new ClassPathXmlApplicationContext(
-//								"model-config1-DriverManagerDataSource.xml");
-//						BoardGameKindDAO_Interface dao = (BoardGameKindDAO_Interface) context
-//								.getBean("BoardGameKindDAO");
-//						BoardGameKind b1 = dao.findByPrimeKey(j);
-//						System.out.println(b1.getBoardGameStyle());   //get團全部的類型
-//					}
-//
-//					desclist.add(groupservice.getOneGroupRoom(list));
-//
-//				}
-//				for (GroupRoom i : desclist) {
-////					System.out.print("團序號:" +i.getGroupSerialNumber() + " ");//get順序
-//					System.out.println(groupservice.getOneGroupRoom(i.getGroupSerialNumber()).getGroupRoomName());//get團名
-//					System.out.println(groupservice.getOneGroupRoom(i.getGroupSerialNumber()).getGroupStartTime());//get團時間
-//					System.out.println(groupservice.countGroupRoomsByGroupSerialNumber(i));//get人數;
-//					
-//				}
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
 
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
 
-			}
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
 
-		}// end of if(gametime.equals("最近→最遠"))
-//		else {
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
 
-//		}// end of else(gametime.equals("最近→最遠"))
-			//
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("益智遊戲")) 
+			
+			if (gametype.equals("推理遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 3;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("推理遊戲")) 
+			
+			if (gametype.equals("角色扮演遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 4;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("角色扮演遊戲")) 
+			
+			if (gametype.equals("小品遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 5;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("小品遊戲")) 
+		}//end of if (gametime.equals("最近→最遠"))
+
+		if (gametime.equals("最遠→最近")) {
+			if (gametype.equals("策略遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttype(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("策略遊戲")) 
+			
+			if (gametype.equals("益智遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 2;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("益智遊戲")) 
+			
+			if (gametype.equals("推理遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 3;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("推理遊戲")) 
+			
+			if (gametype.equals("角色扮演遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 4;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("角色扮演遊戲")) 
+			
+			if (gametype.equals("小品遊戲")) {
+				if (gamenumber.equals("10人以下")) {
+					int type = 5;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc < 10) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc < 10)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10人以下"))
+				
+				if (gamenumber.equals("10至20人")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=10 && Groupdesc <20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("10至20人"))
+				
+				if (gamenumber.equals("20人以上")) {
+					int type = 1;
+					List<Integer> selectgroupdesc = groupservice
+							.sequenceandselecttypedesc(type);
+
+					for (Integer list : selectgroupdesc) {
+						// System.out.print("團序號:" + list + " ");//get順序
+						
+						
+						
+						requestimage.put("simpleimage" +String.valueOf(y), list);
+						
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						if (Groupdesc >=20) {
+							GroupRoom selectgroup = groupservice
+									.getOneGroupRoom(list);
+							System.out.println(selectgroup
+									.getGroupSerialNumber());
+							
+							//取團名↓
+							String groupname = selectgroup.getGroupRoomName();
+							requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+							
+
+							// 取人數↓
+							int count = groupservice.countGroupRoomsByGroupSerialNumber(selectgroup);
+							
+							requestnumberofpeople.put("peoplenumber" + String.valueOf(a), String.valueOf(count));
+							
+							// 取類型↓
+							List<Integer> typed = groupservice
+									.getgametype(selectgroup
+											.getGroupSerialNumber());// 類型
+							int i = 0;
+							for (int typelist : typed) {
+								String gamestype = groupservice
+										.selectGameKindName(typelist);
+								requesttype.put("type" + String.valueOf(i) + String.valueOf(b),	gamestype);
+								i++;
+							}
+							// 取時間↓
+							Date starttime = selectgroup.getReserveGroupStartTime();
+							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
+	
+						}//end of if (Groupdesc >=20)
+						y++;
+						z++;
+						a++;
+						b++;
+						c++;
+						
+					}//end of for (Integer list : selectgroupdesc)
+					RequestDispatcher rd = request.getRequestDispatcher("LookForGroup.jsp");
+					rd.forward(request, response);
+					
+				}// end of if (gamenumber.equals("20人以上"))
+				
+			}// end of if (gametype.equals("小品遊戲")) 
+		}//end of if (gametime.equals("最遠→最近"))
+		
+		
+		
+		//
 		// if (gametype.equals("策略遊戲")) {
 		// GroupService groupservice = new GroupService();
 		//
@@ -333,6 +2090,7 @@ public class LookForGroupServlet extends HttpServlet {
 		// alllist.getGroupSerialNumber();
 		// }
 		// }
-
+		
+		}//end of if else (!gamenamesearch.equals(null))
 	}
 }

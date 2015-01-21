@@ -57,6 +57,9 @@ public class GroupService {
 				.getBean("BoardGameKindDAO");
 		
 	}
+	public String selectGameKindName(Integer boardgameserialnumber){//丟類型編號回傳類型
+		return bgkdao.selectGameKindName(boardgameserialnumber);
+	}
 	
 	public List<Integer> sequenceandselecttypedesc(int boardGameSerialNumber){ //時間排序-倒敘(傳Grouproom流水號)
 		return bgkdao.sequenceandselecttypedesc(boardGameSerialNumber);
