@@ -56,19 +56,19 @@
         <property name="privateGroupImage" type="binary">
             <column name="privateGroupImage" />
         </property>
-        <set name="groupRoomInfos" table="GroupRoom_Info" inverse="true" lazy="false" fetch="select">
+        <set name="groupRoomInfos" table="GroupRoom_Info" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="groupSerialNumber" />
             </key>
             <one-to-many class="model.GroupRoom_Info" />
         </set>
-        <set name="joinerInfos" table="Joiner_Info" inverse="true" lazy="false" fetch="select">
+        <set name="joinerInfos" table="Joiner_Info" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="groupSerialNumber" />
             </key>
             <one-to-many class="model.Joiner_Info" />
         </set>
-        <set name="groupRoomMessages" table="GroupRoom_Message" inverse="true" lazy="false" fetch="select">
+        <set name="groupRoomMessages" table="GroupRoom_Message" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="groupSerialNumber" />
             </key>

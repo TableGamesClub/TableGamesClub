@@ -11,7 +11,7 @@
         <property name="boardGameStyle" type="string">
             <column name="boardGameStyle" length="30" />
         </property>
-        <set name="groupChoiceGameses" table="GroupChoiceGames" inverse="true" lazy="false" fetch="select">
+        <set name="groupChoiceGameses" table="GroupChoiceGames" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="boardGameSerialNumber" />
             </key>

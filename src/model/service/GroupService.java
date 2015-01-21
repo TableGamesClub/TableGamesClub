@@ -226,8 +226,10 @@ public class GroupService {
 			java.util.Date outputEndTime = vo.getReserveGroupEndTime();
 			if (outputStartTime.before(inputTimeEnd)) {
 				if (outputEndTime.after(inputTimeStart)) {
-					List<Joiner_Info> list = jidao.findByGroupSerialNumber(vo
-							.getGroupSerialNumber());
+					List<Joiner_Info> list = jidao.findByGroupSerialNumber(vo.getGroupSerialNumber());
+					for(Joiner_Info l:list){
+						System.out.println(l.getUsername());
+					}
 					int joinedNumber = list.size();
 					result = result + joinedNumber;
 				}

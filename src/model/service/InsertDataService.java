@@ -1074,7 +1074,7 @@ public class InsertDataService {
 		StoreInformation beanStoreInformation2 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation2 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation2 = SMdaoStoreInformation2.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation2 = SMdaoStoreInformation2.findByPrimeKey(2);
 		beanStoreInformation2.setStoreMember(smbeanStoreInformation2);
 		beanStoreInformation2.setStoreName("瘋桌遊-益智遊戲專賣店(松山店)");
 		beanStoreInformation2.setStoreAddress("台北市松山區三民路102巷20號");
@@ -1104,7 +1104,7 @@ public class InsertDataService {
 		StoreInformation beanStoreInformation3 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation3 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation3 = SMdaoStoreInformation3.findByPrimeKey(2);
+		StoreMember smbeanStoreInformation3 = SMdaoStoreInformation3.findByPrimeKey(3);
 		beanStoreInformation3.setStoreMember(smbeanStoreInformation3);
 		beanStoreInformation3.setStoreName("卡牌屋-台北店");
 		beanStoreInformation3.setStoreAddress("台北市開封街一段19號2樓");
@@ -1134,7 +1134,7 @@ public class InsertDataService {
 		StoreInformation beanStoreInformation4 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation4 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation4 = SMdaoStoreInformation4.findByPrimeKey(2);
+		StoreMember smbeanStoreInformation4 = SMdaoStoreInformation4.findByPrimeKey(4);
 		beanStoreInformation4.setStoreMember(smbeanStoreInformation4);
 		beanStoreInformation4.setStoreName("卡牌屋-新竹店");
 		beanStoreInformation4.setStoreAddress("新竹市東山街85號");
@@ -1164,7 +1164,7 @@ public class InsertDataService {
 		StoreInformation beanStoreInformation5 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation5 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation5 = SMdaoStoreInformation5.findByPrimeKey(3);
+		StoreMember smbeanStoreInformation5 = SMdaoStoreInformation5.findByPrimeKey(5);
 		beanStoreInformation5.setStoreMember(smbeanStoreInformation5);
 		beanStoreInformation5.setStoreName("艾客米忠孝復興店");
 		beanStoreInformation5.setStoreAddress("台北市大安區忠孝東路三段305號9F-1");
@@ -1194,7 +1194,7 @@ public class InsertDataService {
 		StoreInformation beanStoreInformation6 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation6 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation6 = SMdaoStoreInformation6.findByPrimeKey(4);
+		StoreMember smbeanStoreInformation6 = SMdaoStoreInformation6.findByPrimeKey(6);
 		beanStoreInformation6.setStoreMember(smbeanStoreInformation6);
 		beanStoreInformation6.setStoreName("艾客米東門店");
 		beanStoreInformation6.setStoreAddress("台北市大安區信義路二段 283 號 3F");
@@ -1224,7 +1224,7 @@ public class InsertDataService {
 		StoreInformation beanStoreInformation7 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation7 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation7 = SMdaoStoreInformation7.findByPrimeKey(5);
+		StoreMember smbeanStoreInformation7 = SMdaoStoreInformation7.findByPrimeKey(7);
 		beanStoreInformation7.setStoreMember(smbeanStoreInformation7);
 		beanStoreInformation7.setStoreName("卡卡城-三重店");
 		beanStoreInformation7.setStoreAddress("新北市三重區光興街140號");
@@ -1254,7 +1254,7 @@ public class InsertDataService {
 		StoreInformation beanStoreInformation8 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation8 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation8 = SMdaoStoreInformation8.findByPrimeKey(6);
+		StoreMember smbeanStoreInformation8 = SMdaoStoreInformation8.findByPrimeKey(8);
 		beanStoreInformation8.setStoreMember(smbeanStoreInformation8);
 		beanStoreInformation8.setStoreName("卡卡城-東門店");
 		beanStoreInformation8.setStoreAddress("台北市大安區金山南路二段12號4樓之2");
@@ -2925,7 +2925,47 @@ public class InsertDataService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom8);
-
+//// 2015-1-21  測試		
+//		GroupRoom beanGroupRoom9 = new GroupRoom();
+//		StoreMember smbeanGroupRoom9 = dao3.findByPrimeKey(1);
+//		beanGroupRoom9.setStoreMember(smbeanGroupRoom9);
+//		Member mbeanGroupRoom9 = dao.findByPrimeKey(1);
+//		beanGroupRoom9.setMember(mbeanGroupRoom9);
+//		StoreInformation sibeanGroupRoom9 = dao6.findByPrimeKey(1);
+//		beanGroupRoom9.setStoreName(sibeanGroupRoom9.getStoreName());
+//		beanGroupRoom9.setGroupStartTime(java.sql.Date.valueOf("2015-01-21"));
+//		beanGroupRoom9.setGroupEndTime(java.sql.Date.valueOf("2015-01-28"));
+//		beanGroupRoom9.setGroupRoomName("Play Fun ~");
+//		beanGroupRoom9.setGroupSuggestNumber("6-12");
+//		beanGroupRoom9.setGroupString("歡迎新手輕鬆玩.");
+//		beanGroupRoom9.setGroupLowerLimit(6);
+//		beanGroupRoom9.setGroupUpperLimit(12);
+//		beanGroupRoom9.setGroupGameTime(java.sql.Time.valueOf("01:00:00"));
+//		beanGroupRoom9.setReserveGroupStartTime(java.sql.Timestamp
+//				.valueOf("2015-02-01 17:00:00"));
+//		beanGroupRoom9.setReserveGroupEndTime(java.sql.Timestamp
+//				.valueOf("2015-02-01 18:00:00"));
+//		beanGroupRoom9.setRoomState(0);
+//		String filenameGroupRoom9 = "GroupRoom8.jpg";
+//		beanGroupRoom9.setImgFileName(filenameGroupRoom9);
+//		File fGroupRoom9 = new File("WebContent/res/GroupRoom/" + beanGroupRoom9.getImgFileName());
+//		try {
+//			InputStream is = new FileInputStream(fGroupRoom9);
+//			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+//			int nRead;
+//			byte[] data = new byte[1024];
+//			while ((nRead = is.read(data, 0, data.length)) != -1) {
+//				buffer.write(data, 0, nRead);
+//				buffer.flush();
+//			}
+//			data = buffer.toByteArray();
+//			is.close();
+//			beanGroupRoom9.setPrivateGroupImage(data);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		dao13.insert(beanGroupRoom9);
+//// 2015-1-21 測試到此
 		//insert GroupRoomInfo
 		GroupRoom_Info beanGroupRoom_Info1 = new GroupRoom_Info();
 		GroupRoom grbeanGroupRoom_Info1 = dao13.findByPrimeKey(1);
