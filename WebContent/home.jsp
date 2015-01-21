@@ -919,7 +919,7 @@ $(function() {
        id="a1">開團</a>
     </li>
     <li>
-      <a href="#" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>

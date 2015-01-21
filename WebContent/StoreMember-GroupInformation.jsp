@@ -210,6 +210,17 @@ body
   <div class="smbodyright">
     <div class="smbodyrighttop">
        <p style="font-size:24px">查看專賣店現有團資訊</p>
+       我的店:<c:forEach var="store" items="${storeInfoList}">${store.storeName}</c:forEach>
+					選在此專賣店開團的團有:<c:forEach var="group" items="${gRoomlist}">${group.groupRoomName},</c:forEach>
+<%-- 					此團遊玩桌遊類型(List):<c:forEach var="kind" items="${gamesKindList}">${kind.boardGameStyle},</c:forEach> --%>
+					此團遊玩桌遊類型(Map):
+<%-- 					<c:forEach var="kindMap" items="${gamesKindMap}"> --%>
+						<c:forEach var="kindList" items="${gamesKindList}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+<%-- 					</c:forEach>							 --%>
+					此團所選的桌遊:<c:forEach var="choice" items="${groupChoiceGamesList}">${choice.boardGameName},</c:forEach>		
+					目前加團人數:<c:forEach var="count" items="${joinerCountList}">${count},</c:forEach>		
     </div>
   </div>
 </div>
