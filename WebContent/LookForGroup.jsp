@@ -14,6 +14,21 @@
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
 <title>找團</title>
 <style type="text/css">
+
+.bodyleftinsidetwo
+{  
+    margin-top:-25px;
+    margin-left:25px;
+    width:450px;
+    height:500px;
+    background:-webkit-gradient(linear, left top, 
+                                left bottom, color-stop(0%,#c5deea), 
+                                color-stop(0%,#8abbd7), color-stop(70%,#066dab));
+    border-radius:10px 10px 10px 10px;
+    box-shadow:2px 2px 2px rgba(20%,20%,40%,0.6),
+               4px 4px 6px rgba(20%,20%,40%,0.4),
+               6px 6px 12px rgba(20%,20%,40%,0.4);
+}
 .gray
 {
     color:gray;
@@ -282,7 +297,8 @@ li.MemInfo{
     padding-top:15px;
     margin-top:25px;
     width:1300px;
-    height:400px;
+    min-height:400px;
+/*     height:400px; */
     background:white;
     border-top-left-radius:10px 10px;
     border-top-right-radius:10px 10px;
@@ -293,7 +309,8 @@ li.MemInfo{
 {
     margin-left: 23px;
     width:1250px;
-    height:380px;
+    min-height:380px;
+/*     height:380px; */
     border:2px solid green;
 }
 
@@ -310,6 +327,17 @@ li.MemInfo{
     height:25px;
     margin-left: 248px;
     margin-top: 4px;
+}
+
+.infosearch{
+ 	width:33%;
+  	float:left;  
+/* 	display:inline-block;  */
+}
+#clearDiv{
+/* 	width:100%; */
+/* 	height:1px; */
+	clear:both;
 }
 </style>
 
@@ -449,7 +477,7 @@ $(function() {
        id="a1">開團</a>
     </li>
     <li>
-      <a href="#" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet' />" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
@@ -511,8 +539,8 @@ $(function() {
             </select>
         </div>
         <div>
-      <p class="searchdiscribtiontwo" name="gamenamesearch">遊戲名稱搜尋：</p>
-      <input type="text" class="textone" placeholder="遊戲名稱">
+      <p class="searchdiscribtiontwo" >遊戲名稱搜尋：</p>
+      <input type="text" class="textone" placeholder="遊戲名稱" name="gamenamesearch">
         </div>
         <center>
           <input type="submit" value="送出" class="finishsubmit">
@@ -525,6 +553,171 @@ $(function() {
 <%--   </center> --%>
   <div class="showresult">
     <div class="showcolorbar">
+
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname0 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage0}&type=GROUPROOM" style="width:'180px';height:120px" />
+    <br>
+    ${requestgroupname.simplegroupgroupname0}<br>
+    ${numberofpeople.peoplenumber0}<br>
+    ${requestype.type00}
+    ${requestype.type10}
+    ${requestype.type20}
+    ${requestype.type30}
+    ${requestype.type40}<br>
+    ${requesttype.time0}<br>
+    </div>
+    </c:if>
+    <br/>
+    
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname1 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage1}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname1}<br>
+    ${numberofpeople.peoplenumber1}<br>
+    ${requestype.type01}
+    ${requestype.type11}
+    ${requestype.type21}
+    ${requestype.type31}
+    ${requestype.type41}<br>
+    ${requesttype.time1}<br>
+    </div>
+        </c:if>
+    
+    <br/>
+    
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname2 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage2}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname2}<br>
+    ${numberofpeople.peoplenumber2}<br>
+    ${requestype.type02}
+    ${requestype.type12}
+    ${requestype.type22}
+    ${requestype.type32}
+    ${requestype.type42}<br>
+    ${requesttype.time2}<br>
+    </div>
+    </c:if>
+    <br/>
+    
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname3 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage3}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname3}<br>
+    ${numberofpeople.peoplenumber3}<br>
+    ${requestype.type03}
+    ${requestype.type13}
+    ${requestype.type23}
+    ${requestype.type33}
+    ${requestype.type43}<br>
+    ${requesttype.time3}<br>
+    </div>
+    </c:if>
+    <br/>
+    
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname4 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage4}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname4}<br>
+    ${numberofpeople.peoplenumber4}<br>
+    ${requestype.type04}
+    ${requestype.type14}
+    ${requestype.type24}
+    ${requestype.type34}
+    ${requestype.type44}<br>
+    ${requesttype.time4}<br>
+    </div>
+    </c:if>
+    <br/>
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname5 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage5}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname5}<br>
+    ${numberofpeople.peoplenumber5}<br>
+    ${requestype.type05}
+    ${requestype.type15}
+    ${requestype.type25}
+    ${requestype.type35}
+    ${requestype.type45}<br>
+    ${requesttype.time5}<br>
+    </div>
+    </c:if>
+    <br/>
+    
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname6 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage6}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname6}<br>
+    ${numberofpeople.peoplenumber6}<br>
+    ${requestype.type06}
+    ${requestype.type16}
+    ${requestype.type26}
+    ${requestype.type36}
+    ${requestype.type46}<br>
+    ${requesttype.time6}<br>
+    </div>
+    </c:if>
+   	<br/>
+   
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname7 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage7}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+   	${requestgroupname.simplegroupgroupname7}<br>
+   	${numberofpeople.peoplenumber7}<br>
+    ${requestype.type07}
+    ${requestype.type17}
+    ${requestype.type27}
+    ${requestype.type37}
+    ${requestype.type47}<br>
+    ${requesttype.time7}<br>
+    </div>
+    </c:if>
+    <br/>
+    
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname8 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage8}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname8}<br>
+    ${numberofpeople.peoplenumber8}<br>
+    ${requestype.type08}
+    ${requestype.type18}
+    ${requestype.type28}
+    ${requestype.type38}
+    ${requestype.type48}<br>
+    ${requesttype.time8}<br>
+    </div>
+    </c:if>
+    <br/>
+    
+    <c:if test="${ ! empty requestgroupname.simplegroupgroupname9 }">
+    <div class="infosearch">
+    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage9}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <br>
+    ${requestgroupname.simplegroupgroupname9}<br>
+    ${numberofpeople.peoplenumber9}<br>
+    ${requestype.type09}
+    ${requestype.type19}
+    ${requestype.type29}
+    ${requestype.type39}
+    ${requestype.type49}<br>
+    ${requesttype.time9}<br>
+    </div>
+    </c:if>
+    <br/>
+    
+    
+
+    
+    <div id="clearDiv"></div>
     </div>
   </div>
 </div>

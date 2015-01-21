@@ -9,6 +9,8 @@ import model.GroupChoiceGames;
 import model.GroupRoom;
 
 public interface BoardGameKindDAO_Interface {
+	public abstract String selectGameKindName(Integer boardgameserialnumber);
+	
 	public abstract List<Integer> sequenceandselecttypedesc(int boardGameSerialNumber);
 	
 	public abstract List<Integer> sequenceandselecttype(int boardGameSerialNumber);

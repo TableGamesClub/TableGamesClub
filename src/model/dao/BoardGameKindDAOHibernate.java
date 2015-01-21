@@ -22,14 +22,24 @@ public class BoardGameKindDAOHibernate implements BoardGameKindDAO_Interface {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 	
-	private static final String GET_GROUP_BY_TYPE_DESC ="select groupSerialNumber from GroupRoom where groupSerialNumber in (select groupRoom.groupSerialNumber from GroupChoiceGames where boardGameKind.boardGameSerialNumber = ? group by groupRoom.groupSerialNumber) order by groupStartTime desc";
+	private static final String GET_GAMEKIND_NAME ="from BoardGameKind where boardgameserialnumber = ?";
+	@Override
+	public String selectGameKindName(Integer boardgameserialnumber){
+		List<BoardGameKind> list = hibernateTemplate.find(GET_GAMEKIND_NAME,boardgameserialnumber);
+		if(list != null){
+			return list.get(0).getBoardGameStyle();
+		}
+		return null;
+	}
+	
+	private static final String GET_GROUP_BY_TYPE_DESC ="select groupSerialNumber from GroupRoom where groupSerialNumber in (select groupRoom.groupSerialNumber from GroupChoiceGames where boardGameKind.boardGameSerialNumber = ? group by groupRoom.groupSerialNumber) order by reserveGroupStartTime desc";
 	@Override
 	public List<Integer> sequenceandselecttypedesc(int boardGameSerialNumber){
 		List<Integer> list = hibernateTemplate.find(GET_GROUP_BY_TYPE_DESC, boardGameSerialNumber);
 		return list;
 	}
 	
-	private static final String GET_GROUP_BY_TYPE ="select groupSerialNumber from GroupRoom where groupSerialNumber in (select groupRoom.groupSerialNumber from GroupChoiceGames where boardGameKind.boardGameSerialNumber = ? group by groupRoom.groupSerialNumber) order by groupStartTime";
+	private static final String GET_GROUP_BY_TYPE ="select groupSerialNumber from GroupRoom where groupSerialNumber in (select groupRoom.groupSerialNumber from GroupChoiceGames where boardGameKind.boardGameSerialNumber = ? group by groupRoom.groupSerialNumber) order by reserveGroupStartTime";
 	@Override
 	public List<Integer> sequenceandselecttype(int boardGameSerialNumber){
 		List<Integer> list = hibernateTemplate.find(GET_GROUP_BY_TYPE, boardGameSerialNumber);
@@ -93,6 +103,10 @@ public class BoardGameKindDAOHibernate implements BoardGameKindDAO_Interface {
 		for (Integer i : list2) {
 		System.out.println(i);
 		}
+		
+//		String b1 = dao.selectGameKindName(1);
+//		System.out.println(b1);
+		
 		
 		
 //		// 新增
