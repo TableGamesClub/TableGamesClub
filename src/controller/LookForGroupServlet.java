@@ -54,42 +54,61 @@ public class LookForGroupServlet extends HttpServlet {
 		if (gametime.equals("最近→最遠")) {
 			if (gametype.equals("策略遊戲")) {
 				int type = 1;
-
-				List<Integer> selectgroupdesc = groupservice
-						.sequenceandselecttypedesc(type);
-				for (Integer list : selectgroupdesc) {
+				List<Integer> selectgroupdesc = groupservice.sequenceandselecttypedesc(type);
+				for (Integer list : selectgroupdesc){
+					System.out.print("團序號:" + list + " ");//get順序
 					
-					System.out.print("團序號:" + list + " ");     //get順序
-					List<Integer> selectgrouptype = groupservice.getgametype(list);
-					for(int j :selectgrouptype){
-						BoardGameKind boardgamekind = new BoardGameKind();
-						
-						ApplicationContext context = new ClassPathXmlApplicationContext(
-								"model-config1-DriverManagerDataSource.xml");
-						BoardGameKindDAO_Interface dao = (BoardGameKindDAO_Interface) context
-								.getBean("BoardGameKindDAO");
-						BoardGameKind b1 = dao.findByPrimeKey(j);
-						System.out.println(b1.getBoardGameStyle());   //get團全部的類型
-						
-					}
-
-					desclist.add(groupservice.getOneGroupRoom(list));
+					int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+					
+					if(gamenumber.equals("10人以下")){
+			
+					} 
 
 				}
-				for (GroupRoom i : desclist) {
-//					System.out.print("團序號:" +i.getGroupSerialNumber() + " ");//get順序
-					System.out.println(groupservice.getOneGroupRoom(i.getGroupSerialNumber()).getGroupRoomName());//get團名
-					System.out.println(groupservice.getOneGroupRoom(i.getGroupSerialNumber()).getGroupStartTime());//get團時間
-					System.out.println(groupservice.countGroupRoomsByGroupSerialNumber(i));//get人數;
-				}
+				
+				
+				
+				
+				
+				
+//				for (Integer list : selectgroupdesc) {
+//					desclist.add(groupservice.getOneGroupRoom(list));
+//					System.out.print("團序號:" + list + " ");     //get順序
+//					
+//					
+//
+//					
+//					
+//					
+//					List<Integer> selectgrouptype = groupservice.getgametype(list);
+//					for(int j :selectgrouptype){
+//						
+//						ApplicationContext context = new ClassPathXmlApplicationContext(
+//								"model-config1-DriverManagerDataSource.xml");
+//						BoardGameKindDAO_Interface dao = (BoardGameKindDAO_Interface) context
+//								.getBean("BoardGameKindDAO");
+//						BoardGameKind b1 = dao.findByPrimeKey(j);
+//						System.out.println(b1.getBoardGameStyle());   //get團全部的類型
+//					}
+//
+//					desclist.add(groupservice.getOneGroupRoom(list));
+//
+//				}
+//				for (GroupRoom i : desclist) {
+////					System.out.print("團序號:" +i.getGroupSerialNumber() + " ");//get順序
+//					System.out.println(groupservice.getOneGroupRoom(i.getGroupSerialNumber()).getGroupRoomName());//get團名
+//					System.out.println(groupservice.getOneGroupRoom(i.getGroupSerialNumber()).getGroupStartTime());//get團時間
+//					System.out.println(groupservice.countGroupRoomsByGroupSerialNumber(i));//get人數;
+//					
+//				}
 
 
 			}
 
 		}// end of if(gametime.equals("最近→最遠"))
-		else {
+//		else {
 
-		}// end of else(gametime.equals("最近→最遠"))
+//		}// end of else(gametime.equals("最近→最遠"))
 			//
 		// if (gametype.equals("策略遊戲")) {
 		// GroupService groupservice = new GroupService();

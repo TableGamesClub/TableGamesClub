@@ -10,6 +10,8 @@ public interface GroupChoiceGamesDAO_Interface {
 
 	public abstract List<Integer> findByGroupSerialNumber(
 			Integer groupSerialNumber);
+	
+	public abstract List<GroupChoiceGames> getBoardGameNames(Integer groupSerialNumber);
 
 	public abstract List<GroupChoiceGames> getAll();
 

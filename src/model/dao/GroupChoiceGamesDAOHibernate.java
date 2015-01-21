@@ -33,6 +33,14 @@ public class GroupChoiceGamesDAOHibernate implements
 		return list;
 	}
 	
+	
+	private static final String GET_BOARDGAME_NAMES ="from GroupChoiceGames where groupSerialNumber = ? order by choiceGamesSerialNumber";
+	@Override
+	public List<GroupChoiceGames> getBoardGameNames(Integer groupSerialNumber) {
+		List<GroupChoiceGames> list = hibernateTemplate.find(GET_BOARDGAME_NAMES, groupSerialNumber);
+		return list;
+	}
+	
 
 	private static final String GET_BY_GROUPSERIALNUMBER = "select boardGameKind.boardGameSerialNumber from GroupChoiceGames where groupSerialNumber = ? group by boardGameKind.boardGameSerialNumber";
 
@@ -78,10 +86,17 @@ public class GroupChoiceGamesDAOHibernate implements
 		// 修改
 		// 刪除
 		// 查詢單筆
+		List<GroupChoiceGames> list_v2 = dao.getBoardGameNames(1);
+				for(GroupChoiceGames vo: list_v2){
+					System.out.println(vo.getBoardGameName());
+				}
+		
 		List<Integer> list = dao.findByGroupSerialNumber(1);
 		for(Integer vo:list){
 			System.out.println(vo);
 		}
 		// 查詢多筆
 	}
+
+
 }
