@@ -25,6 +25,7 @@ import javax.servlet.http.Part;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import mail.createRoomSuccessMail;
 import model.BoardGameKind;
 import model.BoardGames;
 import model.GroupChoiceGames;
@@ -216,7 +217,13 @@ public class CreateRoomServlet extends HttpServlet {
 			//會員
 			Member mbean = new Member();
 			mbean = (Member) session.getAttribute("Member");
-			
+			if(mbean == null){
+				System.out.println("會員未登入");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("CreatGroup.jsp");
+				rd.forward(request, response);
+				return;
+			}
 			bean.setStoreMember(sbean);
 			bean.setStoreName(sdao.findByPrimeKey(boardGameStore).getStoreName());
 			bean.setMember(mbean);
@@ -264,20 +271,25 @@ public class CreateRoomServlet extends HttpServlet {
 						"<Font color='red'>創立房間成功</Font>");
 				System.out.println("創立房間成功");
 				session.setAttribute("GroupRoom", bean);
+				//寄發開團成功信件
+				System.out.println("開始寄發系統信件");
+				createRoomSuccessMail mail = 
+						new createRoomSuccessMail("spadem45420@gmail.com", "系統送發信件，您的團["+roomName+"]開團成功！", "123");
+				mail.start();
 				
 				//開始新增房間桌遊
 				System.out.println("開始新增房間桌遊");
-				GroupChoiceGames games = new GroupChoiceGames();
-				BoardGameKind kinds = new BoardGameKind();
 				List<GroupRoom> room = service.getGroupRooms(bean);
 				
 				for(String s : gamesName){
+					GroupChoiceGames games = new GroupChoiceGames();
+					BoardGameKind kinds = new BoardGameKind();
 					kinds.setBoardGameSerialNumber(bgcdao.findNumberByGamesName(s));
 					games.setBoardGameName(s);
 					games.setBoardGameKind(kinds);
 					games.setGroupRoom(room.get(0));
+					gcdao.insert(games);
 				}
-				gcdao.insert(games);
 				
 				//增加開團者自己
 				Joiner_Info joiner = new Joiner_Info();

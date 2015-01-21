@@ -220,7 +220,7 @@ public class GroupService {
 		java.util.Date inputTimeEnd = bean.getReserveGroupEndTime();
 		java.util.Date inputTimeStart = bean.getReserveGroupStartTime();
 		// 撈房間資料的時間來比對，找出有交集的團，並回報目前有交集的團(已加入的人數總合)
-		List<GroupRoom> data = grdao.getAll();
+		List<GroupRoom> data = grdao.findByUnknown(bean.getStoreName());
 		for (GroupRoom vo : data) {
 			java.util.Date outputStartTime = vo.getReserveGroupStartTime();
 			java.util.Date outputEndTime = vo.getReserveGroupEndTime();
@@ -328,18 +328,18 @@ public class GroupService {
 		 GroupRoom groupRoom_Create = new GroupRoom();
 		 groupRoom_Create.setStoreMember(sMember);
 		 groupRoom_Create.setMember(member);
-		 groupRoom_Create.setStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
-		 groupRoom_Create.setGroupStartTime(java.sql.Date.valueOf("2014-12-24"));
-		 groupRoom_Create.setGroupEndTime(java.sql.Date.valueOf("2014-12-31"));
+		 groupRoom_Create.setStoreName("瘋桌遊-益智遊戲專賣店(松山店)");
+		 groupRoom_Create.setGroupStartTime(java.sql.Date.valueOf("2014-02-01"));
+		 groupRoom_Create.setGroupEndTime(java.sql.Date.valueOf("2014-02-01"));
 		 groupRoom_Create.setGroupRoomName("一起打桌遊八!");
 		 groupRoom_Create.setGroupSuggestNumber("6-15");
 		 groupRoom_Create.setGroupLowerLimit(6);
 		 groupRoom_Create.setGroupUpperLimit(15);
 		 groupRoom_Create.setGroupGameTime(java.sql.Time.valueOf("03:00:00"));
 		 groupRoom_Create.setReserveGroupStartTime(java.sql.Timestamp
-		 .valueOf("2015-1-1 13:00:00"));
+		 .valueOf("2015-02-01 10:00:00"));
 		 groupRoom_Create.setReserveGroupEndTime(java.sql.Timestamp
-		 .valueOf("2015-1-1 16:00:00"));
+		 .valueOf("2015-02-01 12:00:00"));
 		 groupRoom_Create.setRoomState(0);
 //		 String filename1 = "boardgames.jpg";
 //		 groupRoom_Create.setImgFileName(filename1);
@@ -360,7 +360,7 @@ public class GroupService {
 //		 } catch (IOException e) {
 //		 e.printStackTrace();
 //		 }
-		 service.addGroupRoom(groupRoom_Create);
+//		 service.addGroupRoom(groupRoom_Create);
 		// 加團測試
 		// GroupRoom groupRoom_ToJoin = new GroupRoom();
 		// groupRoom_ToJoin.setGroupSerialNumber(1);
@@ -398,6 +398,7 @@ public class GroupService {
 //		System.out.println(count);
 //		System.out.println(service.convertDate("2015-02-01 10:00:00"));
 //		System.out.println(service.convertDate("2015-02-01 "+1+":00:00"));
+		System.out.println(service.countJoinedMemberNumber(groupRoom_Create));
 		
 	}
 }
