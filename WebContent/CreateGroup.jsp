@@ -107,6 +107,7 @@ body
 {
     background-image:url(images/scapes2.png);
     
+    
 }
 
 input #textone
@@ -154,7 +155,7 @@ input #textone
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;  
     border-bottom-right-radius:10px 10px;
-	margin:0 auto;
+	margin:-8px auto;
 	width:1300px;
 	height:75px;
  	background-image:url(res/bo.jpg); 
@@ -168,7 +169,7 @@ input #textone
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;  
     border-bottom-right-radius:10px 10px;
-	margin: 0 auto;
+	margin: -2px auto;
 	list-style: none;
 	padding:10px;
 	width: 1300px;
@@ -211,10 +212,7 @@ input #textone
 	font-weight:bolder;
 }
 #menu li ul {
-    border-top-left-radius:10px 10px;
-    border-top-right-radius:10px 10px;
-    border-bottom-left-radius:10px 10px;  
-    border-bottom-right-radius:10px 10px;
+    border-radius:10px 10px 10px 10px;
 	padding: 0px;
 	list-style: none;
 	position: absolute;
@@ -283,7 +281,15 @@ li.MemInfo{
    font-size:18px;
    color:#2c539e;
    font-family:Microsoft JhengHei;
-   overflow: scroll
+   overflow-x:hidden;
+   overflow-y:auto;
+}
+
+.choiceGame{
+	font-size: 80%; 
+	float:left;
+	border-style:outset;
+	margin: 1px 1px;
 }
 </style>
 
@@ -433,23 +439,22 @@ $(function() {
       <a href="register.jsp" id="a1">註冊</a>
     </li>
     <li class="User">
-    	<c:if test="${empty Member.username}">
+    	<c:if test="${empty Member}">
 			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
-		<c:if test="${ ! empty Member.username }">
+		<c:if test="${ ! empty Member }">
 			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
-          			<a href="#" id="a2">會員資料</a>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
-        		</li><br><br>
+        		</li><br /><br />
         		<li>
           			<a href="loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
-      	</c:if>
+      	
 	</li>
-	<c:if test="${ ! empty Member.username }">
 	<li class="MemInfo">
 		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
 			<p class="font_style circle">${Member.username}</p>
@@ -490,17 +495,19 @@ $(function() {
 						</select>
 						<input type="button" id="CreateNewStylebutton" value="+" />
 					</div>
-						<div id="sapnType" style="width: 300px">
-					</div>
+					<div id="sapnType" style="width: 300px;height:200px;border:1px solid black;overflow: scroll;overflow-x:hidden;padding: 3px 3px"></div>
 				</div>
 				<div><span>開團人數:</span><span class="red">*</span></div>
 					<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;font-size: medium" name="roomNumber">
 					<div id="slider-range" style="width:200px"></div>
 				<div><span>預約時間:</span><span class="red">*</span></div>
-					<span><input id="datetimepicker1" type="text" style="width:100px" name="startTime" value="2015-02-01 10:00:00"/></span>
-					<span><input id="datetimepicker2" type="text" style="width:100px" name="endTime" value="2015-02-01 12:00:00"/></span>
+					<div style="">
+						<span><input id="datetimepicker1" type="text" style="width:100px" name="startTime" value="2015-02-01 10:00:00"/></span>~
+						<span><input id="datetimepicker2" type="text" style="width:100px" name="endTime" value=""/></span>
+					</div>
+					<div id="ajaxImgSpan" style="height:25px;width:25px"><img src="res/ajax.gif" id="ajaxImg" style="display: none"></div>
 				<div><span>團圖:</span><span class="red">*</span></div>
-				<img id="blah" alt="your image" width="200" height="150" /><br>
+				<img id="blah" alt="your image" width="200" height="150"/><br>
 				<div style="margin: 2px 0 0 40px">
 					<input type="file" onchange="$('#blah')[0].src = window.URL.createObjectURL(this.files[0])" name="roomImg">
 				</div>
@@ -585,8 +592,8 @@ $(function() {
       //按鈕
     	$('#CreateNewStylebutton').bind('click',function(){
     			$('#sapnType')
-    			.append("<span>"+"<input type='checkbox' name='games' value="+$('#select2').val()+" checked >"+$('#select2').val()+
-    				   "<a href=# class='del'><input type='button' value='刪除'></a><br></span>");
+    			.append("<span class='choiceGame'>"+"<input type='checkbox' name='games' value="+$('#select2').val()+" checked style='display:none;'>"+$('#select2').val()+
+    				   "<a href=# class='del'><img src='res/Icon/xx.png' style='height:18px;position:relative;top:4px'></a></span>");
 //     			alert($('span[name="games"]').text())
 //     			$('input[name="games"]').after(123);
     		});
@@ -611,6 +618,45 @@ $(function() {
 	    });
 	    $( "#amount" ).val(   $( "#slider-range" ).slider( "values", 0 ) +
 	      " ~ " + $( "#slider-range" ).slider( "values", 1 ) );
+	    
+	    
+	    //ajax開團時間判斷
+	    $('#datetimepicker2').bind('change',function(){
+// 	    	alert($('#datetimepicker2').val());
+// 	    	console.log($('#datetimepicker2').val());
+			$('#ajaxImg').css("display","inline");
+			
+			var xmlHttp;
+			function load(){
+				
+				xmlHttp=new XMLHttpRequest();
+				xmlHttp.addEventListener("readystatechange",callback,false);
+				var url="AccountCheck.jsp?name="+name;
+				xmlHttp.open("get",url,true);//true為非同步
+				xmlHttp.send();
+				
+				
+			}
+			
+			function callback(){
+				console.log(xmlHttp.readyState);
+				document.getElementById("div1").innerHTML="";//清空一次
+				if(xmlHttp.readyState==1){
+					document.getElementById("pic1").style.display="inline";
+				}
+				if(xmlHttp.readyState==4){
+					if(xmlHttp.status==200){
+						document.getElementById("pic1").style.display="none";
+						var data=xmlHttp.responseText;
+						var myDiv=document.getElementById("div1");
+						myDiv.innerHTML=data;
+					}else{
+						alert(xmlHttp.status+":"+xmlHttp.statusText);
+					}
+				}
+			}
+			
+	    })
    </script>
 </body>
 </html>
