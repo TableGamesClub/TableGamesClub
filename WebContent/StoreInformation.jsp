@@ -178,8 +178,31 @@ body
     box-shadow: 3px 3px 3px rgba(117,34,1,0.4);
     font-weight:bolder;
 }
+.sbrttitle{
+    font-size:36px;
+    color:#660000;
+    font-weight:600;
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 25px;
+    font-family:Microsoft JhengHei;
+    -webkit-box-reflect: below 5px -webkit-gradient(linear, center top, center bottom, from(transparent),color-stop(0.3, transparent), to(white));
+    }
 .selectoption
 {font-size:20px;color:#006e2e;font-family:Microsoft JhengHei;}
+.intromain{width:850px;height:200px;border:10px solid #660000;margin-top: 15px;margin-left: 25px;border-radius:10px 10px 10px 10px;}
+.intro{font-size:18px;color:#474747;font-family:Microsoft JhengHei;font-weight:600;}
+.groupimage{width:240px;height:160px;margin-top:15px;margin-left:15px;border-radius:5px 5px 5px 5px;}
+.introplace{width:350px;height:130px;margin-top: -132px;margin-left: 265px;}
+.storecheck{
+    border-top-left-radius:15px 15px;
+    width:180px;
+    height:60px;
+    margin-top: -33px;
+    margin-left: 670px;
+    background:#660000;
+    border:0;color:#fefcea;
+    font-size:30px;font-family:Microsoft JhengHei;}
 </style>
 
 <script type="text/javascript">
@@ -203,21 +226,37 @@ body
       <div class="smbodyleftinsidebottom" id="selectable">
          <div class="smbodyleftinsidetext"><center><a href="StoreMemberInformation.jsp" class="selectoption">個人資訊</a></center></div>
          <div class="smbodyleftinsidetext"><center><a href="<c:url value='/StoreMemberInfoServlet'/>" class="selectoption">專賣店資訊</a></center></div>
-         <div class="smbodyleftinsidetext"><center><a href="ucGroupInformation.jsp" class="selectoption">查看所有團</a></center></div>
          <div class="smbodyleftinsidetext"><center><a href="StoreMemberLoginout.jsp" class="selectoption">登出</a></center></div>
       </div>
     </div>
   </div>
   <div class="smbodyright">
     <div class="smbodyrighttop">
-       <p style="font-size:24px">多家專賣店資訊</p>
        <!-- 多家專賣店填的位置 -->
+       <p class="sbrttitle">店家專賣店列表</p><br/>
+                  <div class="intromain">
+				    <img src="images/store01.jpg" class="groupimage">
+				    <div class="introplace">
+					  <p class="intro">店家名稱&nbsp;:&nbsp;瘋桌遊-益智遊戲專賣店(新店分店)</p>
+					  <p class="intro">店家地址&nbsp;:&nbsp;新北市新店區三民路157號</p>
+					  <p class="intro">店家連絡電話&nbsp;:&nbsp;(02)2915-7725</p>
+					  <p class="intro">低消&nbsp;:&nbsp;125.0&nbsp;元</p>
+					  <p class="intro">上限人數&nbsp;:&nbsp;35&nbsp;人</p>
+					</div>
+					<input type="submit" value="查看" class="storecheck">
+			      </div>
 				<c:forEach var="StoreList" items="${storeInfoList}" >
-					${StoreList.storeName}
-					${StoreList.storeAddress}
-					${StoreList.storeTel}
-					${StoreList.rentAreaCost}
-					${StoreList.groupUpperLimit}
+				  <div class="intromain">
+				    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${StoreList.storeId}&type=STORES" class="groupimage">
+				    <div class="introplace">
+					  <p class="intro">店家名稱&nbsp;:&nbsp;${StoreList.storeName}</p>
+					  <p class="intro">店家地址&nbsp;:&nbsp;${StoreList.storeAddress}</p>
+					  <p class="intro">店家連絡電話&nbsp;:&nbsp;${StoreList.storeTel}</p>
+					  <p class="intro">低消&nbsp;:&nbsp;${StoreList.rentAreaCost}&nbsp;元</p>
+					  <p class="intro">上限人數&nbsp;:&nbsp;${StoreList.groupUpperLimit}&nbsp;人</p>
+					</div>
+					<input type="submit" value="查看" class="storecheck">
+			      </div>
 				</c:forEach>
     </div>
   </div>

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <title>查看此間專賣店資訊~!</title>
 <style type="text/css">
 
@@ -231,6 +232,15 @@ body
     height:280px;
     border:1px solid #fcfff4;
 }
+.submitcheck
+{
+    padding-top: 20px;
+    width:300px;
+    height:50px;
+    background: -webkit-gradient(linear, left top, left bottom, 
+    color-stop(0%,#a55013), color-stop(100%,#752201));
+    border-radius:5px 5px 5px 5px;
+}
 .introinfotitle
 {width: 440px;height: 40px;border-bottom: 3px dashed #fefcea;padding-top: 20px;margin-left: 25px;}
 .introtitle{font-size:20px;color:#fefcea;font-family:Microsoft JhengHei;}
@@ -239,10 +249,48 @@ body
 .introtime{width: 440px;height: 40px;padding-top: 5px;margin-left: 23px;}
 .introtimein{font-size:18px;color:#fefcea;font-family:Microsoft JhengHei;border-bottom: 3px dashed #fefcea;padding-bottom:10px;}
 .introdetail{width: 440px;height: 220px;border-bottom:3px dashed #fefcea;margin-left:23px;}
+#mapcanvas{width:300px;height:400px;border-radius:10px 10px 10px 10px;background:white;margin-right: 45px;float: right;margin-top: -655px;}
+.scone{margin-top: 30px;}
+.sctwo{float: right;margin-top: -144px;}
+.sccheck{font-size:28px;color:#ffffff;font-family:Microsoft JhengHei;font-weight:600;}
 </style>
 
 <script type="text/javascript">
+var geocoder;
+var map;
+var marker;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var mapOptions = {
+    zoom: 17,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
+  marker = new google.maps.marker({
+	  position:LatLng,
+	  map:map,
+	  title:"新北市新店區三民路157號",
+  });
+}
 
+function codeAddress() {
+  var address = "新北市新店區三民路157號";
+  geocoder.geocode( { address: address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', codeAddress);
 </script>
 </head>
 <body>
@@ -262,7 +310,6 @@ body
       <div class="smbodyleftinsidebottom" id="selectable">
          <div class="smbodyleftinsidetext"><center><a href="StoreMemberInformation.jsp"  class="selectoption">個人資訊</a></center></div>
          <div class="smbodyleftinsidetext"><center><a href="<c:url value='/StoreMemberInfoServlet'/>"class="selectoption">專賣店資訊</a></center></div>
-         <div class="smbodyleftinsidetext"><center><a href="ucGroupInformation.jsp" class="selectoption">查看所有團</a></center></div>
          <div class="smbodyleftinsidetext"><center><a href="StoreMemberLoginout.jsp" class="selectoption">登出</a></center></div>
       </div>
     </div>
@@ -286,12 +333,16 @@ body
           <div class="introinfotitle"><p class="introtitle">瘋桌遊-益智遊戲專賣店(新店分店)</p></div>
           <div class="introaddress"><p class="introaddress">地址&nbsp;：&nbsp;新北市新店區三民路157號</p></div>
           <div class="introphone"><p class="introphone">連絡電話&nbsp;：&nbsp;(02)2915-7725</p></div>
+
           <div class="introtime"><p class="introtimein">營業時間&nbsp;：&nbsp;平日 13:00 - 22:00 六日 10:00 - 22:00</p></div>
           <div class="introdetail">
             <p style="font-size:28px;color:#b7df2d;font-family:Microsoft JhengHei;">店家介紹</p><br/>
-            <p style="color:#b7df2d;font-family:Microsoft JhengHei;">為了讓推廣桌上遊戲的夢想實現，我們決定投注實體店家，讓跟多的人可接觸到桌上遊戲，進而愛上桌遊。並且從多元豐富的遊戲中，體驗到各種不同的樂趣。透過推廣桌遊，希望讓全世界的人因為桌上遊戲得到真正的快樂。 桌遊有時不只是一場遊戲，他更能夠增進彼此的關係，不論是家人，情侶，夫妻，朋友，親子。透過桌遊的魅力，讓所有人不分男女老少，緊緊相連在一起。</p>
+            <p style="color:#FFFFDF;font-family:Microsoft JhengHei;">為了讓推廣桌上遊戲的夢想實現，我們決定投注實體店家，讓跟多的人可接觸到桌上遊戲，進而愛上桌遊。並且從多元豐富的遊戲中，體驗到各種不同的樂趣。透過推廣桌遊，希望讓全世界的人因為桌上遊戲得到真正的快樂。 桌遊有時不只是一場遊戲，他更能夠增進彼此的關係，不論是家人，情侶，夫妻，朋友，親子。透過桌遊的魅力，讓所有人不分男女老少，緊緊相連在一起。</p>
           </div>
+          <div class="intromap" id="mapcanvas"></div>
         </div>
+        <div class="submitcheck scone"><center><a href="#" class="sccheck">查看此店家遊戲團</a></center></div>
+        <div class="submitcheck sctwo"><center><a href="#" class="sccheck">查看此店家桌遊資訊</a></center></div>
       </div>
     </div>
   </div>
