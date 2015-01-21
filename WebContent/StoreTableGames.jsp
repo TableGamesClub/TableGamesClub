@@ -250,15 +250,10 @@ body
             <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">登入時間</p></center> 
       </div>
       <div class="smbodyleftinsidebottom">
-         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">個人資訊</a></center></div>
-<<<<<<< HEAD
+         <div class="smbodyleftinsidetext"><center><a href="StoreMemberInformation.jsp" class="selectoption">個人資訊</a></center></div>
          <div class="smbodyleftinsidetext"><center><a href="<c:url value='/StoreMemberInfoServlet'/>" class="selectoption">專賣店資訊</a></center></div>
-         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">桌遊資訊</a></center></div>
-=======
-         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">專賣店資訊</a></center></div>
->>>>>>> refs/heads/tablis0814
-         <div class="smbodyleftinsidetext"><center><a href="https://tw.yahoo.com/" class="selectoption">查看所有團</a></center></div>
-         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">登出</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="ucGroupInformation.jsp" class="selectoption">查看所有團</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="StoreMemberLoginout.jsp" class="selectoption">登出</a></center></div>
       </div>
     </div>
   </div>

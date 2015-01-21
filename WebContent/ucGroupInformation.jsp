@@ -5,8 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<<<<<<< HEAD
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -265,7 +263,6 @@ body {
 			</div>
 		</div>
 	</div>
-=======
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
@@ -461,10 +458,10 @@ body
             <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">登入時間</p></center> 
       </div>
       <div class="smbodyleftinsidebottom" id="selectable">
-         <div class="smbodyleftinsidetext"><center><a href="http://tw.yahoo.com" class="selectoption">個人資訊</a></center></div>
-         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">專賣店資訊</a></center></div>
-         <div class="smbodyleftinsidetext"><center><a href="https://www.facebook.com/" class="selectoption">查看所有團</a></center></div>
-         <div class="smbodyleftinsidetext"><center><a href="#" class="selectoption">登出</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="StoreMemberInformation.jsp" class="selectoption">個人資訊</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="<c:url value='/StoreMemberInfoServlet'/>" class="selectoption">專賣店資訊</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="ucGroupInformation.jsp" class="selectoption">查看所有團</a></center></div>
+         <div class="smbodyleftinsidetext"><center><a href="StoreMemberLoginout.jsp" class="selectoption">登出</a></center></div>
       </div>
     </div>
   </div>
@@ -474,6 +471,5 @@ body
     </div>
   </div>
 </div>
->>>>>>> refs/heads/tablis0814
 </body>
 </html>
