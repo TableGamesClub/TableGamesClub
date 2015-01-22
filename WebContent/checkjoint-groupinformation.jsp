@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>開團資訊</title>
+<title>加團資訊</title>
 <style type="text/css">
 .gray
 {
@@ -520,42 +520,42 @@ li.MemInfo{
     width:1000px;
     height:1200px;
     margin-top:25px;
-    box-shadow: 10px 10px 10px rgba(20%,20%,40%,0.7);
-    background-image:url(images/bubblegroup.png);
-    border-bottom-left-radius:150px 150px;
-    border-top-left-radius:10px 10px;
-    border-top-right-radius:90px 90px;
-    border-bottom-right-radius:10px 10px;
+    box-shadow: 10px 10px 10px rgba(29, 60, 31,0.7);
+    background-image:url(images/bubblegroup-green.png);
+    border-bottom-right-radius:150px 150px;
+    border-top-right-radius:10px 10px;
+    border-top-left-radius:90px 90px;
+    border-bottom-left-radius:10px 10px;
 }
 .groupimage
 {
     width:600px;
     height:400px;
     margin-top: 15px;
-    background:#CCDCEA;
+    background:#CCEAD0;
     border-radius:15px 15px 15px 15px;
     box-shadow: 5px 5px 5px rgba(20%,20%,40%,0.5);
 
 }
 .groupinfoone
 {
-    border:1px solid #87CEFA;
+    border:1px solid #87FA8D;
     border-radius:50px 50px 50px 50px;
     width:300px;
     height:50px;
-    background: -webkit-gradient(linear, left bottom, right top, 
-    color-stop(0%,#72a9d8), color-stop(100%,#0066e2));
-    box-shadow: 7px 7px 7px rgba(0,0,128,0.8);
+    background: -webkit-gradient(linear, left top, right top, 
+    color-stop(0%,#6dce73), color-stop(100%,#004f07));
+    box-shadow: 7px 7px 7px rgba(31,81,35,0.8);
 }
 .groupinfotwo
 {
-    border:1px solid #87CEFA;
+    border:1px solid #87FA8D;
     border-radius:50px 50px 50px 50px;
     width:300px;
     height:50px;
-    background: -webkit-gradient(linear, left bottom, right top, 
-    color-stop(0%,#0066e2), color-stop(100%,#72a9d8));
-    box-shadow: 7px 7px 7px rgba(0,0,128,0.8);
+    background: -webkit-gradient(linear, left top, right top, 
+    color-stop(0%,#004f07), color-stop(100%,#6dce73));
+    box-shadow: 7px 7px 7px rgba(31,81,35,0.8);
 }
 .gione 
 {margin-top: 25px;margin-left: 130px;padding-top: 20px;padding-left: 10px;}
@@ -574,18 +574,18 @@ li.MemInfo{
 .gicommit{width:250px;height:50px;margin-left: 160px;margin-top: 95px;
 border-radius:10px 10px 10px 10px;
 background: -webkit-gradient(linear, left top, left bottom, 
-color-stop(0%,#f5f6f6), color-stop(12%,#dbdce2), color-stop(49%,#b8bac6), 
-color-stop(100%,#dddfe3), color-stop(100%,#f5f6f6));
+color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
+color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5));
 box-shadow: 5px 5px 5px rgba(20%,20%,40%,0.5);
 border:1px outset white; }
 .giback{width:250px;height:50px;margin-right: 159px;float: right;margin-top: -50px;
 border-radius:10px 10px 10px 10px;
 background: -webkit-gradient(linear, left top, left bottom, 
-color-stop(0%,#f5f6f6), color-stop(12%,#dbdce2), color-stop(49%,#b8bac6), 
-color-stop(100%,#dddfe3), color-stop(100%,#f5f6f6)); 
+color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
+color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5)); 
 box-shadow: 5px 5px 5px rgba(20%,20%,40%,0.5);
 border:1px outset white; }
-.gictext{font-size:20px;font-family:Microsoft JhengHei;font-weight:bolder;color:#1A479B;}
+.gictext{font-size:20px;font-family:Microsoft JhengHei;font-weight:bolder;color:#2B6F18;}
 </style>
 
 <script type="text/javascript">

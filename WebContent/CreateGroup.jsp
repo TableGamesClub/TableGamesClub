@@ -291,6 +291,9 @@ li.MemInfo{
 	border-style:outset;
 	margin: 1px 1px;
 }
+#ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
+	width: 300px;
+}
 </style>
 
 <script type="text/javascript">

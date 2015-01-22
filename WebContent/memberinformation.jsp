@@ -571,7 +571,7 @@ li.MemInfo {
 		<ul id="menu">
 			<li><a href="home.jsp" id="a1">首頁</a></li>
 			<li><a href="CreateGroup.jsp" id="a1">開團</a></li>
-			<li><a href="#" id="a1">找團</a></li>
+			<li><a href="<c:url value='/SelectLookForGroupServlet' />" id="a1">找團</a></li>
 			<li><a href="#" id="a1">店家資訊</a></li>
 			<li><a href="register.jsp" id="a1">註冊</a></li>
 			<li class="User"><c:if test="${empty Member}">
@@ -804,8 +804,8 @@ li.MemInfo {
 			<!--     </div> -->
 	
 		<center><div class="middlebodytwo">
-			<input type="button" value="找團" class="lookforgroup"
-				style="font-size: 36px; color: #feffff;font-family: Microsoft JhengHei;"> <input
+			<a href="<c:url value='/SelectLookForGroupServlet' />"><input type="button" value="找團" class="lookforgroup"
+				style="font-size: 36px; color: #feffff;font-family: Microsoft JhengHei;"></a> <input
 				type="button" value="開團" class="creategroup"
 				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;">
 		</div></center>
