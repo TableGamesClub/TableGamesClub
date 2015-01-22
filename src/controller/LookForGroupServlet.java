@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.GroupRoom;
 import model.service.GroupService;
@@ -31,7 +32,7 @@ public class LookForGroupServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		// HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
 		request.setAttribute("ErrorMsgKey", errorMsgMap);
 		String gametype = request.getParameter("gametype");
@@ -44,26 +45,26 @@ public class LookForGroupServlet extends HttpServlet {
 		// List<GroupRoom> currectgrouptimer = new ArrayList<GroupRoom>();
 		GroupService groupservice = new GroupService();
 //		List<GroupRoom> desclist = new ArrayList<GroupRoom>();
-		
+//		session.removeAttribute("");
 		// 圖片識別ID
 		Map<String, Integer> requestimage = new HashMap<String, Integer>();
-		request.setAttribute("requestimage", requestimage);
+		session.setAttribute("requestimage", requestimage);
 
 		// 存取團名
 		Map<String, String> requestgroupname = new HashMap<String, String>();
-		request.setAttribute("requestgroupname", requestgroupname);
+		session.setAttribute("requestgroupname", requestgroupname);
 		
 		// 存放人數
 		Map<String, String> requestnumberofpeople = new HashMap<String, String>();
-		request.setAttribute("numberofpeople", requestnumberofpeople);
+		session.setAttribute("numberofpeople", requestnumberofpeople);
 
 		// 存放類型
 		Map<String, String> requesttype = new HashMap<String, String>();
-		request.setAttribute("requestype", requesttype);
+		session.setAttribute("requestype", requesttype);
 
 		// 存放時間
 		Map<String, String> requesttime = new HashMap<String, String>();
-		request.setAttribute("requesttype", requesttime);
+		session.setAttribute("requesttype", requesttime);
 		int y = 0;
 		int z = 0;
 		int a = 0;

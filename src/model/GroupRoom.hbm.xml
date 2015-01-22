@@ -11,7 +11,7 @@
         <many-to-one name="storeMember" class="model.StoreMember" fetch="select">
             <column name="storeMemberId" not-null="true" />
         </many-to-one>
-        <many-to-one name="member" class="model.Member" fetch="select">
+        <many-to-one name="member" class="model.Member" fetch="join">
             <column name="memberId" not-null="true" />
         </many-to-one>
         <property name="storeName" type="string">

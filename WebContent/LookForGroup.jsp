@@ -556,7 +556,9 @@ $(function() {
 
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname0 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage0}&type=GROUPROOM" style="width:'180px';height:120px" />
+    <br/>
+     <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage0}"> <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage0}&type=GROUPROOM" style="width:'180px';height:120px" /></a>
+   
     <br>
     ${requestgroupname.simplegroupgroupname0}<br>
     ${numberofpeople.peoplenumber0}<br>
@@ -572,7 +574,7 @@ $(function() {
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname1 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage1}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage1}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage1}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname1}<br>
     ${numberofpeople.peoplenumber1}<br>
@@ -589,7 +591,7 @@ $(function() {
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname2 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage2}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage2}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage2}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname2}<br>
     ${numberofpeople.peoplenumber2}<br>
@@ -605,7 +607,7 @@ $(function() {
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname3 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage3}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage3}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage3}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname3}<br>
     ${numberofpeople.peoplenumber3}<br>
@@ -621,7 +623,7 @@ $(function() {
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname4 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage4}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage4}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage4}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname4}<br>
     ${numberofpeople.peoplenumber4}<br>
@@ -636,7 +638,7 @@ $(function() {
     <br/>
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname5 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage5}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage5}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage5}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname5}<br>
     ${numberofpeople.peoplenumber5}<br>
@@ -652,7 +654,7 @@ $(function() {
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname6 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage6}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage6}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage6}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname6}<br>
     ${numberofpeople.peoplenumber6}<br>
@@ -668,7 +670,7 @@ $(function() {
    
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname7 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage7}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage7}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage7}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
    	${requestgroupname.simplegroupgroupname7}<br>
    	${numberofpeople.peoplenumber7}<br>
@@ -684,7 +686,7 @@ $(function() {
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname8 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage8}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage8}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage8}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname8}<br>
     ${numberofpeople.peoplenumber8}<br>
@@ -700,7 +702,7 @@ $(function() {
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname9 }">
     <div class="infosearch">
-    <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage9}&type=GROUPROOM" style="width:'180px';height:120px"/>
+    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage9}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage9}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
     <br>
     ${requestgroupname.simplegroupgroupname9}<br>
     ${numberofpeople.peoplenumber9}<br>
