@@ -15,6 +15,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import model.GroupRoom;
 import model.Interface.GroupRoomDAO_Interface;
+import model.Interface.StoreInformationDAO_Interface;
+import model.Interface.StoreMemberDAO_Interface;
 import model.service.GroupService;
 
 @WebServlet("/GetCount")
@@ -24,15 +26,20 @@ public class TimeCalculate extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		GroupService service = new GroupService();
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"model-config1-DriverManagerDataSource.xml");
+		StoreInformationDAO_Interface dao = (StoreInformationDAO_Interface) context
+				.getBean("StoreInformationDAO");
 		String GroupStartTime = request.getParameter("S");
-		String GroupStartTime2 = request.getParameter("S2");
 		String GroupEndTime = request.getParameter("E");
-		String GroupEndTime2 = request.getParameter("E2");
-		String StoreName = request.getParameter("N");
+		String StoreNumber = request.getParameter("N");
 		PrintWriter out = response.getWriter();
-		Date StartTime = service.convertDate(GroupStartTime+" "+GroupStartTime2);
-		Date EndTime = service.convertDate(GroupEndTime+" "+GroupEndTime2);
+		Date StartTime = service.convertDate(GroupStartTime+":00");
+		Date EndTime = service.convertDate(GroupEndTime+":00");
 		GroupRoom bean = new GroupRoom();
+		GroupRoom room = service.getOneGroupRoom(Integer.parseInt(StoreNumber));
+		String StoreName = room.getStoreName();
+		int StoreUpper = dao.findByPrimeKey(Integer.parseInt(StoreNumber)).getGroupUpperLimit();
 		bean.setStoreName(StoreName);
 		System.out.println(StoreName);
 		bean.setReserveGroupStartTime(StartTime);
@@ -40,7 +47,7 @@ public class TimeCalculate extends HttpServlet {
 		bean.setReserveGroupEndTime(EndTime);
 		System.out.println(EndTime);
 		int count = service.countJoinedMemberNumber(bean);
-		out.print(count);
+		out.print(StoreUpper-count);
 //		service.countJoinedMemberNumber(bean);
 	}
 	
