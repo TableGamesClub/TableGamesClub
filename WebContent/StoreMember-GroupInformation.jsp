@@ -210,17 +210,181 @@ body
   <div class="smbodyright">
     <div class="smbodyrighttop">
        <p style="font-size:24px">查看專賣店現有團資訊</p>
-       我的店:<c:forEach var="store" items="${storeInfoList}">${store.storeName}</c:forEach>
-					選在此專賣店開團的團有:<c:forEach var="group" items="${gRoomlist}">${group.groupRoomName},</c:forEach>
-<%-- 					此團遊玩桌遊類型(List):<c:forEach var="kind" items="${gamesKindList}">${kind.boardGameStyle},</c:forEach> --%>
-					此團遊玩桌遊類型(Map):
-<%-- 					<c:forEach var="kindMap" items="${gamesKindMap}"> --%>
-						<c:forEach var="kindList" items="${gamesKindList}">
+			我的店:<c:forEach var="store" items="${storeInfoList}">${store.storeName}</c:forEach>
+			<br>			
+			選在此專賣店開團的團有:
+			<br>
+			<br>
+			<c:set var="switchNum_Group" value="0"/>
+			<c:forEach var="Group" items="${gRoomlist}">
+				團名:
+				${Group.groupRoomName}
+					<c:if test="${switchNum_Group==0}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList0}">
 							${kindList.boardGameStyle}
 						</c:forEach>
-<%-- 					</c:forEach>							 --%>
-					此團所選的桌遊:<c:forEach var="choice" items="${groupChoiceGamesList}">${choice.boardGameName},</c:forEach>		
-					目前加團人數:<c:forEach var="count" items="${joinerCountList}">${count},</c:forEach>		
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList0}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList0}
+					</c:if>
+					<c:if test="${switchNum_Group==1}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList1}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList1}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList1}
+					</c:if>
+					<c:if test="${switchNum_Group==2}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList2}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList2}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList2}
+					</c:if>
+					<c:if test="${switchNum_Group==3}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList3}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList3}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList3}
+					</c:if>
+					<c:if test="${switchNum_Group==4}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList4}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList4}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList4}
+					</c:if>
+					<c:if test="${switchNum_Group==5}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList5}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList5}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList5}
+					</c:if>
+					<c:if test="${switchNum_Group==6}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList6}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList6}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList6}
+					</c:if>
+					<c:if test="${switchNum_Group==7}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList7}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList7}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList7}
+					</c:if>
+					<c:if test="${switchNum_Group==8}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList8}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList8}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList8}
+					</c:if>
+					<c:if test="${switchNum_Group==9}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList9}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList9}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList9}
+					</c:if>
+					<c:if test="${switchNum_Group==10}">
+						<br>
+						此團遊玩桌遊類型:
+						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList10}">
+							${kindList.boardGameStyle}
+						</c:forEach>
+						<br>
+						桌遊:
+						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList10}">
+						${GroupChoiceGames.boardGameName}
+						</c:forEach>
+						<br>
+						目前加入人數:
+						${joinerCountMap.joinerCountList10}
+					</c:if>
+				<c:set var="switchNum_Group" value="${switchNum_Group+1}"/>
+				<br>
+			</c:forEach>
+			<br>			
     </div>
   </div>
 </div>

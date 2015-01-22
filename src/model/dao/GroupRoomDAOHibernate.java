@@ -241,6 +241,8 @@ public class GroupRoomDAOHibernate implements GroupRoomDAO_Interface {
 		// 修改
 		// 刪除
 		// 查詢單筆
+		Member mem = dao.findByPrimeKey(1).getMember();
+		System.out.println(mem.getUsername());
 		// 查詢多筆
 //		List<GroupRoom> beans = dao.getAll();
 //		for (GroupRoom vo : beans) {

@@ -32,7 +32,7 @@
         <property name="storeWebsite" type="string">
             <column name="storeWebsite" length="100" />
         </property>
-        <set name="storeInformations" table="StoreInformation" inverse="true" lazy="false" fetch="select">
+        <set name="storeInformations" table="StoreInformation" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="storeMemberId" not-null="true" />
             </key>
