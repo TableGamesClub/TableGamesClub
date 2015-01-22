@@ -190,9 +190,9 @@ body
     height:60px;
     background: -webkit-gradient(linear, left top, 
                                  right bottom, 
-                                 color-stop(0%,rgba(208,228,247,0.4)), 
-                                 color-stop(24%,rgba(115,177,231,0.4)), 
-                                 color-stop(100%,rgba(10,119,213,0.4)));
+                                 color-stop(0%,rgba(208,228,247,0.8)), 
+                                 color-stop(24%,rgba(115,177,231,0.8)), 
+                                 color-stop(100%,rgba(10,119,213,0.8)));
     padding-top:10px;
     padding-left:15px;
     border-radius:10px 10px 10px 10px;
@@ -255,7 +255,7 @@ body
       <div class="createintro cifive"><p class="cifont">請輸入遊玩人數：</p>
       <input type="text" class="ciinput"></div>
       <div class="createintro cisix"><p class="cifont">請輸入桌遊介紹：</p>
-      <textarea rows="3" style="margin-left: -15px;width:410px;height:220px;resize : none;margin-top:40px;" name="roomString;"></textarea></div>
+      <textarea rows="3" style="margin-left: -15px;width:410px;height:220px;resize : none;margin-top:10px;" name="roomString;"></textarea></div>
     </div>
   </div>
 </div>
