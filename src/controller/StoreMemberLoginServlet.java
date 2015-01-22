@@ -66,6 +66,7 @@ public class StoreMemberLoginServlet extends HttpServlet {
 				for (StoreMember vo : list) {
 					session.setAttribute("storemem", vo);
 					response.sendRedirect("StoreMemberInformation.jsp");
+					return;
 				}
 			} else{
 				System.out.println("喔喔糟糕!");
@@ -76,6 +77,7 @@ public class StoreMemberLoginServlet extends HttpServlet {
 			errorMsgMap.put("Passwordrror", "密碼錯誤");
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
+			return;
 		}
 	}
 }
