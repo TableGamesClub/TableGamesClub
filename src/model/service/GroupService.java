@@ -57,6 +57,14 @@ public class GroupService {
 				.getBean("BoardGameKindDAO");
 		
 	}
+	public List<GroupChoiceGames> getBoardGameNames(Integer groupSerialNumber){  //取得團所選桌遊
+		return gcgdao.getBoardGameNames(groupSerialNumber);
+	}
+	
+	public List<Member> findByUsername(String username){     //查會員資料
+		return mdao.findByUsername(username);
+	}
+	
 	public String selectGameKindName(Integer boardgameserialnumber){//丟類型編號回傳類型
 		return bgkdao.selectGameKindName(boardgameserialnumber);
 	}
@@ -152,7 +160,7 @@ public class GroupService {
 		}
 		return false;
 	}
-
+	
 	public GroupRoom getOneGroupRoom(Integer groupSerialNumber) {// 查詢單筆揪團房(主鍵-groupSerialNumber)
 		return grdao.findByPrimeKey(groupSerialNumber);
 	}
