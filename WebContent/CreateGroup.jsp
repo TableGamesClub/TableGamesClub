@@ -31,16 +31,17 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="Scripts/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="Scripts/jquery-ui.js"></script>
 
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet"> -->
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script> -->
 <link href='Scripts/jquery-ui-timepicker-addon.css' rel='stylesheet'>
 <script type="text/javascript" src="Scripts/jquery-ui-timepicker-addon.js"></script>
 <script type='text/javascript' src='Scripts/jquery-ui-sliderAccess.js'></script>
+<!-- <script type='text/javascript' src='Scripts/jquery.livequery.min.js'></script> -->
 <title>開團</title>
 <style type="text/css">
 .red{color:red;}
@@ -500,15 +501,16 @@ $(function() {
 					</div>
 					<div id="sapnType" style="width: 300px;height:200px;border:1px solid black;overflow: scroll;overflow-x:hidden;padding: 3px 3px"></div>
 				</div>
-				<div><span>開團人數:</span><span class="red">*</span></div>
-					<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;font-size: medium" name="roomNumber">
-					<div id="slider-range" style="width:200px"></div>
 				<div><span>預約時間:</span><span class="red">*</span></div>
 					<div style="">
 						<span><input id="datetimepicker1" type="text" style="width:100px" name="startTime" value="2015-02-01 10:00:00"/></span>~
 						<span><input id="datetimepicker2" type="text" style="width:100px" name="endTime" value=""/></span>
 					</div>
 					<div id="ajaxImgSpan" style="height:25px;width:25px"><img src="res/ajax.gif" id="ajaxImg" style="display: none"></div>
+					<div id="timeText" style="margin-bottom: 13px"></div>
+				<div><span>開團人數:</span><span class="red">*</span></div>
+					<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;font-size: medium" name="roomNumber">
+					<div id="slider-range" style="width:200px"></div>
 				<div><span>團圖:</span><span class="red">*</span></div>
 				<img id="blah" alt="your image" width="200" height="150"/><br>
 				<div style="margin: 2px 0 0 40px">
@@ -538,7 +540,6 @@ $(function() {
 //                 };
       var opt3={dateFormat: 'yy-mm-dd',
 	        showSecond: false,
-	        showMinute:false,
                 timeFormat: 'HH:mm:ss',
 		addSliderAccess:true,
 		sliderAccessArgs:{touchonly:false}
@@ -547,9 +548,10 @@ $(function() {
       $('#datetimepicker2').datetimepicker(opt3);
 //       $('#datetimepicker3').datetimepicker(opt3);
       });
-  </script>
-  <script>
+
   //選擇桌遊ajax
+</script>
+<script>
         var btnLoad = document.getElementById("select1");
         var a1 = $('#select1');
         btnLoad.addEventListener("click",beforeload,false);
@@ -562,15 +564,14 @@ $(function() {
         }
         
         function load(){    
-//         	alert($(this).val());
 			var boardGameStore = document.getElementById("boardGameStore");//抓取店家號碼
         	xhr = new XMLHttpRequest();
-        	xhr.addEventListener("readystatechange",callback,false);
+        	xhr.addEventListener("readystatechange",callback2,false);
             var url = "GetGamesJson?storeId="+boardGameStore.value+"&type="+$(this).val();     //url要改
         	xhr.open("get",url,true); 
         	xhr.send();
         }
-        function callback(){
+        function callback2(){
         	if(xhr.readyState == 4){
         		if(xhr.status == 200){
 	      		var data = xhr.responseText
@@ -591,7 +592,8 @@ $(function() {
                 }
         	}
         }
-        
+ </script>    
+ <script>
       //按鈕
     	$('#CreateNewStylebutton').bind('click',function(){
     			$('#sapnType')
@@ -624,42 +626,53 @@ $(function() {
 	    
 	    
 	    //ajax開團時間判斷
-	    $('#datetimepicker2').bind('change',function(){
-// 	    	alert($('#datetimepicker2').val());
-// 	    	console.log($('#datetimepicker2').val());
-			$('#ajaxImg').css("display","inline");
-			
+	    $("#datetimepicker1").datetimepicker({
+	    	onClose: function() {
+			}
+		});
+	    $("#datetimepicker2").datetimepicker({
+	    	onClose: function() {
+	    		load2();
+			}
+		});
+	    
+	    
 			var xmlHttp;
-			function load(){
-				
+			function load2(){
+// 				alert($('#datetimepicker1').val());
+// 				alert($('#datetimepicker2').val());
+// 				alert($('#boardGameStore').val());
 				xmlHttp=new XMLHttpRequest();
 				xmlHttp.addEventListener("readystatechange",callback,false);
-				var url="AccountCheck.jsp?name="+name;
+				var url="GetCount?S="+$('#datetimepicker1').val()+"&E="+$('#datetimepicker2').val()+"&N="+$('#boardGameStore').val();
 				xmlHttp.open("get",url,true);//true為非同步
 				xmlHttp.send();
-				
-				
 			}
 			
 			function callback(){
 				console.log(xmlHttp.readyState);
-				document.getElementById("div1").innerHTML="";//清空一次
+				document.getElementById("timeText").innerHTML="";//清空一次
 				if(xmlHttp.readyState==1){
-					document.getElementById("pic1").style.display="inline";
+					$('#ajaxImg').css("display","inline");
 				}
 				if(xmlHttp.readyState==4){
 					if(xmlHttp.status==200){
-						document.getElementById("pic1").style.display="none";
-						var data=xmlHttp.responseText;
-						var myDiv=document.getElementById("div1");
-						myDiv.innerHTML=data;
+						$('#ajaxImg').css("display","none");
+						var data2=xmlHttp.responseText;
+						var myDiv=document.getElementById("timeText");
+						myDiv.innerHTML="店家剩餘人數："+data2+"人";
 					}else{
+						if($('#boardGameStore').val()==0){
+							$('#ajaxImg').css("display","none");
+							alert("請先選擇店家！");
+							return;
+						}
 						alert(xmlHttp.status+":"+xmlHttp.statusText);
 					}
 				}
 			}
 			
-	    })
+	    
    </script>
 </body>
 </html>

@@ -186,7 +186,7 @@ public class CreateRoomServlet extends HttpServlet {
 			System.out.println("error");
 			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
 			RequestDispatcher rd = request
-					.getRequestDispatcher("CreatGroup.jsp");
+					.getRequestDispatcher("CreateGroup.jsp");
 			rd.forward(request, response);
 			return;
 		}
@@ -220,7 +220,7 @@ public class CreateRoomServlet extends HttpServlet {
 			if(mbean == null){
 				System.out.println("會員未登入");
 				RequestDispatcher rd = request
-						.getRequestDispatcher("CreatGroup.jsp");
+						.getRequestDispatcher("CreateGroup.jsp");
 				rd.forward(request, response);
 				return;
 			}
@@ -319,7 +319,7 @@ public class CreateRoomServlet extends HttpServlet {
 			e.printStackTrace();
 			errorMsg.put("errorIDDup", e.getMessage());
 			RequestDispatcher rd = request
-					.getRequestDispatcher("CreatGroup.jsp");
+					.getRequestDispatcher("CreateGroup.jsp");
 			rd.forward(request, response);
 		}
 	}
