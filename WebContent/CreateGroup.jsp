@@ -34,7 +34,10 @@
 <link rel="stylesheet" href="Scripts/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="Scripts/jquery-ui.js"></script>
-
+<link rel="stylesheet" href="Jquary/demo.css" type="text/css"
+	media="screen" />
+<link rel="stylesheet" href="Jquary/flexslider.css" type="text/css"
+	media="screen" />
 <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet"> -->
 <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script> -->
@@ -42,6 +45,7 @@
 <script type="text/javascript" src="Scripts/jquery-ui-timepicker-addon.js"></script>
 <script type='text/javascript' src='Scripts/jquery-ui-sliderAccess.js'></script>
 <!-- <script type='text/javascript' src='Scripts/jquery.livequery.min.js'></script> -->
+
 <title>開團</title>
 <style type="text/css">
 .red{color:red;}
@@ -156,7 +160,7 @@ input #textone
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;  
     border-bottom-right-radius:10px 10px;
-	margin:-8px auto;
+	margin:0 auto;
 	width:1300px;
 	height:75px;
  	background-image:url(res/bo.jpg); 
@@ -170,7 +174,7 @@ input #textone
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;  
     border-bottom-right-radius:10px 10px;
-	margin: -2px auto;
+	margin: 0 auto;
 	list-style: none;
 	padding:10px;
 	width: 1300px;
@@ -289,7 +293,7 @@ li.MemInfo{
 .choiceGame{
 	font-size: 80%; 
 	float:left;
-	border-style:outset;
+	border:3px outset;
 	margin: 1px 1px;
 }
 #ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
@@ -472,9 +476,9 @@ $(function() {
 	<div  style="margin:0 auto;width:1300px;">
 		<div class="cgbody">
 			<center>
-				<div><br/><br/>
-						<h1>開團資料</h1>
-				<div>輸入您的桌遊團名<span class="red">*</span></div>
+				<div><br/><br/><br/><br/>
+						<h1 style="font-size:36px;font-weight:900;">開團資料</h1>
+				<div style="margin-top:35px;">輸入您的桌遊團名<span class="red">*</span></div>
 					<input type="text" style="width:200px" style="width:200px" placeholder="" name="roomName"></div>
 				<div><span>選擇店家:</span><span class="red">*</span></div>
 				<div>
