@@ -62,8 +62,6 @@ public class createRoomSuccessMail extends Thread{
             picturePart.setFileName(fds.getName());
             picturePart.setHeader("Content-ID", "<image>");
             
-            
-            
             Multipart email = new MimeMultipart();
             email.addBodyPart(textPart);
             email.addBodyPart(picturePart);
