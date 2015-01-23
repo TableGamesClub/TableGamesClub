@@ -5,14 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+<script	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css"
 	media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css"
 	media="screen" />
+
 <title>會員基本資料</title>
 <style type="text/css">
 .gray {
@@ -775,9 +776,12 @@ li.MemInfo {
 					</center>
 				</div>
 
-<!-- 			  <div> -->
-<!-- 				<input type="button" value="查看" class="buttoncheck"> -->
-<!-- 			  </div> -->
+				<span>
+					<input type="button" value="查看團資訊" class="buttoncheck">
+				</span>
+				<span>
+					<input type="button" value="我要退團" class="buttoncheck">
+				</span>
 			</div>
 			</div>
 			<c:set var="temp1" value="${temp1+1}" />
@@ -809,7 +813,55 @@ li.MemInfo {
 				type="button" value="開團" class="creategroup"
 				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;">
 		</div></center>
+		
+<div id="dialog" title="退團理由" style="width: 400px">
+	<h3 style="margin:3px 10px 10px 10px">請填寫退團的原因：</h3>
+	<form>
+		<textarea rows="5" cols="44"></textarea>
+			<input type="submit" value="送出" style="float:right;margin-top: 14px">
+			<input type="submit" value="取消" style="float:right;margin-top: 14px;margin-right: 3px" id="cancel">
+	</form>
+</div>
+ 
+<button id="opener">Open Dialog</button>
 	</div>
 	
+  <script>
+  var anotherVariable = jQuery.noConflict()
+//   打開退團理由框框
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 500
+      },
+      hide: {
+        effect: "blind",
+        duration: 500
+      },
+      width: 500,
+      height: 300,
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+    $( "#cancel" ).click(function() {
+        $( "#dialog" ).dialog( "close" );
+      });
+  });
+  </script>
+  <script>
+//   按鈕特效框框
+  $(function() {
+	  $( "button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+  </script>
+
 </body>
 </html>

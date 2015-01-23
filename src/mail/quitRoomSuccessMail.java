@@ -15,13 +15,13 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class createRoomSuccessMail extends Thread{
+public class quitRoomSuccessMail extends Thread{
 	
 	String mail = "";
 	String header = "";
 	String text = "";
 	
-	public createRoomSuccessMail(String mail,String header,String text){
+	public quitRoomSuccessMail(String mail,String header,String text){
 		this.mail = mail;
 		this.header = header;
 		this.text = text;
@@ -136,7 +136,7 @@ public class createRoomSuccessMail extends Thread{
 	}
 		
 	public static void main(String[] args) {
-		createRoomSuccessMail t1 = new createRoomSuccessMail("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。");
+		quitRoomSuccessMail t1 = new quitRoomSuccessMail("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。");
 		t1.start();
 		System.out.println(456);
 	}
