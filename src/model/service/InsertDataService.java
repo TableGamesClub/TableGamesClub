@@ -3724,6 +3724,62 @@ public class InsertDataService {
 		beanJoiner_Info9.setUsername("pewdiepie");
 		dao15.insert(beanJoiner_Info9);
 		
+		Joiner_Info beanJoiner_Info10 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info10 = dao13.findByPrimeKey(1);
+		beanJoiner_Info10.setGroupRoom(gubeanJoiner_Info10);
+		beanJoiner_Info10.setJoinTime(java.sql.Date.valueOf("2014-12-24"));
+		beanJoiner_Info10.setUsername("pewdiepie");
+		dao15.insert(beanJoiner_Info10);
+		
+		Joiner_Info beanJoiner_Info11 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info11 = dao13.findByPrimeKey(2);
+		beanJoiner_Info11.setGroupRoom(gubeanJoiner_Info11);
+		beanJoiner_Info11.setJoinTime(java.sql.Date.valueOf("2014-01-01"));
+		beanJoiner_Info11.setUsername("opchannel");
+		dao15.insert(beanJoiner_Info11);
+		
+		Joiner_Info beanJoiner_Info12 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info12 = dao13.findByPrimeKey(3);
+		beanJoiner_Info12.setGroupRoom(gubeanJoiner_Info12);
+		beanJoiner_Info12.setJoinTime(java.sql.Date.valueOf("2014-11-28"));
+		beanJoiner_Info12.setUsername("qksmiper");
+		dao15.insert(beanJoiner_Info12);
+		
+		Joiner_Info beanJoiner_Info13 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info13 = dao13.findByPrimeKey(4);
+		beanJoiner_Info13.setGroupRoom(gubeanJoiner_Info13);
+		beanJoiner_Info13.setJoinTime(java.sql.Date.valueOf("2014-12-08"));
+		beanJoiner_Info13.setUsername("cclearner");
+		dao15.insert(beanJoiner_Info13);
+		
+		Joiner_Info beanJoiner_Info14 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info14 = dao13.findByPrimeKey(5);
+		beanJoiner_Info14.setGroupRoom(gubeanJoiner_Info14);
+		beanJoiner_Info14.setJoinTime(java.sql.Date.valueOf("2014-09-24"));
+		beanJoiner_Info14.setUsername("steampower");
+		dao15.insert(beanJoiner_Info14);
+		
+		Joiner_Info beanJoiner_Info15 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info15 = dao13.findByPrimeKey(6);
+		beanJoiner_Info15.setGroupRoom(gubeanJoiner_Info15);
+		beanJoiner_Info15.setJoinTime(java.sql.Date.valueOf("2014-12-01"));
+		beanJoiner_Info15.setUsername("javaprogrammer");
+		dao15.insert(beanJoiner_Info15);
+		
+		Joiner_Info beanJoiner_Info16 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info16 = dao13.findByPrimeKey(7);
+		beanJoiner_Info16.setGroupRoom(gubeanJoiner_Info16);
+		beanJoiner_Info16.setJoinTime(java.sql.Date.valueOf("2015-01-02"));
+		beanJoiner_Info16.setUsername("bahagamer");
+		dao15.insert(beanJoiner_Info16);
+		
+		Joiner_Info beanJoiner_Info17 = new Joiner_Info();
+		GroupRoom gubeanJoiner_Info17 = dao13.findByPrimeKey(8);
+		beanJoiner_Info17.setGroupRoom(gubeanJoiner_Info17);
+		beanJoiner_Info17.setJoinTime(java.sql.Date.valueOf("2014-12-19"));
+		beanJoiner_Info17.setUsername("Hicupok");
+		dao15.insert(beanJoiner_Info17);
+		
 		//insert GroupRoomMessage
 		GroupRoom_Message beanGroupRoomMessage1 = new GroupRoom_Message();
 		GroupRoom sibeanbeanGroupRoomMessage1 = dao13.findByPrimeKey(1);
