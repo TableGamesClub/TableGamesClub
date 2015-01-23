@@ -36,14 +36,16 @@ public class LookforGroupChangeToCheckGroupInformationServlet extends
 
 		String id = request.getParameter("id");   //收到的團主鍵
 		System.out.println(id);
+		Map<String, String> tempToGroupInServlet = new HashMap<>();
 		Map<String, GroupRoom> info = new HashMap<String, GroupRoom>();   //存放資料區grouproom
 		Map<String, Member> info2 = new HashMap<>();  //存放資料Member
 		Map<String, String> info3 = new HashMap<>();  //存放資料GroupChoiceGames
 		Map<String, String> info4 = new HashMap<>();
-		Map<String, String> info5 = new HashMap<>();
+		Map<String, String> info5 = new HashMap<>();		
 		// 圖片識別ID
 		Map<String, Integer> requestimage = new HashMap<String, Integer>();
 		request.setAttribute("requestimage", requestimage);
+		request.setAttribute("tempToGroupInServlet", tempToGroupInServlet);
 //		HttpSession session = request.getSession();
 		request.setAttribute("info", info);
 		request.setAttribute("roomMaster", info2);
@@ -54,6 +56,8 @@ public class LookforGroupChangeToCheckGroupInformationServlet extends
 		int b = 0;
 		try {
 			int roomId = Integer.parseInt(id);
+			
+			tempToGroupInServlet.put("gid", id);
 
 			
 			GroupService groupservice = new GroupService();
@@ -88,7 +92,8 @@ public class LookforGroupChangeToCheckGroupInformationServlet extends
 			System.out.println(mem.getEmail());
 			info.put("GroupRoom",takeInfoGR);
 			info2.put("DarkFlameMaster", mem);
-			info5.put("numbernin", String.valueOf(groupservice.countGroupRoomsMyJoined(mem)));
+			
+			info5.put("numbernin", String.valueOf(groupservice.countGroupRoomsByGroupSerialNumber(takeInfoGR)));
 			
 			
 			
@@ -98,7 +103,7 @@ public class LookforGroupChangeToCheckGroupInformationServlet extends
 			if (!info.isEmpty()) {
 				
 				RequestDispatcher rd = request
-						.getRequestDispatcher("/checkgroupinformation.jsp");
+						.getRequestDispatcher("/checkjoint-groupinformation.jsp");
 				rd.forward(request, response);
 				return;
 			}
