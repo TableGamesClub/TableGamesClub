@@ -32,7 +32,7 @@ public class LookforGroupChangeToCheckGroupInformationServlet extends
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
 
 		String id = request.getParameter("id");   //收到的團主鍵
 		System.out.println(id);
@@ -44,14 +44,14 @@ public class LookforGroupChangeToCheckGroupInformationServlet extends
 		Map<String, String> info5 = new HashMap<>();		
 		// 圖片識別ID
 		Map<String, Integer> requestimage = new HashMap<String, Integer>();
-		request.setAttribute("requestimage", requestimage);
-		request.setAttribute("tempToGroupInServlet", tempToGroupInServlet);
+		session.setAttribute("requestimage", requestimage);
+		session.setAttribute("tempToGroupInServlet", tempToGroupInServlet);
 //		HttpSession session = request.getSession();
-		request.setAttribute("info", info);
-		request.setAttribute("roomMaster", info2);
-		request.setAttribute("info3", info3);
-		request.setAttribute("info4", info4);
-		request.setAttribute("info5", info5);
+		session.setAttribute("info", info);
+		session.setAttribute("roomMaster", info2);
+		session.setAttribute("info3", info3);
+		session.setAttribute("info4", info4);
+		session.setAttribute("info5", info5);
 		int a = 0;
 		int b = 0;
 		try {

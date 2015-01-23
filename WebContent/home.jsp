@@ -924,9 +924,11 @@ $(function() {
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
+    	<c:if test="${empty Member}">
     <li>
-      <a href="register.jsp" id="a1">註冊</a>
+      		<a href="register.jsp" id="a1">註冊</a>
     </li>
+      	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
 			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
@@ -978,7 +980,7 @@ $(function() {
               <option>不設限</option>
              </select>
              <p id="selectfourp"">遊戲名稱</p>
-            <input type="text" id="textfour" placeholder="這略遊戲">
+            <input type="text" id="textfour" placeholder="策略遊戲">
           </div>
       </div>
     </div>

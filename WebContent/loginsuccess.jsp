@@ -895,34 +895,50 @@ li.MemInfo {
 <body>
 	<div id="HEADERONE"></div>
 	<div>
-		<ul id="menu">
-			<li><a href="home.jsp" id="a1">首頁</a></li>
-			<li><a href="CreateGroup.jsp" id="a1">開團</a></li>
-			<li><a href="#" id="a1">找團</a></li>
-			<li><a href="#" id="a1">店家資訊</a></li>
-			<li><a href="register.jsp" id="a1">註冊</a></li>
-			<li class="User"><c:if test="${empty Member}">
-					<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
-				</c:if> <c:if test="${ ! empty Member }">
-					<a id="a1" class="A1" href="#"><font>使用者<img
-							src="res/arror_down.png" height="16px"
-							style="position: relative; top: 2px; left: 52px"></font></a>
-					<ul>
-						<li><a href="#" id="a2">會員資料</a></li>
-						<br />
-						<br />
-						<li><a href="loginout.jsp" id="a2">登出</a></li>
-					</ul></li>
-			<li class="MemInfo"><img
-				src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER"
-				height="45px" width="45px"
-				style="float: left; border: 2px double rgb(65, 113, 200);"
-				class="circle">
-				<p class="font_style circle">${Member.username}</p>
-				<p class="font_style circle">${Member.nickname}</p></li>
-			</c:if>
-		</ul>
-	</div>
+  <ul id="menu">
+    <li>
+      <a href="home.jsp" id="a1">首頁</a>
+    </li>
+    <li>
+      <a href="CreateGroup.jsp"
+       id="a1">開團</a>
+    </li>
+    <li>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
+    </li>
+    <li>
+      <a href="#" id="a1">店家資訊</a>
+    </li>
+    	<c:if test="${empty Member}">
+    <li>
+      		<a href="register.jsp" id="a1">註冊</a>
+    </li>
+      	</c:if>
+    <li class="User">
+    	<c:if test="${empty Member}">
+			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
+		</c:if>
+		<c:if test="${ ! empty Member }">
+			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<ul>
+        		<li>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
+          			
+        		</li><br /><br />
+        		<li>
+          			<a href="loginout.jsp" id="a2">登出</a>
+        		</li>
+      		</ul>
+      	
+	</li>
+	<li class="MemInfo">
+		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
+			<p class="font_style circle">${Member.username}</p>
+			<p class="font_style circle">${Member.nickname}</p>
+	</li>
+	</c:if>
+  </ul>
+</div>
 	<!-- 從這邊上面不要隨意修改 -->
 	<!-- 下面開始自訂 -->
 	<div id="tabs">
@@ -930,7 +946,7 @@ li.MemInfo {
     <form id="formbody"></form>
       <div class="tab_container" id="forminside" id="tab1">
        <br/>
-							<p class="bodyleftinsidep">您已成功登入!現在幫你導向首頁。</p>
+							<p class="bodyleftinsidep">您已成功登入!</p>
 							
 						<br/>
 						<br/>												
