@@ -23,6 +23,12 @@
 <link rel="stylesheet" href="/TableGamesClub/Jquary/flexslider.css" type="text/css" media="screen" />
 <title>加團資訊</title>
 <style type="text/css">
+.errormsg
+{
+ margin-left:165px;
+ margin-top:20px;
+}
+
 .gray
 {
     color:gray;
@@ -925,9 +931,11 @@ $(function(){
 <!--     <div class="groupinfotwo gieleven"><p class="gitext">預約場地結束時間</p></div> -->
 <!--     <div class="groupinfotwo gitwelve"><p class="gitext">遊玩時間</p></div> -->
     <div><a href="${pageContext.servletContext.contextPath}/controller/GIS?id=${tempToGroupInServlet.gid}" ><input type="submit" class="gicommit gictext" value="我要加團"></a></div>
-${insertOk.CreateOK }${insertNotOk.storeupper }  ${insertNotOk.groupupper}
+
     <div><a href="<c:url value='/SelectLookForGroupServlet'/>"><input type="submit" class="giback gictext" value="返回上一頁"></a></div>
-  </div>
+    <div class="errormsg"><font style="color:red; font-size:24px" >${insertOk.CreateOK }${insertNotOk.storeupper }  ${insertNotOk.groupupper}</font></div>
+    </div>
+  
 </div>
 </body>
 </html>
