@@ -108,23 +108,31 @@ public class GroupInServlet extends HttpServlet {
 									+ grouproom.getGroupRoomName() + "]開團成功！",
 							"123");
 					mail.start();
+					
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/joingroupsuccess.jsp");
+					rd.forward(request, response);
+					return;
 
 				} else {
 					insertNotOk.put("storeupper", "店家所容納的人數已超過上限");
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/checkjoint-groupinformation.jsp");
+					rd.forward(request, response);
 				}
 
 			} else {
 				insertNotOk.put("groupupper", "您所加入的團已超過上限人數");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/checkjoint-groupinformation.jsp");
+				rd.forward(request, response);
 			}
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 
-//		RequestDispatcher rd = request
-//				.getRequestDispatcher("/checkjoint-groupinformation.jsp");
-//		rd.forward(request, response);
-//		return;
+
 
 	}
 

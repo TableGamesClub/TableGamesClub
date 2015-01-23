@@ -852,30 +852,32 @@ $(function(){
 <div>
   <ul id="menu">
     <li>
-      <a href="<c:url value='/home.jsp'/>" id="a1">首頁</a>
+      <a href="home.jsp" id="a1">首頁</a>
     </li>
     <li>
       <a href="CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
-      <a href="#" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
+    	<c:if test="${empty Member}">
     <li>
-      <a href="register.jsp" id="a1">註冊</a>
+      		<a href="register.jsp" id="a1">註冊</a>
     </li>
+      	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
 			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
-          			<a href="#" id="a2">會員資料</a>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
@@ -885,7 +887,7 @@ $(function(){
       	
 	</li>
 	<li class="MemInfo">
-		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=member" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
+		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
 			<p class="font_style circle">${Member.username}</p>
 			<p class="font_style circle">${Member.nickname}</p>
 	</li>
@@ -924,7 +926,7 @@ $(function(){
 <!--     <div class="groupinfotwo gitwelve"><p class="gitext">遊玩時間</p></div> -->
     <div><a href="${pageContext.servletContext.contextPath}/controller/GIS?id=${tempToGroupInServlet.gid}" ><input type="submit" class="gicommit gictext" value="我要加團"></a></div>
 ${insertOk.CreateOK }${insertNotOk.storeupper }  ${insertNotOk.groupupper}
-    <div><input type="submit" class="giback gictext" value="返回上一頁"></div>
+    <div><a href="<c:url value='/SelectLookForGroupServlet'/>"><input type="submit" class="giback gictext" value="返回上一頁"></a></div>
   </div>
 </div>
 </body>

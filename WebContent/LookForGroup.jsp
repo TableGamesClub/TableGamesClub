@@ -467,7 +467,7 @@ $(function() {
 </head>
 <body>
 <div id="HEADERONE"></div>
-<div>
+	<div>
   <ul id="menu">
     <li>
       <a href="home.jsp" id="a1">首頁</a>
@@ -477,14 +477,16 @@ $(function() {
        id="a1">開團</a>
     </li>
     <li>
-      <a href="<c:url value='/SelectLookForGroupServlet' />" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
+    	<c:if test="${empty Member}">
     <li>
-      <a href="register.jsp" id="a1">註冊</a>
+      		<a href="register.jsp" id="a1">註冊</a>
     </li>
+      	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
 			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
@@ -493,7 +495,7 @@ $(function() {
 			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
-          			<a href="#" id="a2">會員資料</a>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>

@@ -859,14 +859,16 @@ $(function(){
        id="a1">開團</a>
     </li>
     <li>
-      <a href="#" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
+    	<c:if test="${empty Member}">
     <li>
-      <a href="register.jsp" id="a1">註冊</a>
+      		<a href="register.jsp" id="a1">註冊</a>
     </li>
+      	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
 			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
@@ -875,7 +877,7 @@ $(function(){
 			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
-          			<a href="#" id="a2">會員資料</a>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
@@ -885,7 +887,7 @@ $(function(){
       	
 	</li>
 	<li class="MemInfo">
-		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=member" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
+		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
 			<p class="font_style circle">${Member.username}</p>
 			<p class="font_style circle">${Member.nickname}</p>
 	</li>
@@ -923,8 +925,7 @@ $(function(){
 <%--     <div class="groupinfoone giten"><p class="gitext">預約場地開始時間:${info.GroupRoom.reserveGroupStartTime}</p></div> --%>
 <%--     <div class="groupinfotwo gieleven"><p class="gitext">預約場地結束時間:${info.GroupRoom.reserveGroupEndTime }</p></div> --%>
 <%--     <div class="groupinfotwo gitwelve"><p class="gitext">遊玩時間:${info.GroupRoom.groupGameTime}</p></div> --%>
-    <div><input type="submit" class="gicommit gictext" value="確認開團"></div>
-    <div><input type="submit" class="giback gictext" value="返回上一頁"></div>
+
   </div>
 </div>
 </body>
