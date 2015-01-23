@@ -18,9 +18,9 @@
 	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="resources/demos/style.css">
+<link rel="stylesheet" href="/TableGamesClub/Jquary/demo.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/TableGamesClub/Jquary/flexslider.css" type="text/css" media="screen" />
 <title>開團資訊</title>
 <style type="text/css">
 .gray
@@ -87,7 +87,7 @@
 
 body
 {
-    background-image:url(images/scapes2.png);
+    background-image:url(/TableGamesClub/images/scapes2.png);
     
 }
 
@@ -139,7 +139,7 @@ input #textone
 	margin:0 auto;
 	width:1300px;
 	height:75px;
- 	background-image:url(res/bo.jpg); 
+ 	background-image:url(/TableGamesClub/images/bo.jpg); 
  	margin-bottom: 10px;
 }
 
@@ -521,7 +521,7 @@ li.MemInfo{
     height:1200px;
     margin-top:25px;
     box-shadow: 10px 10px 10px rgba(20%,20%,40%,0.7);
-    background-image:url(images/bubblegroup.png);
+    background-image:url(/TableGamesClub/images/bubblegroup.png);
     border-bottom-left-radius:150px 150px;
     border-top-left-radius:10px 10px;
     border-top-right-radius:90px 90px;
@@ -815,35 +815,35 @@ $(function(){
 	});
  
 	// 控制跑馬燈上下移動的處理函式
-	function showad(){
-		_lock = !_lock;
-		var _now = $marqueeUl.position().top / _height;
-		_now = (direction ? _now - 1 + $marqueeli.length : _now + 1)  % $marqueeli.length;
+// 	function showad(){
+// 		_lock = !_lock;
+// 		var _now = $marqueeUl.position().top / _height;
+// 		_now = (direction ? _now - 1 + $marqueeli.length : _now + 1)  % $marqueeli.length;
  
-		// $marqueeUl 移動
-		$marqueeUl.animate({
-			top: _now * _height
-		}, scrollSpeed, function(){
-			// 如果已經移動到第二組時...則馬上把 top 設回到第一組的最後一筆
-			// 藉此產生不間斷的輪播
-			if(_now == $marqueeli.length - 1){
-				$marqueeUl.css('top', $marqueeli.length / 2 * _height - _height);
-			}else if(_now == 0){
-				$marqueeUl.css('top', $marqueeli.length / 2 * _height);
-			}
-			_lock = !_lock;
-		});
+// 		// $marqueeUl 移動
+// 		$marqueeUl.animate({
+// 			top: _now * _height
+// 		}, scrollSpeed, function(){
+// 			// 如果已經移動到第二組時...則馬上把 top 設回到第一組的最後一筆
+// 			// 藉此產生不間斷的輪播
+// 			if(_now == $marqueeli.length - 1){
+// 				$marqueeUl.css('top', $marqueeli.length / 2 * _height - _height);
+// 			}else if(_now == 0){
+// 				$marqueeUl.css('top', $marqueeli.length / 2 * _height);
+// 			}
+// 			_lock = !_lock;
+// 		});
  
-		// 再啟動計時器
-		timer = setTimeout(showad, speed);
-	}
+// 		// 再啟動計時器
+// 		timer = setTimeout(showad, speed);
+// 	}
  
 	// 啟動計時器
-	timer = setTimeout(showad, speed);
+// 	timer = setTimeout(showad, speed);
  
-	$('a').focus(function(){
-		this.blur();
-	});
+// 	$('a').focus(function(){
+// 		this.blur();
+// 	});
 });
 </script>
 </head>
