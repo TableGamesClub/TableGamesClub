@@ -947,6 +947,7 @@ li.MemInfo {
 						<input id="dataUserPassword" type="password" name="loginpassword"
 							tabindex="2"><Font color='red' size="-1">${ErrorMsgKey.PasswordEmptyError}</Font>
 						</ul>
+						${ErrorMsgKey.MAccountError} ${ErrorMsgKey.MPasswordrror}
 					</div>
 				</fieldset>
 				<fieldset>

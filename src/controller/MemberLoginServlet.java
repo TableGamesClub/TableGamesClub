@@ -81,7 +81,12 @@ public class MemberLoginServlet extends HttpServlet {
 
 			response.sendRedirect("home.jsp");
 		} else {
+			errorMsgMap.put("MAccountError", "帳號錯誤");
+			errorMsgMap.put("MPasswordrror", "密碼錯誤");
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
 			System.out.printf("false");
+			return;
 		}
 
 	}
