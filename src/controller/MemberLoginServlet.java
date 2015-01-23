@@ -80,6 +80,7 @@ public class MemberLoginServlet extends HttpServlet {
 			}
 
 			response.sendRedirect("home.jsp");
+			return;
 		} else {
 			errorMsgMap.put("MAccountError", "帳號錯誤");
 			errorMsgMap.put("MPasswordrror", "密碼錯誤");
