@@ -102,9 +102,11 @@ body
 
 .smbodyrighttop
 {
+    padding-top:25px;
+    padding-left:15px;
     border-radius:10px 10px 10px 10px;
-    width:910px;
-    height:968px;
+    width:895px;
+    height:943px;
     border: 3px Solid #E8B09D;
     margin-left: 7px;
     margin-top: 10px;
@@ -179,6 +181,32 @@ body
 }
 .selectoption
 {font-size:20px;color:#006e2e;font-family:Microsoft JhengHei;}
+.groupcheckmain{
+    width:850px;
+    height:150px;
+    font-size:18px;
+    font-family:Microsoft JhengHei;
+    border:7.5px outset #00660F;
+    padding:10px 10px 10px 10px;
+    line-height:30px;
+    border-radius:7px 7px 7px 7px;
+    background-image:url(images/bamboo.png);
+    font-weight:600;
+    color:#195400;
+}
+.cancelbt{
+    margin-top: -660px;
+    width: 200px;
+    height: 40px;
+    float: right;
+    margin-right: -10px;
+    font-family:Microsoft JhengHei;
+    font-size:18px;
+    border-top-left-radius:10px 10px;
+    background: -webkit-gradient(linear, left bottom, right top, 
+    color-stop(0%,rgba(82,177,82,1)), color-stop(32%,rgba(0,138,0,1)), color-stop(100%,rgba(0,36,0,1)));
+    color:#fefcea;
+border:0;}
 
 </style>
 
@@ -209,12 +237,13 @@ body
   </div>
   <div class="smbodyright">
     <div class="smbodyrighttop">
-       <p style="font-size:24px">查看專賣店現有團資訊</p>
-			我的店:<c:forEach var="store" items="${storeInfoList}">${store.storeName}</c:forEach>
+       <div style="border-bottom:6px solid #660000;padding-bottom:10px;width:900px;margin-right:15px;"><p style="font-size:32px;font-family:Microsoft JhengHei;color:#6d0019;">查看專賣店現有團資訊</p></div><br/><br/><br/>
+			<div style="font-size:25px;font-weight:600;font-family:Microsoft JhengHei;color:#660000;">我的店:<c:forEach var="store" items="${storeInfoList}">${store.storeName}</c:forEach></div>
 			<br>			
-			選在此專賣店開團的團有:
+			<div style="font-size:18px;font-weight:600;font-family:Microsoft JhengHei;color:#660000;">選在此專賣店開團的團有:</div>
 			<br>
 			<br>
+			<div class="groupcheckmain">
 			<c:set var="switchNum_Group" value="0"/>
 			<c:forEach var="Group" items="${gRoomlist}">
 				團名:
@@ -384,7 +413,10 @@ body
 				<c:set var="switchNum_Group" value="${switchNum_Group+1}"/>
 				<br>
 			</c:forEach>
-			<br>			
+			<input type="submit" value="取消服務" class="cancelbt">		
+			</div>
+			<br>
+				
     </div>
   </div>
 </div>
