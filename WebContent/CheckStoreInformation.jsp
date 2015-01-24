@@ -270,12 +270,12 @@ function initialize() {
   marker = new google.maps.marker({
 	  position:LatLng,
 	  map:map,
-	  title:"新北市新店區三民路157號",
+	  title:"新北市汐止區仁愛路160號",
   });
 }
 
 function codeAddress() {
-  var address = "新北市新店區三民路157號";
+  var address = "新北市汐止區仁愛路160號";
   geocoder.geocode( { address: address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       map.setCenter(results[0].geometry.location);
@@ -318,7 +318,7 @@ google.maps.event.addDomListener(window, 'load', codeAddress);
     <div class="smbodyrighttop">
       <div class="sbrtintroimg">
         <div class="headimageinfo">
-          <img src="images/store01.jpg" style="width:180px;height:120px;">
+          <img src="/TableGamesClub/res/StoreInformation/StoreInformation1.jpg" style="width:180px;height:120px;">
         </div>
         <div class="introimageone">
           <img src="images/store02.jpg" style="width:180px;height:120px;">
@@ -330,9 +330,9 @@ google.maps.event.addDomListener(window, 'load', codeAddress);
           <img src="images/store04.jpg" style="width:180px;height:120px;">
         </div>
         <div class="introbody">
-          <div class="introinfotitle"><p class="introtitle">瘋桌遊-益智遊戲專賣店(新店分店)</p></div>
-          <div class="introaddress"><p class="introaddress">地址&nbsp;：&nbsp;新北市新店區三民路157號</p></div>
-          <div class="introphone"><p class="introphone">連絡電話&nbsp;：&nbsp;(02)2915-7725</p></div>
+          <div class="introinfotitle"><p class="introtitle">瘋桌遊-益智遊戲專賣店(汐止店)</p></div>
+          <div class="introaddress"><p class="introaddress">地址&nbsp;：&nbsp;新北市汐止區仁愛路160號</p></div>
+          <div class="introphone"><p class="introphone">連絡電話&nbsp;：&nbsp;(02)2643-8686</p></div>
 
           <div class="introtime"><p class="introtimein">營業時間&nbsp;：&nbsp;平日 13:00 - 22:00 六日 10:00 - 22:00</p></div>
           <div class="introdetail">
@@ -341,8 +341,8 @@ google.maps.event.addDomListener(window, 'load', codeAddress);
           </div>
           <div class="intromap" id="mapcanvas"></div>
         </div>
-        <div class="submitcheck scone"><center><a href="#" class="sccheck">查看此店家遊戲團</a></center></div>
-        <div class="submitcheck sctwo"><center><a href="#" class="sccheck">查看此店家桌遊資訊</a></center></div>
+        <div class="submitcheck scone"><center><a href="StoreMember-GroupInformation.jsp" class="sccheck">查看此店家遊戲團</a></center></div>
+        <div class="submitcheck sctwo"><center><a href="StoreTableGames.jsp" class="sccheck">查看此店家桌遊資訊</a></center></div>
       </div>
     </div>
   </div>

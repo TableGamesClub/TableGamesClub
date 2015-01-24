@@ -255,7 +255,7 @@ body
 					  <p class="intro">低消&nbsp;:&nbsp;${StoreList.rentAreaCost}&nbsp;元</p>
 					  <p class="intro">上限人數&nbsp;:&nbsp;${StoreList.groupUpperLimit}&nbsp;人</p>
 					</div>
-					<input type="submit" value="查看" class="storecheck">
+					<a href="CheckStoreInformation.jsp"><input type="submit" value="查看" class="storecheck"></a>
 			      </div>
 				</c:forEach>
     </div>
