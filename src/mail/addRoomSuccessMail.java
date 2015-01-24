@@ -15,13 +15,13 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class createRoomSuccessMail extends Thread{
+public class addRoomSuccessMail extends Thread{
 	
 	String mail = "";
 	String header = "";
 	String text = "";
 	
-	public createRoomSuccessMail(String mail,String header,String text){
+	public addRoomSuccessMail(String mail,String header,String text){
 		this.mail = mail;
 		this.header = header;
 		this.text = text;
@@ -57,7 +57,7 @@ public class createRoomSuccessMail extends Thread{
             textPart.setContent(html.toString(), "text/html; charset=UTF-8");
             
             MimeBodyPart picturePart = new MimeBodyPart();
-            FileDataSource fds = new FileDataSource("C:BoardGameClub/workspace/TableGamesClub/WebContent/res/bo.jpg");
+            FileDataSource fds = new FileDataSource("WebContent/res/bo.jpg");
             picturePart.setDataHandler(new DataHandler(fds));
             picturePart.setFileName(fds.getName());
             picturePart.setHeader("Content-ID", "<image>");
@@ -136,7 +136,7 @@ public class createRoomSuccessMail extends Thread{
 	}
 		
 	public static void main(String[] args) {
-		createRoomSuccessMail t1 = new createRoomSuccessMail("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。");
+		addRoomSuccessMail t1 = new addRoomSuccessMail("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。");
 		t1.start();
 		System.out.println(456);
 	}
