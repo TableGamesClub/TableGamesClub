@@ -7,13 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="Scripts/jquery-ui.css">
+<script src="Scripts/jquery-ui.js"></script>
+<!-- <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script> -->
 <script	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css"
 	media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css"
 	media="screen" />
-
 <title>會員基本資料</title>
 <style type="text/css">
 .gray {
@@ -571,10 +572,10 @@ li.MemInfo {
 	<div>
   <ul id="menu">
     <li>
-      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
+      <a href="home.jsp" id="a1">首頁</a>
     </li>
     <li>
-      <a href="/TableGamesClub/CreateGroup.jsp"
+      <a href="CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
@@ -585,22 +586,22 @@ li.MemInfo {
     </li>
     	<c:if test="${empty Member}">
     <li>
-      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
+      		<a href="register.jsp" id="a1">註冊</a>
     </li>
       	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
-			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
+			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
           			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
-          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
+          			<a href="loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
       	
@@ -792,12 +793,23 @@ li.MemInfo {
 					</center>
 				</div>
 
-				<span>
-					<input type="button" value="查看團資訊" class="buttoncheck">
+<!-- 			  <div> -->
+<!-- 				<input type="button" value="查看" class="buttoncheck"> -->
+<!-- 			  </div> -->
+				<c:set var="Id" scope="session" value="${Member.memberId}"/>
+				<c:if test="${Id==GroupRooms.member.memberId}">
+				<span style="float:right">
+					<button id="selectRoom00">刪除團</button>
 				</span>
-				<span>
-					<input type="button" value="我要退團" class="buttoncheck">
+				</c:if>
+				<span style="float:right">
+					<button id="selectRoom00">查看團</button>
 				</span>
+				<c:if test="${Id!=GroupRooms.member.memberId}">
+				<span style="float:right">
+					<button id="opener" name="quitroom00" value=${GroupRooms.groupSerialNumber}>我要退團</button>
+				</span>
+				</c:if>
 			</div>
 			</div>
 			<c:set var="temp1" value="${temp1+1}" />
@@ -829,21 +841,20 @@ li.MemInfo {
 				type="button" value="開團" class="creategroup"
 				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;">
 		</div></center>
-		
-<div id="dialog" title="退團理由" style="width: 400px">
-	<h3 style="margin:3px 10px 10px 10px">請填寫退團的原因：</h3>
-	<form>
-		<textarea rows="5" cols="44"></textarea>
-			<input type="submit" value="送出" style="float:right;margin-top: 14px">
-			<input type="submit" value="取消" style="float:right;margin-top: 14px;margin-right: 3px" id="cancel">
-	</form>
-</div>
- 
-<button id="opener">Open Dialog</button>
+	</div>
+	<div id="dialog" title="退團理由" style="width: 400px">
+		<h3 style="margin:3px 10px 10px -1px;color:black">請填寫退團的原因：</h3>
+		<form action="<c:url value="/QuitRoomServlet"/>" method="post" id="quitform">
+			<textarea rows="5" cols="44" name="quitReason"></textarea>
+			<input type="submit" value="送出" style="float:right;margin-top: 14px" id="submit">
+			<input type="button" value="取消" style="float:right;margin-top: 14px;margin-right: 3px" id="cancel">
+			<input type="text" value="" style="display:none" id="roomId00" name="roomId00">
+		</form>
+<!-- 		<button id="testButton">test</button> -->
 	</div>
 	
   <script>
-  var anotherVariable = jQuery.noConflict()
+  var anotherVariable = jQuery.noConflict();
 //   打開退團理由框框
   $(function() {
     $( "#dialog" ).dialog({
@@ -856,12 +867,15 @@ li.MemInfo {
         effect: "blind",
         duration: 500
       },
-      width: 500,
-      height: 300,
+      width: 450,
+      height: 280,
     });
  
-    $( "#opener" ).click(function() {
+    $('button[name="quitroom00"]').click(function() {//使用name抓取(id抓取會有語法錯誤問題)
       $( "#dialog" ).dialog( "open" );
+//       alert($(this).val());
+	  $('#roomId00').val($(this).val());
+      
     });
     $( "#cancel" ).click(function() {
         $( "#dialog" ).dialog( "close" );
@@ -871,13 +885,26 @@ li.MemInfo {
   <script>
 //   按鈕特效框框
   $(function() {
-	  $( "button" )
+	  $("#cancel,#selectRoom00,#opener" )
       .button()
       .click(function( event ) {
         event.preventDefault();
       });
   });
-  </script>
-
+  
+  $(function() {
+	  $("#submit" )
+	  .button()
+	  .click(function(){
+		  $('#quitform').submit();
+	  })
+  });
+  </script>	
+  
+<!--   <script type="text/javascript">//房間號碼測試 -->
+//   	 $('#testButton').click(function(){
+//      alert($('#roomId00').val());
+//   	 })
+<!--   </script> -->
 </body>
 </html>
