@@ -323,6 +323,7 @@ public class CreateRoomServlet extends HttpServlet {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("CreateGroup.jsp");
 			rd.forward(request, response);
+			return;
 		}
 	}
 }

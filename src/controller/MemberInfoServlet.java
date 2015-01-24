@@ -67,7 +67,6 @@ public class MemberInfoServlet extends HttpServlet {
 		Member mem = (Member) obj;
 
 		if (mem != null) {
-
 			GroupService service = new GroupService();
 			List<GroupRoom> memgroupall = service.getGroupRoomsMyJoined(mem);// 查到我所加的團
 
@@ -748,8 +747,10 @@ public class MemberInfoServlet extends HttpServlet {
 			session.setAttribute("choiceGames", choiceGames);
 
 			response.sendRedirect("memberinformation.jsp");
+			return;
 		} else {
 			response.sendRedirect("login.jsp");
+			return;
 		}
 	}
 

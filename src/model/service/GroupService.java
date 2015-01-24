@@ -57,6 +57,12 @@ public class GroupService {
 				.getBean("BoardGameKindDAO");
 		
 	}
+	
+
+	
+	public int numOfPeo(String StoreName){   //取得專賣店人數上限
+		return sidao.numOfPeo(StoreName).getGroupUpperLimit();
+	}
 	public List<GroupChoiceGames> getBoardGameNames(Integer groupSerialNumber){  //取得團所選桌遊
 		return gcgdao.getBoardGameNames(groupSerialNumber);
 	}

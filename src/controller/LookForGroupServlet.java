@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.GroupChoiceGames;
 import model.GroupRoom;
 import model.service.GroupService;
 
@@ -46,6 +47,14 @@ public class LookForGroupServlet extends HttpServlet {
 		GroupService groupservice = new GroupService();
 //		List<GroupRoom> desclist = new ArrayList<GroupRoom>();
 //		session.removeAttribute("");
+		//專賣店名稱
+		Map<String, String> storename = new HashMap<String, String>();
+		session.setAttribute("storename", storename);
+		
+		//遊戲名稱
+		Map<String, List<GroupChoiceGames>> gamename = new HashMap<String, List<GroupChoiceGames>>();
+		session.setAttribute("gamename", gamename);
+		
 		// 圖片識別ID
 		Map<String, Integer> requestimage = new HashMap<String, Integer>();
 		session.setAttribute("requestimage", requestimage);
@@ -65,6 +74,8 @@ public class LookForGroupServlet extends HttpServlet {
 		// 存放時間
 		Map<String, String> requesttime = new HashMap<String, String>();
 		session.setAttribute("requesttype", requesttime);
+		int w = 0;
+		int x = 0;
 		int y = 0;
 		int z = 0;
 		int a = 0;
@@ -76,17 +87,28 @@ public class LookForGroupServlet extends HttpServlet {
 			List<GroupRoom> fuzzysearch = groupservice.getGroupRooms(gamenamesearch);
 			for(GroupRoom all : fuzzysearch)
 			{
-				int list  = all.getGroupSerialNumber();
+				int groupRoomId  = all.getGroupSerialNumber();
 				
-				requestimage.put("simpleimage" +String.valueOf(y), list);
+				requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 //				int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
 				
 				
-				GroupRoom selectgroup = groupservice.getOneGroupRoom(list);
+				GroupRoom selectgroup = groupservice.getOneGroupRoom(groupRoomId);
 				System.out.println(selectgroup.getGroupSerialNumber());
+				
+				//取專賣店名
+				String mese = selectgroup.getStoreName();
+				storename.put("simplemese" + String.valueOf(w), mese);
+				
+				//遊戲名
+				List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+				gamename.put("simplegamename" + String.valueOf(x), gamenames);
+				
+				
 				//取團名↓
 				String groupname = selectgroup.getGroupRoomName();
 				requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
+				
 				
 
 				// 取人數↓
@@ -110,6 +132,8 @@ public class LookForGroupServlet extends HttpServlet {
 				Date starttime = selectgroup.getReserveGroupStartTime();
 				requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 				
+				w++;
+				x++;
 				y++;
 				z++;
 				a++;
@@ -128,19 +152,28 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -168,6 +201,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -185,19 +220,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -225,6 +268,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -242,19 +287,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -282,6 +335,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -302,19 +357,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -342,6 +405,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -359,19 +424,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -399,6 +472,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -416,19 +491,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -456,6 +539,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -476,19 +561,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -516,6 +609,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -533,19 +628,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -573,6 +676,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -590,19 +695,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -630,6 +743,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -650,19 +765,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -690,6 +813,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -707,19 +832,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -747,6 +880,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -764,19 +899,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -804,6 +947,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -824,19 +969,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -864,6 +1017,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -881,19 +1036,26 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -921,6 +1083,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -938,19 +1102,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -978,6 +1150,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1000,19 +1174,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttype(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1040,6 +1222,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1057,19 +1241,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1097,6 +1289,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1114,19 +1308,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1154,6 +1356,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1174,19 +1378,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1214,6 +1426,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1231,19 +1445,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1271,6 +1493,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1288,19 +1512,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1328,6 +1560,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1348,19 +1582,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1388,6 +1630,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1405,19 +1649,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1445,6 +1697,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1462,19 +1716,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1502,6 +1764,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1522,19 +1786,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1562,6 +1834,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1579,19 +1853,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1619,6 +1901,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1636,19 +1920,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1676,6 +1968,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1696,19 +1990,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc < 10) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1736,6 +2038,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc < 10)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1753,19 +2057,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=10 && Groupdesc <20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1793,6 +2105,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=10 && Groupdesc <20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;
@@ -1810,19 +2124,27 @@ public class LookForGroupServlet extends HttpServlet {
 					List<Integer> selectgroupdesc = groupservice
 							.sequenceandselecttypedesc(type);
 
-					for (Integer list : selectgroupdesc) {
+					for (Integer groupRoomId : selectgroupdesc) {
 						// System.out.print("團序號:" + list + " ");//get順序
 						
 						
 						
-						requestimage.put("simpleimage" +String.valueOf(y), list);
+						requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 						
-						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
+						int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(groupRoomId);
 						if (Groupdesc >=20) {
 							GroupRoom selectgroup = groupservice
-									.getOneGroupRoom(list);
+									.getOneGroupRoom(groupRoomId);
 							System.out.println(selectgroup
 									.getGroupSerialNumber());
+							
+							//取專賣店名
+							String mese = selectgroup.getStoreName();
+							storename.put("simplemese" + String.valueOf(w), mese);
+							
+							//遊戲名
+							List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+							gamename.put("simplegamename" + String.valueOf(x), gamenames);
 							
 							//取團名↓
 							String groupname = selectgroup.getGroupRoomName();
@@ -1850,6 +2172,8 @@ public class LookForGroupServlet extends HttpServlet {
 							requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 	
 						}//end of if (Groupdesc >=20)
+						w++;
+						x++;
 						y++;
 						z++;
 						a++;

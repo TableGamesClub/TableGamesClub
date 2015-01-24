@@ -370,45 +370,47 @@ $(function(){//使用者特效
 </head>
 <body>
 <div id="HEADERONE"></div>
-<div>
+	<div>
   <ul id="menu">
     <li>
-      <a href="home.jsp" id="a1">首頁</a>
+      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
     </li>
     <li>
-      <a href="CreateGroup.jsp"
+      <a href="/TableGamesClub/CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
-      <a href="#" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
+    	<c:if test="${empty Member}">
     <li>
-      <a href="register.jsp" id="a1">註冊</a>
+      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
     </li>
+      	</c:if>
     <li class="User">
-    	<c:if test="${empty username}">
-			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
+    	<c:if test="${empty Member}">
+			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
-		<c:if test="${ ! empty username }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+		<c:if test="${ ! empty Member }">
+			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
-          			<a href="#" id="a2">會員資料</a>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
-          			<a href="loginout.jsp" id="a2">登出</a>
+          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
       	
 	</li>
 	<li class="MemInfo">
-		<img src="${pageContext.servletContext.contextPath}/controller/GetMemberImage?username=${username}" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
-			<p class="font_style circle">${username}</p>
-			<p class="font_style circle">${nickname}</p>
+		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
+			<p class="font_style circle">${Member.username}</p>
+			<p class="font_style circle">${Member.nickname}</p>
 	</li>
 	</c:if>
   </ul>

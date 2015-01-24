@@ -7,6 +7,8 @@ import model.StoreInformation;
 import model.StoreInformation_Image;
 
 public interface StoreInformationDAO_Interface {
+	public abstract StoreInformation numOfPeo(String StoreName);
+	
 	public abstract StoreInformation findByPrimeKey(Integer storeId);
 
 	public abstract List<StoreInformation> findByStoreName(String storeName);

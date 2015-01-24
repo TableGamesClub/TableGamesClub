@@ -217,6 +217,11 @@ input #textone
 	                 background-color: #c5deea;width:180px;height:30px;padding-top:10px; }
 #menu li ul li a { display: inline; }
 #menu li ul li a:hover { text-decoration: none;align:center; }
+
+#fontserachinfo{
+ color: red;
+ font-size:18px;
+}
 .font-size
 {
 	font-family:Microsoft JhengHei;
@@ -262,7 +267,7 @@ li.MemInfo{
     margin-top:25px;
     width:1300px;
     height:235px;
-    background:white;
+    background:#FFEBF5;
     padding-top:15px;
 }
 .searchin
@@ -275,7 +280,7 @@ li.MemInfo{
     margin-left: 8px;
 }
 .searchdiscribtionone{font-size:20px;color:blue;font-family:Microsoft JhengHei;}
-.searchdiscribtiontwo{font-size:20px;color:blue;font-family:Microsoft JhengHei;margin-top: -150px;float: right;margin-right: 300px;}
+.searchdiscribtiontwo{font-size:20px;color:blue;font-family:Microsoft JhengHei;margin-top: -150px;float: right;margin-right: 257px;}
 .searchone{margin-top:5px;margin-right:8px;height:30px;width:120px;}
 .searchtwo{margin-top:5px;margin-left: 140px;;height:30px;width:120px;}
 .searchthree{margin-top:5px;margin-left: 280px;;height:30px;width:120px;}
@@ -294,12 +299,13 @@ li.MemInfo{
 .errormsg{font-size:48px;color:red;font-family:Microsoft JhengHei;}
 .showresult
 {
+    
     padding-top:15px;
     margin-top:25px;
     width:1300px;
     min-height:400px;
 /*     height:400px; */
-    background:white;
+    background:#FFEBFF;
     border-top-left-radius:10px 10px;
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;
@@ -330,15 +336,41 @@ li.MemInfo{
 }
 
 .infosearch{
- 	width:33%;
+	padding-top:35px;
+ 	width:29%;
+ 	height:350px;
   	float:left;  
 /* 	display:inline-block;  */
+     margin: 20px 20px 20px 20px ;
+     border: 3px double gray ;
+     overflow: scroll;
+     overflow-x: hidden; 
+     overflow-y: auto; 
+}
+#contentsearch{
+	color:darkblue;
+	 display:inline;
+
+}
+
+#searchtitle{
+	color:green;
+	 letter-spacing: 1px;
+	 line-height: 24px;　
+}
+.infosearch div{
+	padding-left: 7px;
 }
 #clearDiv{
 /* 	width:100%; */
 /* 	height:1px; */
 	clear:both;
 }
+
+#gamesshow img{
+	height:132px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -467,37 +499,39 @@ $(function() {
 </head>
 <body>
 <div id="HEADERONE"></div>
-<div>
+	<div>
   <ul id="menu">
     <li>
-      <a href="home.jsp" id="a1">首頁</a>
+      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
     </li>
     <li>
-      <a href="CreateGroup.jsp"
+      <a href="/TableGamesClub/CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
-      <a href="<c:url value='/SelectLookForGroupServlet' />" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
+    	<c:if test="${empty Member}">
     <li>
-      <a href="register.jsp" id="a1">註冊</a>
+      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
     </li>
+      	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
-			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
+			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
-          			<a href="#" id="a2">會員資料</a>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
-          			<a href="loginout.jsp" id="a2">登出</a>
+          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
       	
@@ -539,8 +573,8 @@ $(function() {
             </select>
         </div>
         <div>
-      <p class="searchdiscribtiontwo" >遊戲名稱搜尋：</p>
-      <input type="text" class="textone" placeholder="遊戲名稱" name="gamenamesearch">
+      <p class="searchdiscribtiontwo" >房間或店家名稱搜尋：</p>
+      <input type="text" class="textone" placeholder="房間或店家名稱" name="gamenamesearch">
         </div>
         <center>
           <input type="submit" value="送出" class="finishsubmit">
@@ -552,169 +586,261 @@ $(function() {
 <!--     <div class="errormsgbox"><p class="errormsg">找不到任何團符合條檢查詢 請重新輸入!</p></div> -->
 <%--   </center> --%>
   <div class="showresult">
-    <div class="showcolorbar">
+    <div class="showcolorbar" id="gamesshow">
 
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname0 }">
     <div class="infosearch">
-    <br/>
-     <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage0}"> <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage0}&type=GROUPROOM" style="width:'180px';height:120px" /></a>
-   
+    <center>
+     <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage0}"> <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage0}&type=GROUPROOM"/></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname0}<br>
-    ${numberofpeople.peoplenumber0}<br>
-    ${requestype.type00}
-    ${requestype.type10}
-    ${requestype.type20}
-    ${requestype.type30}
-    ${requestype.type40}<br>
-    ${requesttype.time0}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname0}<br></div>
+	    
+	    
+	 人數:<div id="contentsearch">${numberofpeople.peoplenumber0}<br/></div>
+	    店名:<div id="contentsearch">${storename.simplemese0}<br></div>
+	    <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename0}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	 類型:<div id="contentsearch">${requestype.type00}
+	    ${requestype.type10}
+	    ${requestype.type20}
+	    ${requestype.type30}
+	    ${requestype.type40}<br></div>
+     開始時間:<div id="contentsearch">${requesttype.time0}<br></div>
+     
+     
+     	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname1 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage1}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage1}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage1}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage1}&type=GROUPROOM"/></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname1}<br>
-    ${numberofpeople.peoplenumber1}<br>
-    ${requestype.type01}
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+    ${requestgroupname.simplegroupgroupname1}<br></div>
+    人數:<div id="contentsearch">${numberofpeople.peoplenumber1}<br></div>
+    店名:<div id="contentsearch">${storename.simplemese1}<br></div>
+    <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename1}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+     類型:<div id="contentsearch">${requestype.type01}
     ${requestype.type11}
     ${requestype.type21}
     ${requestype.type31}
-    ${requestype.type41}<br>
-    ${requesttype.time1}<br>
+    ${requestype.type41}<br></div>
+    開始時間:<div id="contentsearch">${requesttype.time1}<br></div>
+    </div>
+    </div>
     </div>
         </c:if>
     
-    <br/>
+<!--     <br/> -->
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname2 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage2}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage2}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage2}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage2}&type=GROUPROOM" /></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname2}<br>
-    ${numberofpeople.peoplenumber2}<br>
-    ${requestype.type02}
-    ${requestype.type12}
-    ${requestype.type22}
-    ${requestype.type32}
-    ${requestype.type42}<br>
-    ${requesttype.time2}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname2}<br></div>
+	   人數:<div id="contentsearch">${numberofpeople.peoplenumber2}<br></div>
+	    店名:<div id="contentsearch">${storename.simplemese2}<br></div>
+	    <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename2}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	     類型:<div id="contentsearch">${requestype.type02}
+	    ${requestype.type12}
+	    ${requestype.type22}
+	    ${requestype.type32}
+	    ${requestype.type42}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time2}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname3 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage3}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage3}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage3}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage3}&type=GROUPROOM"/></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname3}<br>
-    ${numberofpeople.peoplenumber3}<br>
-    ${requestype.type03}
-    ${requestype.type13}
-    ${requestype.type23}
-    ${requestype.type33}
-    ${requestype.type43}<br>
-    ${requesttype.time3}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname3}<br></div>
+	    人數:<div id="contentsearch">${numberofpeople.peoplenumber3}<br></div>
+	    店名:<div id="contentsearch">${storename.simplemese3}<br></div>
+	    <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename3}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	     類型:<div id="contentsearch">${requestype.type03}
+	    ${requestype.type13}
+	    ${requestype.type23}
+	    ${requestype.type33}
+	    ${requestype.type43}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time3}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname4 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage4}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage4}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage4}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage4}&type=GROUPROOM"/></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname4}<br>
-    ${numberofpeople.peoplenumber4}<br>
-    ${requestype.type04}
-    ${requestype.type14}
-    ${requestype.type24}
-    ${requestype.type34}
-    ${requestype.type44}<br>
-    ${requesttype.time4}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname4}<br></div>
+	    人數:<div id="contentsearch">${numberofpeople.peoplenumber4}<br></div>
+	    店名:<div id="contentsearch">${storename.simplemese4}<br></div>
+	   <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename4}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	     類型:<div id="contentsearch">${requestype.type04}
+	    ${requestype.type14}
+	    ${requestype.type24}
+	    ${requestype.type34}
+	    ${requestype.type44}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time4}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname5 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage5}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage5}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage5}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage5}&type=GROUPROOM" /></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname5}<br>
-    ${numberofpeople.peoplenumber5}<br>
-    ${requestype.type05}
-    ${requestype.type15}
-    ${requestype.type25}
-    ${requestype.type35}
-    ${requestype.type45}<br>
-    ${requesttype.time5}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname5}<br></div>
+	    人數:<div id="contentsearch">${numberofpeople.peoplenumber5}<br></div>
+	    店名:<div id="contentsearch">${storename.simplemese5}<br></div>
+	    <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename5}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	     類型:<div id="contentsearch">${requestype.type05}
+	    ${requestype.type15}
+	    ${requestype.type25}
+	    ${requestype.type35}
+	    ${requestype.type45}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time5}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname6 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage6}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage6}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage6}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage6}&type=GROUPROOM"/></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname6}<br>
-    ${numberofpeople.peoplenumber6}<br>
-    ${requestype.type06}
-    ${requestype.type16}
-    ${requestype.type26}
-    ${requestype.type36}
-    ${requestype.type46}<br>
-    ${requesttype.time6}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname6}<br></div>
+	    人數:<div id="contentsearch">${numberofpeople.peoplenumber6}<br></div>
+	    店名:<div id="contentsearch">${storename.simplemese6}<br></div>
+	   <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename6}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	     類型:<div id="contentsearch">${requestype.type06}
+	    ${requestype.type16}
+	    ${requestype.type26}
+	    ${requestype.type36}
+	    ${requestype.type46}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time6}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-   	<br/>
+<!--    	<br/> -->
    
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname7 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage7}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage7}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage7}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage7}&type=GROUPROOM"/></a>
+   	</center>
     <br>
-   	${requestgroupname.simplegroupgroupname7}<br>
-   	${numberofpeople.peoplenumber7}<br>
-    ${requestype.type07}
-    ${requestype.type17}
-    ${requestype.type27}
-    ${requestype.type37}
-    ${requestype.type47}<br>
-    ${requesttype.time7}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	   	${requestgroupname.simplegroupgroupname7}<br></div>
+	   人數:<div id="contentsearch">${numberofpeople.peoplenumber7}<br></div>
+	   店名:<div id="contentsearch">${storename.simplemese7}<br></div>
+	  <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename7}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	    類型:<div id="contentsearch">${requestype.type07}
+	    ${requestype.type17}
+	    ${requestype.type27}
+	    ${requestype.type37}
+	    ${requestype.type47}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time7}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname8 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage8}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage8}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage8}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage8}&type=GROUPROOM" /></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname8}<br>
-    ${numberofpeople.peoplenumber8}<br>
-    ${requestype.type08}
-    ${requestype.type18}
-    ${requestype.type28}
-    ${requestype.type38}
-    ${requestype.type48}<br>
-    ${requesttype.time8}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname8}<br></div>
+	    人數:<div id="contentsearch">${numberofpeople.peoplenumber8}<br></div>
+	    店名:<div id="contentsearch">${storename.simplemese8}<br></div>
+	   <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename8}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	     類型:<div id="contentsearch">${requestype.type08}
+	    ${requestype.type18}
+	    ${requestype.type28}
+	    ${requestype.type38}
+	    ${requestype.type48}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time8}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     
     <c:if test="${ ! empty requestgroupname.simplegroupgroupname9 }">
     <div class="infosearch">
-    <a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage9}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage9}&type=GROUPROOM" style="width:'180px';height:120px"/></a>
+    <center>
+    	<a href="${pageContext.servletContext.contextPath}/controller/CTCGI?id=${requestimage.simpleimage9}"><img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${requestimage.simpleimage9}&type=GROUPROOM"/></a>
+    </center>
     <br>
-    ${requestgroupname.simplegroupgroupname9}<br>
-    ${numberofpeople.peoplenumber9}<br>
-    ${requestype.type09}
-    ${requestype.type19}
-    ${requestype.type29}
-    ${requestype.type39}
-    ${requestype.type49}<br>
-    ${requesttype.time9}<br>
+    <div>
+    <div id="searchtitle">
+    <div id="fontserachinfo">
+	    ${requestgroupname.simplegroupgroupname9}<br></div>
+	    人數:<div id="contentsearch">${numberofpeople.peoplenumber9}<br></div>
+	    店名:<div id="contentsearch">${storename.simplemese9}<br></div>
+	    <table><tbody><tr><td style="width:35px">遊戲:</td><td><div id="contentsearch"><c:forEach var="gamenames" items="${gamename.simplegamename9}">${gamenames.boardGameName},</c:forEach><br></div></td></tr></tbody></table>
+	     類型:<div id="contentsearch">${requestype.type09}
+	    ${requestype.type19}
+	    ${requestype.type29}
+	    ${requestype.type39}
+	    ${requestype.type49}<br></div>
+	    開始時間:<div id="contentsearch">${requesttype.time9}<br></div>
+	</div>
+    </div>
     </div>
     </c:if>
-    <br/>
+<!--     <br/> -->
     
     
 

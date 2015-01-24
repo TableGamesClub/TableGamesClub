@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
+import model.BoardGames;
 import model.StoreInformation;
 import model.StoreInformation_Image;
 import model.StoreMember;
@@ -25,6 +26,16 @@ public class StoreInformationDAOHibernate implements
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
+
+	
+	private static final String GET_NUM_PEO = "from StoreInformation where StoreName=?";
+	@Override
+	public StoreInformation numOfPeo(String StoreName) {
+		List<StoreInformation> list = hibernateTemplate.find(GET_NUM_PEO, StoreName);
+		return list.get(0);
+	}
+
+
 
 	@Override
 	public StoreInformation findByPrimeKey(Integer storeId) {
@@ -68,42 +79,52 @@ public class StoreInformationDAOHibernate implements
 	}
 
 	public static void main(String[] args) {
+		
+		
 		// StoreInformationDAO_Interface dao = new
 		// StoreInformationDAOHibernate();
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		StoreInformationDAO_Interface dao = (StoreInformationDAO_Interface) context
 				.getBean("StoreInformationDAO");
+		
+		StoreInformation b1 = dao.numOfPeo("卡牌屋-台北店");
+		 System.out.println(b1.getGroupUpperLimit());
+		
 		// 新增
-		StoreInformation bean1 = new StoreInformation();
-		StoreMemberDAO_Interface SMdao = (StoreMemberDAO_Interface) context
-				.getBean("StoreMemberDAO");
-		StoreMember smbean1 = SMdao.findByPrimeKey(1);
-		bean1.setStoreMember(smbean1);
-		bean1.setStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
-		bean1.setStoreAddress("新北市汐止區仁愛路160號");
-		String filename1 = "boardgames.jpg";
-		bean1.setImgFileName(filename1);
-		File f = new File("WebContent/res/" + bean1.getImgFileName());
-		try {
-			InputStream is = new FileInputStream(f);
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			int nRead;
-			byte[] data = new byte[1024];
-			while ((nRead = is.read(data, 0, data.length)) != -1) {
-				buffer.write(data, 0, nRead);
-				buffer.flush();
-			}
-			data = buffer.toByteArray();
-			is.close();
-			bean1.setStoreImage(data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		bean1.setStoreTel("(02)2643-8686");
-		bean1.setRentAreaCost(120.0);
-		bean1.setGroupUpperLimit(50);
-		dao.insert(bean1);
+//		StoreInformation bean1 = new StoreInformation();
+//		StoreMemberDAO_Interface SMdao = (StoreMemberDAO_Interface) context
+//				.getBean("StoreMemberDAO");
+		
+
+		
+		
+//		StoreMember smbean1 = SMdao.findByPrimeKey(1);
+//		bean1.setStoreMember(smbean1);
+//		bean1.setStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
+//		bean1.setStoreAddress("新北市汐止區仁愛路160號");
+//		String filename1 = "boardgames.jpg";
+//		bean1.setImgFileName(filename1);
+//		File f = new File("WebContent/res/" + bean1.getImgFileName());
+//		try {
+//			InputStream is = new FileInputStream(f);
+//			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+//			int nRead;
+//			byte[] data = new byte[1024];
+//			while ((nRead = is.read(data, 0, data.length)) != -1) {
+//				buffer.write(data, 0, nRead);
+//				buffer.flush();
+//			}
+//			data = buffer.toByteArray();
+//			is.close();
+//			bean1.setStoreImage(data);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		bean1.setStoreTel("(02)2643-8686");
+//		bean1.setRentAreaCost(120.0);
+//		bean1.setGroupUpperLimit(50);
+//		dao.insert(bean1);
 		// 修改
 		// StoreInformation bean3 = new StoreInformation();
 		// SMdao = new StoreMemberDAOHibernate();
@@ -116,19 +137,19 @@ public class StoreInformationDAOHibernate implements
 		// 刪除
 		// dao.delete(1);
 		// 查詢單筆
-		// StoreInformation b1 = dao.findByPrimeKey(1);
-		// System.out.println(b1.getStoreName());
-		List<StoreInformation> b2 = dao.findByStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
-		for (StoreInformation vo : b2) {
-			System.out.println(vo.getStoreName());
-		}
+//		 StoreInformation b1 = dao.findByPrimeKey(1);
+//		 System.out.println(b1.getStoreName());
+//		List<StoreInformation> b2 = dao.findByStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
+//		for (StoreInformation vo : b2) {
+//			System.out.println(vo.getStoreName());
+//		}
 		// 查詢多筆
-		List<StoreInformation> beans = dao.getAll();
-		for (StoreInformation vo : beans) {
-			System.out.println(vo.getStoreMember().getStoreMemberId());
-			System.out.println(vo.getStoreName());
-			System.out.println(vo.getStoreAddress());
-		}
+//		List<StoreInformation> beans = dao.getAll();
+//		for (StoreInformation vo : beans) {
+//			System.out.println(vo.getStoreMember().getStoreMemberId());
+//			System.out.println(vo.getStoreName());
+//			System.out.println(vo.getStoreAddress());
+//		}
 	}
 
 	@Override

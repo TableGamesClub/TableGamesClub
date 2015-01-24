@@ -9,7 +9,8 @@ http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-
+	
+	<!-- 開發測試中使用的設定 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
@@ -24,6 +25,11 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 		<!-- 雲端資料庫 Azure MS SQL -->
 <!-- 	 	<property name="url" value="jdbc:sqlserver://gpn4wdt9um.database.windows.net:1433;database=TGC;user=tablegamesclub@gpn4wdt9um;password={@iWant2Play};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30" /> -->
 	</bean>
+	
+		<!-- 正式上線使用的設定 -->
+<!-- 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!-- 		<property name="jndiName" value="java:/comp/env/jdbc/TestDB" /> -->
+<!-- 	</bean> -->
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"

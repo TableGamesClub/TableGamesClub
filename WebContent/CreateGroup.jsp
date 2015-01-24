@@ -34,7 +34,10 @@
 <link rel="stylesheet" href="Scripts/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="Scripts/jquery-ui.js"></script>
-
+<link rel="stylesheet" href="Jquary/demo.css" type="text/css"
+	media="screen" />
+<link rel="stylesheet" href="Jquary/flexslider.css" type="text/css"
+	media="screen" />
 <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet"> -->
 <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script> -->
@@ -42,6 +45,7 @@
 <script type="text/javascript" src="Scripts/jquery-ui-timepicker-addon.js"></script>
 <script type='text/javascript' src='Scripts/jquery-ui-sliderAccess.js'></script>
 <!-- <script type='text/javascript' src='Scripts/jquery.livequery.min.js'></script> -->
+
 <title>開團</title>
 <style type="text/css">
 .red{color:red;}
@@ -156,7 +160,7 @@ input #textone
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;  
     border-bottom-right-radius:10px 10px;
-	margin:-8px auto;
+	margin:0 auto;
 	width:1300px;
 	height:75px;
  	background-image:url(res/bo.jpg); 
@@ -170,7 +174,7 @@ input #textone
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;  
     border-bottom-right-radius:10px 10px;
-	margin: -2px auto;
+	margin: 0 auto;
 	list-style: none;
 	padding:10px;
 	width: 1300px;
@@ -289,7 +293,7 @@ li.MemInfo{
 .choiceGame{
 	font-size: 80%; 
 	float:left;
-	border-style:outset;
+	border:3px outset;
 	margin: 1px 1px;
 }
 #ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
@@ -424,37 +428,39 @@ $(function() {
 </head>
 <body>
 <div id="HEADERONE"></div>
-<div>
+	<div>
   <ul id="menu">
     <li>
-      <a href="home.jsp" id="a1">首頁</a>
+      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
     </li>
     <li>
-      <a href="CreateGroup.jsp"
+      <a href="/TableGamesClub/CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
-      <a href="#" id="a1">找團</a>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
+    	<c:if test="${empty Member}">
     <li>
-      <a href="register.jsp" id="a1">註冊</a>
+      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
     </li>
+      	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
-			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
+			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
           			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
-          			<a href="loginout.jsp" id="a2">登出</a>
+          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
       	
@@ -472,9 +478,9 @@ $(function() {
 	<div  style="margin:0 auto;width:1300px;">
 		<div class="cgbody">
 			<center>
-				<div><br/><br/>
-						<h1>開團資料</h1>
-				<div>輸入您的桌遊團名<span class="red">*</span></div>
+				<div><br/><br/><br/><br/>
+						<h1 style="font-size:36px;font-weight:900;">開團資料</h1>
+				<div style="margin-top:35px;">輸入您的桌遊團名<span class="red">*</span></div>
 					<input type="text" style="width:200px" style="width:200px" placeholder="" name="roomName"></div>
 				<div><span>選擇店家:</span><span class="red">*</span></div>
 				<div>

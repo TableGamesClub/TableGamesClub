@@ -2614,10 +2614,10 @@ public class InsertDataService {
 		beanGroupRoom1.setGroupStartTime(java.sql.Date.valueOf("2014-12-24"));
 		beanGroupRoom1.setGroupEndTime(java.sql.Date.valueOf("2014-12-31"));
 		beanGroupRoom1.setGroupRoomName("一起打桌遊八!");
-		beanGroupRoom1.setGroupSuggestNumber("6-15");
+		beanGroupRoom1.setGroupSuggestNumber("2-3");
 		beanGroupRoom1.setGroupString("慶祝新年一月一日, 發揚桌遊");
-		beanGroupRoom1.setGroupLowerLimit(6);
-		beanGroupRoom1.setGroupUpperLimit(15);
+		beanGroupRoom1.setGroupLowerLimit(2);
+		beanGroupRoom1.setGroupUpperLimit(3);
 		beanGroupRoom1.setGroupGameTime(java.sql.Time.valueOf("03:00:00"));
 		beanGroupRoom1.setReserveGroupStartTime(java.sql.Timestamp
 				.valueOf("2015-1-1 13:00:00"));

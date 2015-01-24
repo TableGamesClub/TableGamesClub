@@ -1,30 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="controller.*"%>
-<%@ page import="model.*"%>
-<%@ page import="model.service.*"%>
-<%@ page import="model.Interface.*"%>
-<%@ page import="org.springframework.context.ApplicationContext"%>
-<%@ page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
-
-<%
-	ApplicationContext context = new ClassPathXmlApplicationContext(
-			"model-config1-DriverManagerDataSource.xml");
-	BoardGameKindDAO_Interface dao = (BoardGameKindDAO_Interface) context
-			.getBean("BoardGameKindDAO");
-	BoardGamesDAO_Interface dao2 = (BoardGamesDAO_Interface) context
-			.getBean("BoardGamesDAO");
-	StoreInformationDAO_Interface dao3 = (StoreInformationDAO_Interface) context
-			.getBean("StoreInformationDAO");
-	List<BoardGameKind> list = dao.getAll();
-	List<StoreInformation> list2 = dao3.getAll();
-	pageContext.setAttribute("list",list);
-	pageContext.setAttribute("list2",list2);
-	
-%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,7 +23,7 @@
 	media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css"
 	media="screen" />
-<title>HomePage</title>
+<title>SomgthingWrong</title>
 <style type="text/css">
 #tabs {
 	margin: 0 auto;
@@ -913,200 +889,77 @@ li.MemInfo {
 		$('a').focus(function() {
 			this.blur();
 		});
-		
-		$('#CreateNewStylebutton').bind('click',function(){
-			$('#sapnType')
-			.after("<span>"+"<input type='checkbox' name='games' checked>"+$('#select2').val()+
-				   "<a href=# class='del'><input type='button' value='刪除'></a></span>");
-// 			alert($('span[name="games"]').text())
-// 			$('input[name="games"]').after(123);
-		});
-		
-		$('#gametype').on('click','.del',function(){
-// 			alert(123)
-			$(this).parents('br').remove();
-    		$(this).parents('span').remove();
-    	})
-    	
-//     	$('#select1').bind('click',function(){
-//     		alert($(this).val());
-// 			console.log($(this).val());
-    		
-//     	})
-	})
-	
-// 	window.onload = function (){
-// 		var opt2 = window.document.createElement("option");
-// 		for(var i=1;i<)
-// 		opt2.value = 1;
-// 		opt2.innerHTML = 1;
-//     	$('#select1').append(opt2);
-//     }
+	});
 </script>
-
 </head>
 <body>
+          			<%
+ 				   		session.invalidate();
+					%>
 	<div id="HEADERONE"></div>
 	<div>
-		<ul id="menu">
-			<li><a href="home.jsp" id="a1">首頁</a></li>
-			<li><a href="CreateGroup.jsp" id="a1">開團</a></li>
-			<li><a href="#" id="a1">找團</a></li>
-			<li><a href="#" id="a1">店家資訊</a></li>
-			<li><a href="register.jsp" id="a1">註冊</a></li>
-			<li class="User"><c:if test="${empty username}">
-					<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
-				</c:if> <c:if test="${ ! empty username }">
-					<a id="a1" class="A1" href="#"><font>使用者<img
-							src="res/arror_down.png" height="16px"
-							style="position: relative; top: 2px; left: 52px"></font></a>
-					<ul>
-						<li><a href="#" id="a2">會員資料</a></li>
-						<br />
-						<br />
-						<li><a href="loginout.jsp" id="a2">登出</a></li>
-					</ul></li>
-			<li class="MemInfo"><img
-				src="${pageContext.servletContext.contextPath}/controller/GetMemberImage?username=${username}"
-				height="45px" width="45px"
-				style="float: left; border: 2px double rgb(65, 113, 200);"
-				class="circle">
-				<p class="font_style circle">${username}</p>
-				<p class="font_style circle">${nickname}</p></li>
-			</c:if>
-		</ul>
-	</div>
+  <ul id="menu">
+    <li>
+      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
+    </li>
+    <li>
+      <a href="/TableGamesClub/CreateGroup.jsp"
+       id="a1">開團</a>
+    </li>
+    <li>
+      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
+    </li>
+    <li>
+      <a href="#" id="a1">店家資訊</a>
+    </li>
+    	<c:if test="${empty Member}">
+    <li>
+      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
+    </li>
+      	</c:if>
+    <li class="User">
+    	<c:if test="${empty Member}">
+			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
+		</c:if>
+		<c:if test="${ ! empty Member }">
+			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<ul>
+        		<li>
+          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
+          			
+        		</li><br /><br />
+        		<li>
+          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
+        		</li>
+      		</ul>
+      	
+	</li>
+	<li class="MemInfo">
+		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
+			<p class="font_style circle">${Member.username}</p>
+			<p class="font_style circle">${Member.nickname}</p>
+	</li>
+	</c:if>
+  </ul>
+</div>
 	<!-- 從這邊上面不要隨意修改 -->
 	<!-- 下面開始自訂 -->
 	<div id="tabs">
-		<ul>
-			<li><a href="#tabs-2">揪團</a></li>
-		</ul>
-		<div id="tabs-2">
-			<div class="tab_container" id="forminside" id="tab1">
-				<form enctype="multipart/form-data"
-					action="<c:url value="/CteateGroupServlet"/>" method="post"
-					id="formbody">
-					<br /> <b>填寫開團資料</b> <br /> 店家帳號: <br /> <input type="text"
-						id="storeUsername" name="storeUsername" placeholder="littleworld">
-					<div style="display: inline"></div>
-					<br /> 店家名: <br /> <input type="text" id="storeName"
-						name="storeName" placeholder="瘋桌遊-益智遊戲專賣店(汐止店)">
-					<div style="display: inline"></div>
-					<br /> 會員帳號: <br /> <input type="text" id="groupUsername"
-						name="groupUsername" placeholder="pewdiepie">
-					<div style="display: inline"></div>
-					<br /> 開團開始時間: <br /> <input type="text" id="groupStartTime"
-						name="groupStartTime" placeholder="2014-12-24">
-					<div style="display: inline"></div>
-					<br /> 開團結束時間: <br /> <input type="text" id="groupEndTime"
-						name="groupEndTime" placeholder="2014-12-31">
-					<div style="display: inline"></div>
-					<br /> 房間名稱: <br /> <input type="text" id="groupRoomName"
-						name="groupRoomName" placeholder="一起打桌遊八!">
-					<div style="display: inline"></div>
-					<br /> 遊玩人數: <br /> <input type="text" id="groupSuggestNumber"
-						name="groupSuggestNumber" placeholder="6-15">
-					<div style="display: inline"></div>
-					<br /> 遊玩最低下限: <br /> <input type="text" id="groupLowerLimit"
-						name="groupLowerLimit" placeholder="6">
-					<div style="display: inline"></div>
-					<br /> 遊玩上限人數: <br /> <input type="text" id="groupUpperLimit"
-						name="groupUpperLimit" placeholder="15">
-					<div style="display: inline"></div>
-					<br /> 遊玩時間: <br /> <input type="text" id="groupGameTime"
-						name="groupGameTime" placeholder="03:00:00">
-					<div style="display: inline"></div>
-					<br /> 預約場地開始時間: <br /> <input type="text"
-						id="reserveGroupStartTime" name="reserveGroupStartTime"
-						placeholder="2015-1-1 13:00:00">
-					<div style="display: inline"></div>
-					<br /> 預約場地結束時間: <br /> <input type="text"
-						id="reserveGroupEndTime" name="reserveGroupEndTime"
-						placeholder="2015-1-1 16:00:00">
-					<div style="display: inline" id="gametype">
-					<div style="display: inline">
-					<br /> 遊玩店家: <br />
-					<select id="boardGameStore" name="boardGameStore">
-						<option value="0">請選擇</option>
-						<c:forEach var="stores" items="${list2}">
-							<option value="${stores.storeId}">${stores.storeName}</option>
-						</c:forEach>
-					</select>
-					</div>
-					<br /> 遊玩類型: <br /> 
-					<select id="select1">
-						<option value="0">請選擇</option>
-						<c:forEach var="games" begin="0" end="6" items="${list}">
-							<option value="${games.boardGameSerialNumber}">${games.boardGameStyle}</option>
-						</c:forEach>
-					</select>
-					<select id="select2">
-						<option value="volvo">請選擇</option>
-					</select>
-					<input type="button" id="CreateNewStylebutton" value="增加類型" />
-					<br>
-					<span id="sapnType">
-					
-					</span>
-					</div>
-					<div id="test222"></div>
-					<div style="display: inline"></div>
-					<br /> 桌遊團圖片: <br /> <input type="file" id="privateGroupImage"
-						name="privateGroupImage" value="">
-					<div style="display: inline"></div>
-					<br />
-					<button type="submit" class="bluebtn margtop20" id="finish">完成註冊</button>
-					<button type="reset" class="bluebtn margtop20" id="finish">清除重填</button>
-				</form>
-			</div>
-		</div>
-	</div>
-<!-- 	ajax -->
-	<script> 
-        var btnLoad = document.getElementById("select1");
-        var a1 = $('#select1');
-        btnLoad.addEventListener("click",beforeload,false);
-        var xhr;
-        
-        function beforeload(){
-			if($(this).val()==a1.val()){
-				btnLoad.addEventListener("click",load,false);
-			}
-        }
-        
-        function load(){    
-//         	alert($(this).val());
-			var boardGameStore = document.getElementById("boardGameStore");//抓取店家號碼
-        	xhr = new XMLHttpRequest();
-        	xhr.addEventListener("readystatechange",callback,false);
-            var url = "GetGamesJson?storeId="+boardGameStore.value+"&type="+$(this).val();     //url要改
-        	xhr.open("get",url,true); 
-        	xhr.send();
-        }
-        function callback(){
-        	if(xhr.readyState == 4){
-        		if(xhr.status == 200){
-	      		var data = xhr.responseText
-	      		var datas=JSON.parse(data);
-	      		var txtLi
-	          	var myDiv = document.getElementById("select2");
-	      		$('#select2').empty();
-	      		$('#select2').append("<option>請選擇</option>");
-	          	for(var i=0;i<datas.length;i++){
-				var txtLi = document.createTextNode(datas[i]);
-	       	  	var eleLi = document.createElement("option");
-				eleLi.appendChild(txtLi);
-				console.log(txtLi);
-	          	 	myDiv.appendChild(eleLi);	            	 
-	          	 }
-        		}else{
-        			alert(xhr.status + ":" + xhr.statusText);
-                }
-        	}
-        }
-   </script>
-<!-- ajax -->
+	<div id="tabs-2">
+    <form id="formbody"></form>
+      <div class="tab_container" id="forminside" id="tab1">
+       <br/>
+							<p class="bodyleftinsidep">忙碌中!!!請稍後再試!!!</p>
+							
+						<br/>
+						<br/>												
+						</div>			
+						<div class="clearfix"></div>
+						
+						</div>			
+</div>
+
+
 
 
 

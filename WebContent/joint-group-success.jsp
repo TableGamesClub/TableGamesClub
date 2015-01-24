@@ -18,10 +18,11 @@
 	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>HomePage</title>
+<link rel="stylesheet" href="/TableGamesClub/resources/demos/style.css">
+<link rel="stylesheet" href="/TableGamesClub/Jquary/demo.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/TableGamesClub/Jquary/flexslider.css" type="text/css" media="screen" />
+<meta http-equiv="refresh" content="3;url=/TableGamesClub/home.jsp" />
+<title>加團成功</title>
 <style type="text/css">
 .gray
 {
@@ -87,7 +88,7 @@
 
 body
 {
-    background-image:url(images/scapes2.png);
+    background-image:url(/TableGamesClub/images/scapes2.png);
     
 }
 
@@ -139,7 +140,7 @@ input #textone
 	margin:0 auto;
 	width:1300px;
 	height:75px;
- 	background-image:url(res/bo.jpg); 
+ 	background-image:url(/TableGamesClub/res/bo.jpg); 
  	margin-bottom: 10px;
 }
 
@@ -202,7 +203,7 @@ input #textone
 	position: absolute;
 	width: 180px;
 	color: #fff;
- 	background: #c5deea url('bottom.gif') no-repeat bottom; 
+ 	background: #c5deea url('/TableGamesClub/bottom.gif') no-repeat bottom; 
 	box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.4);
 	text-decoration: none;
 	display: none;
@@ -514,6 +515,47 @@ li.MemInfo{
 	cursor:default;
 }
 
+.groupintromain
+{
+    border:4px ridge white;
+    width:600px;
+    height:200px;
+    margin-top:25px;
+    box-shadow: 10px 10px 10px rgba(29, 60, 31,0.7);
+    background-image:url(/TableGamesClub/images/bubblegroup-green.png);
+    border-radius:75px 75px 75px 75px; 
+}
+.groupimage
+{
+    width:600px;
+    height:400px;
+    margin-top: 15px;
+    background:#CCEAD0;
+    border-radius:15px 15px 15px 15px;
+    box-shadow: 5px 5px 5px rgba(20%,20%,40%,0.5);
+
+}
+
+.gicommit{width:150px;height:50px;margin-left: -200px;margin-top: 30px;
+border-radius:10px 10px 10px 10px;
+background: -webkit-gradient(linear, left top, left bottom, 
+color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
+color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5));
+box-shadow: 5px 5px 5px rgba(31,81,35,0.5);
+border:1px outset white; }
+.giback{width:150px;height:50px;margin-right: 130px;float: right;margin-top: -50px;
+border-radius:10px 10px 10px 10px;
+background: -webkit-gradient(linear, left top, left bottom, 
+color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
+color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5)); 
+box-shadow: 5px 5px 5px rgba(31,81,35,0.5);
+border:1px outset white; }
+.gictext{font-size:20px;font-family:Microsoft JhengHei;font-weight:bolder;color:#2B6F18;}
+.ccimage{width:180px;height:120px;border-radius:10px 10px 10px 10px;
+border:2px inset white;margin-top: 60px;margin-left: 40px;float: left;}
+.ccintro{width:290px;height:60px;border-radius:10px 10px 10px 10px;border:2px inset white;
+margin-top: 120px;margin-right: 40px;float: right;font-size:18px;font-weight:600;color:#008432;}
+textarea{width:515px;height:145px;resize:none;border-radius:10px 10px 10px 10px;}
 </style>
 
 <script type="text/javascript">
@@ -822,35 +864,12 @@ $(function(){
 	</c:if>
   </ul>
 </div>
-<!-- 從這邊上面不要隨意修改 -->
-	<!-- 下面開始自訂 -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-<!-- 這裡是底部 -->
+<div style="margin:0 auto;width:1000px;">
+<center>
+  <div class="groupintromain">
+    <center><p style="font-size:30px;font-family:Microsoft JhengHei;font-weight:bolder;padding-top:80px;color:#005700;">加團成功！</p></center>
+  </div>
+  </center>
+</div>
 </body>
 </html>
