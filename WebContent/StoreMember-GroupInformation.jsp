@@ -195,11 +195,11 @@ body
     color:#195400;
 }
 .cancelbt{
-    margin-top: -660px;
+ 	position:relative;
+ 	left:678px;
+ 	top:-61px;
     width: 200px;
     height: 40px;
-    float: right;
-    margin-right: -10px;
     font-family:Microsoft JhengHei;
     font-size:18px;
     border-top-left-radius:10px 10px;
@@ -208,6 +208,19 @@ body
     color:#fefcea;
 border:0;}
 
+.groomImg{
+	border: 1px solid green;
+	position: relative;
+	left:710px;
+	top: -235px;
+	height:100px;
+	width:100px;
+}
+
+.groomImg img{
+	width: 100px;
+	height: 100px;
+}
 </style>
 
 <script type="text/javascript">
@@ -243,28 +256,31 @@ border:0;}
 			<div style="font-size:18px;font-weight:600;font-family:Microsoft JhengHei;color:#660000;">選在此專賣店開團的團有:</div>
 			<br>
 			<br>
-			<div class="groupcheckmain">
 			<c:set var="switchNum_Group" value="0"/>
 			<c:forEach var="Group" items="${gRoomlist}">
+			<div class="groupcheckmain">
 				團名:
 				${Group.groupRoomName}
+				<br>
+				預約時間:
+				${Group.reserveGroupStartTime}
+				<br>
+					<div style="height:180px">
 					<c:if test="${switchNum_Group==0}">
-						<br>
-						此團遊玩桌遊類型:
-						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList0}">
-							${kindList.boardGameStyle}
-						</c:forEach>
-						<br>
-						桌遊:
-						<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList0}">
-						${GroupChoiceGames.boardGameName}
-						</c:forEach>
-						<br>
-						目前加入人數:
-						${joinerCountMap.joinerCountList0}
+							此團遊玩桌遊類型:
+							<c:forEach var="kindList" items="${gamesKindMap.gamesKindList0}">
+								${kindList.boardGameStyle}
+							</c:forEach>
+							<br>
+							桌遊:
+							<c:forEach var="GroupChoiceGames" items="${groupChoiceGamesMap.groupChoiceGamesList0}">
+							${GroupChoiceGames.boardGameName}
+							</c:forEach>
+							<br>
+							目前加入人數:
+							${joinerCountMap.joinerCountList0}
 					</c:if>
 					<c:if test="${switchNum_Group==1}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList1}">
 							${kindList.boardGameStyle}
@@ -279,7 +295,6 @@ border:0;}
 						${joinerCountMap.joinerCountList1}
 					</c:if>
 					<c:if test="${switchNum_Group==2}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList2}">
 							${kindList.boardGameStyle}
@@ -294,7 +309,6 @@ border:0;}
 						${joinerCountMap.joinerCountList2}
 					</c:if>
 					<c:if test="${switchNum_Group==3}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList3}">
 							${kindList.boardGameStyle}
@@ -309,7 +323,6 @@ border:0;}
 						${joinerCountMap.joinerCountList3}
 					</c:if>
 					<c:if test="${switchNum_Group==4}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList4}">
 							${kindList.boardGameStyle}
@@ -324,7 +337,6 @@ border:0;}
 						${joinerCountMap.joinerCountList4}
 					</c:if>
 					<c:if test="${switchNum_Group==5}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList5}">
 							${kindList.boardGameStyle}
@@ -338,7 +350,6 @@ border:0;}
 						${joinerCountMap.joinerCountList5}
 					</c:if>
 					<c:if test="${switchNum_Group==6}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList6}">
 							${kindList.boardGameStyle}
@@ -352,7 +363,6 @@ border:0;}
 						${joinerCountMap.joinerCountList6}
 					</c:if>
 					<c:if test="${switchNum_Group==7}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList7}">
 							${kindList.boardGameStyle}
@@ -366,7 +376,6 @@ border:0;}
 						${joinerCountMap.joinerCountList7}
 					</c:if>
 					<c:if test="${switchNum_Group==8}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList8}">
 							${kindList.boardGameStyle}
@@ -381,7 +390,6 @@ border:0;}
 						${joinerCountMap.joinerCountList8}
 					</c:if>
 					<c:if test="${switchNum_Group==9}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList9}">
 							${kindList.boardGameStyle}
@@ -396,7 +404,6 @@ border:0;}
 						${joinerCountMap.joinerCountList9}
 					</c:if>
 					<c:if test="${switchNum_Group==10}">
-						<br>
 						此團遊玩桌遊類型:
 						<c:forEach var="kindList" items="${gamesKindMap.gamesKindList10}">
 							${kindList.boardGameStyle}
@@ -410,12 +417,19 @@ border:0;}
 						目前加入人數:
 						${joinerCountMap.joinerCountList10}
 					</c:if>
+					</div>
+					<div class="groomImg">
+						<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Group.groupSerialNumber}&type=GroupRoom" class="groupimage">
+					</div>
 				<c:set var="switchNum_Group" value="${switchNum_Group+1}"/>
 				<br>
-			</c:forEach>
-			<input type="submit" value="取消服務" class="cancelbt">		
 			</div>
 			<br>
+			<form action="<c:url value='/StoreMemberCancelGroupServlet'/>" method="post">
+				<input type="submit" value="取消服務" class="cancelbt" id="cancelbt00">
+				<input type="text" value="${Group.groupSerialNumber}" name="cancelbt00" style="display: none">
+			</form>
+			</c:forEach>
 				
     </div>
   </div>

@@ -243,13 +243,13 @@ body
   <div class="smbodyleft">
     <div class="smbodyleftinside">
       <div class="smbodyleftinsidetop">
-      <img src="images/Asuka_Langley_Soryu.jpg" class="headimage"><br>     
+      <img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${storemem.storeMemberId}&type=storeMember" class="headimage"><br>     
       </div>
       <div class="memberstatus">
-            <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">帳號</p></center>
-            <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">登入時間</p></center> 
+            <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">帳號:${storemem.storeUsername}</p></center>
+            <center><p style="font-size:20px;line-height:22px;color:#FFFFDF;">登入時間:${JoinDate}</p></center> 
       </div>
-      <div class="smbodyleftinsidebottom">
+      <div class="smbodyleftinsidebottom" id="selectable">
          <div class="smbodyleftinsidetext"><center><a href="StoreMemberInformation.jsp" class="selectoption">個人資訊</a></center></div>
          <div class="smbodyleftinsidetext"><center><a href="<c:url value='/StoreMemberInfoServlet'/>" class="selectoption">專賣店資訊</a></center></div>
          <div class="smbodyleftinsidetext"><center><a href="StoreMemberLoginout.jsp" class="selectoption">登出</a></center></div>
