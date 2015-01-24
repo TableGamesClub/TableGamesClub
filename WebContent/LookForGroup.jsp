@@ -521,7 +521,7 @@ $(function() {
       	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
-			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
+			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
 			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
