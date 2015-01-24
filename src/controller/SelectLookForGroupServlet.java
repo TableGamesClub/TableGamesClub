@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.GroupChoiceGames;
 import model.GroupRoom;
 import model.service.GroupService;
 
@@ -37,6 +38,13 @@ public class SelectLookForGroupServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		GroupService groupservice = new GroupService();
 //		List<GroupRoom> desclist = new ArrayList<GroupRoom>();
+		//專賣店名稱
+		Map<String, String> storename = new HashMap<String, String>();
+		request.setAttribute("storename", storename);
+		
+		//遊戲名稱
+		Map<String, List<GroupChoiceGames>> gamename = new HashMap<String, List<GroupChoiceGames>>();
+		request.setAttribute("gamename", gamename);
 		
 		// 圖片識別ID
 		Map<String, Integer> requestimage = new HashMap<String, Integer>();
@@ -57,6 +65,8 @@ public class SelectLookForGroupServlet extends HttpServlet {
 		// 存放時間
 		Map<String, String> requesttime = new HashMap<String, String>();
 		request.setAttribute("requesttype", requesttime);
+		int w = 0;
+		int x = 0;
 		int y = 0;
 		int z = 0;
 		int a = 0;
@@ -66,14 +76,22 @@ public class SelectLookForGroupServlet extends HttpServlet {
 		
 		List<GroupRoom> selectgroupdesc = groupservice.getAll();
 		for(GroupRoom all : selectgroupdesc){
-			int list  = all.getGroupSerialNumber();
+			int groupRoomId  = all.getGroupSerialNumber();
 			
-			requestimage.put("simpleimage" +String.valueOf(y), list);
+			requestimage.put("simpleimage" +String.valueOf(y), groupRoomId);
 //			int Groupdesc = groupservice.countGroupRoomsByGroupSerialNumber(list);
 			
 			
-			GroupRoom selectgroup = groupservice.getOneGroupRoom(list);
+			GroupRoom selectgroup = groupservice.getOneGroupRoom(groupRoomId);
 			System.out.println(selectgroup.getGroupSerialNumber());
+			//取專賣店名
+			String mese = selectgroup.getStoreName();
+			storename.put("simplemese" + String.valueOf(w), mese);
+			
+			//遊戲名
+			List<GroupChoiceGames> gamenames = groupservice.getBoardGameNames(groupRoomId);
+			gamename.put("simplegamename" + String.valueOf(x), gamenames);
+			
 			//取團名↓
 			String groupname = selectgroup.getGroupRoomName();
 			requestgroupname.put("simplegroupgroupname"+String.valueOf(z), groupname);
@@ -100,6 +118,8 @@ public class SelectLookForGroupServlet extends HttpServlet {
 			Date starttime = selectgroup.getReserveGroupStartTime();
 			requesttime.put("time" + String.valueOf(c), String.valueOf(starttime));
 			
+			w++;
+			x++;
 			y++;
 			z++;
 			a++;

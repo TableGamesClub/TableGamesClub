@@ -110,7 +110,7 @@ public class GroupInServlet extends HttpServlet {
 					mail.start();
 					
 					RequestDispatcher rd = request
-							.getRequestDispatcher("/joingroupsuccess.jsp");
+							.getRequestDispatcher("/joint-group-success.jsp");
 					rd.forward(request, response);
 					return;
 

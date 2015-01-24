@@ -58,6 +58,8 @@ public class GroupService {
 		
 	}
 	
+
+	
 	public int numOfPeo(String StoreName){   //取得專賣店人數上限
 		return sidao.numOfPeo(StoreName).getGroupUpperLimit();
 	}
