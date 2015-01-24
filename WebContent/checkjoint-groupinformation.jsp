@@ -855,13 +855,13 @@ $(function(){
 </head>
 <body>
 <div id="HEADERONE"></div>
-<div>
+	<div>
   <ul id="menu">
     <li>
-      <a href="home.jsp" id="a1">首頁</a>
+      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
     </li>
     <li>
-      <a href="CreateGroup.jsp"
+      <a href="/TableGamesClub/CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
@@ -872,22 +872,22 @@ $(function(){
     </li>
     	<c:if test="${empty Member}">
     <li>
-      		<a href="register.jsp" id="a1">註冊</a>
+      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
     </li>
       	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
-			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
+			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
           			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
-          			<a href="loginout.jsp" id="a2">登出</a>
+          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
       	

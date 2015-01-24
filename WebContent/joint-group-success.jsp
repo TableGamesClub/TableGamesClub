@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/TableGamesClub/resources/demos/style.css">
 <link rel="stylesheet" href="/TableGamesClub/Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/TableGamesClub/Jquary/flexslider.css" type="text/css" media="screen" />
-<!-- <meta http-equiv="refresh" content="3;url=home.jsp" /> -->
+<meta http-equiv="refresh" content="3;url=/TableGamesClub/home.jsp" />
 <title>加團成功</title>
 <style type="text/css">
 .gray
@@ -88,7 +88,7 @@
 
 body
 {
-    background-image:url(images/scapes2.png);
+    background-image:url(/TableGamesClub/images/scapes2.png);
     
 }
 
@@ -140,7 +140,7 @@ input #textone
 	margin:0 auto;
 	width:1300px;
 	height:75px;
- 	background-image:url(res/bo.jpg); 
+ 	background-image:url(/TableGamesClub/res/bo.jpg); 
  	margin-bottom: 10px;
 }
 
@@ -203,7 +203,7 @@ input #textone
 	position: absolute;
 	width: 180px;
 	color: #fff;
- 	background: #c5deea url('bottom.gif') no-repeat bottom; 
+ 	background: #c5deea url('/TableGamesClub/bottom.gif') no-repeat bottom; 
 	box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.4);
 	text-decoration: none;
 	display: none;
@@ -522,7 +522,7 @@ li.MemInfo{
     height:200px;
     margin-top:25px;
     box-shadow: 10px 10px 10px rgba(29, 60, 31,0.7);
-    background-image:url(images/bubblegroup-green.png);
+    background-image:url(/TableGamesClub/images/bubblegroup-green.png);
     border-radius:75px 75px 75px 75px; 
 }
 .groupimage
@@ -819,13 +819,13 @@ $(function(){
 </head>
 <body>
 <div id="HEADERONE"></div>
-<div>
+	<div>
   <ul id="menu">
     <li>
-      <a href="home.jsp" id="a1">首頁</a>
+      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
     </li>
     <li>
-      <a href="CreateGroup.jsp"
+      <a href="/TableGamesClub/CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
@@ -836,22 +836,22 @@ $(function(){
     </li>
     	<c:if test="${empty Member}">
     <li>
-      		<a href="register.jsp" id="a1">註冊</a>
+      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
     </li>
       	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
-			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
+			<a href="<c:url value='/TableGamesClub//login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
           			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
-          			<a href="loginout.jsp" id="a2">登出</a>
+          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
       	
