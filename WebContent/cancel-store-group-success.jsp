@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>退團確認</title>
+<title>解散成功</title>
 <style type="text/css">
 .gray
 {
@@ -143,74 +143,7 @@ input #textone
  	margin-bottom: 10px;
 }
 
-#menu 
-{
-　　　border:2px;
-	border-top-left-radius:10px 10px;
-    border-top-right-radius:10px 10px;
-    border-bottom-left-radius:10px 10px;  
-    border-bottom-right-radius:10px 10px;
-	margin: 0 auto;
-	list-style: none;
-	padding:10px;
-	width: 1300px;
-	height:50px;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5deea), color-stop(0%,#8abbd7), color-stop(55%,#066dab));
-	box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.4);
-}
-#menu li 
-{
-	margin: 0;
-	padding: 0;
-	float: left;
-	border: 2px solid #BAD6F4;
-    border-top-left-radius:5px 5px;
-    border-top-right-radius:5px 5px;
-    border-bottom-left-radius:5px 5px;  
-    border-bottom-right-radius:5px 5px;
-}
 
-#menu .li 
-{
-	margin: 0;
-	padding: 0;
-	float: left;
-	border: 2px solid #0072E3;
-    border-top-left-radius:5px 5px;
-    border-top-right-radius:5px 5px;
-    border-bottom-left-radius:5px 5px;  
-    border-bottom-right-radius:5px 5px;
-}
-
-#menu li a 
-{
-    font-size: 17px;
-	padding: 15px 50px 15px 50px;
-	display: block;
-	text-decoration: none;
-	width: 80px;
-	font-family:Microsoft JhengHei;
-	font-weight:bolder;
-}
-#menu li ul {
-    border-top-left-radius:10px 10px;
-    border-top-right-radius:10px 10px;
-    border-bottom-left-radius:10px 10px;  
-    border-bottom-right-radius:10px 10px;
-	padding: 0px;
-	list-style: none;
-	position: absolute;
-	width: 180px;
-	color: #fff;
- 	background: #c5deea url('bottom.gif') no-repeat bottom; 
-	box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.4);
-	text-decoration: none;
-	display: none;
-}
-#menu li ul li { border:2px solid #0072E3;
-	                 background-color: #c5deea;width:180px;height:30px;padding-top:10px; }
-#menu li ul li a { display: inline; }
-#menu li ul li a:hover { text-decoration: none;align:center; }
 .font-size
 {
 	font-family:Microsoft JhengHei;
@@ -432,44 +365,6 @@ box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
     width:134px;
 }
 
-
-
-div#abgne_marquee {
-	position: relative;
-	overflow: hidden;	/* 超出範圍的部份要隱藏 */
-	width: 580px;
-	height: 28px;
-	border: 1px solid #750000;
-}
-div#abgne_marquee ul, div#abgne_marquee li {
-	margin: 0;
-	padding: 1;
-	list-style: none;
-}
-div#abgne_marquee ul {
-	position: absolute;
-	left: 30px;			/* 往後推個 30px */
-}
-div#abgne_marquee ul li a {
-    color:#EA0000;
-	display: block;
-	overflow: hidden;	/* 超出範圍的部份要隱藏 */
-	font-size:16px;
-	height: 28px;
-	line-height: 25px;
-	text-decoration: none;
-}
-div#abgne_marquee div.marquee_btn {
-	position: absolute;
-	cursor: pointer;
-}
-div#abgne_marquee div#marquee_next_btn {
-	left: 5px;
-}
-div#abgne_marquee div#marquee_prev_btn {
-	right: 5px;
-}
-
 .advbodyleft
 {
     width:580px;
@@ -518,10 +413,10 @@ li.MemInfo{
 {
     border:4px ridge white;
     width:600px;
-    height:500px;
+    height:200px;
     margin-top:25px;
-    box-shadow: 10px 10px 10px rgba(29, 60, 31,0.7);
-    background-image:url(images/bubblegroup-green.png);
+    box-shadow: 10px 10px 10px rgba(68,6,0,0.7);
+    background-image:url(images/bubblegroup-red.png);
     border-radius:75px 75px 75px 75px; 
 }
 .groupimage
@@ -540,20 +435,20 @@ border-radius:10px 10px 10px 10px;
 background: -webkit-gradient(linear, left top, left bottom, 
 color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
 color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5));
-box-shadow: 5px 5px 5px rgba(31,81,35,0.5);
+box-shadow: 5px 5px 5px rgba(30,87,153,0.5);
 border:1px outset white; }
 .giback{width:150px;height:50px;margin-right: 130px;float: right;margin-top: -50px;
 border-radius:10px 10px 10px 10px;
 background: -webkit-gradient(linear, left top, left bottom, 
 color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
 color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5)); 
-box-shadow: 5px 5px 5px rgba(31,81,35,0.5);
+box-shadow: 5px 5px 5px rgba(30,87,153,0.5);
 border:1px outset white; }
-.gictext{font-size:20px;font-family:Microsoft JhengHei;font-weight:bolder;color:#2B6F18;}
+.gictext{font-size:20px;font-family:Microsoft JhengHei;font-weight:bolder;color:#1674e5;}
 .ccimage{width:180px;height:120px;border-radius:10px 10px 10px 10px;
 border:2px inset white;margin-top: 60px;margin-left: 40px;float: left;}
 .ccintro{width:290px;height:60px;border-radius:10px 10px 10px 10px;border:2px inset white;
-margin-top: 120px;margin-right: 40px;float: right;font-size:18px;font-weight:600;color:#008432;}
+margin-top: 120px;margin-right: 40px;float: right;font-size:18px;font-weight:600;color:#1674e5;}
 textarea{width:515px;height:145px;resize:none;border-radius:10px 10px 10px 10px;}
 </style>
 
@@ -818,63 +713,11 @@ $(function(){
 </head>
 <body>
 <div id="HEADERONE"></div>
-<div>
-  <ul id="menu">
-    <li>
-      <a href="home.jsp" id="a1">首頁</a>
-    </li>
-    <li>
-      <a href="CreateGroup.jsp"
-       id="a1">開團</a>
-    </li>
-    <li>
-      <a href="#" id="a1">找團</a>
-    </li>
-    <li>
-      <a href="#" id="a1">店家資訊</a>
-    </li>
-    <li>
-      <a href="register.jsp" id="a1">註冊</a>
-    </li>
-    <li class="User">
-    	<c:if test="${empty Member}">
-			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
-		</c:if>
-		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
-			<ul>
-        		<li>
-          			<a href="#" id="a2">會員資料</a>
-          			
-        		</li><br /><br />
-        		<li>
-          			<a href="loginout.jsp" id="a2">登出</a>
-        		</li>
-      		</ul>
-      	
-	</li>
-	<li class="MemInfo">
-		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=member" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
-			<p class="font_style circle">${Member.username}</p>
-			<p class="font_style circle">${Member.nickname}</p>
-	</li>
-	</c:if>
-  </ul>
-</div>
+
 <div style="margin:0 auto;width:1000px;">
 <center>
   <div class="groupintromain">
-    <img src="" class="ccimage">
-    <div class="ccintro">
-      <p style="float:left">團名稱：</p><br/>
-      <p style="float:left">遊戲名稱：</p><br/>
-      <p style="float:left">開團開始時間：</p>
-    </div><br/>
-    <div style="width:500px;color:#008432;font-size:48px;padding-top:10px;font-weight:600;font-family:Microsoft JhengHei;">請問是否確認要退團？</div>
-    <p style="font-size:16px;color:red;font-family:Microsoft JhengHei;">請輸入解散理由：</p>
-    <textarea rows="3" cols=""></textarea>
-    <div><input type="submit" class="gicommit gictext" value="確認退團"></div>
-    <div><input type="submit" class="giback gictext" value="返回上一頁"></div>
+    <center><p style="font-size:30px;font-family:Microsoft JhengHei;font-weight:bolder;padding-top:80px;color:#752201;">取消服務成功！</p></center>
   </div>
   </center>
 </div>

@@ -21,7 +21,8 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>退團確認</title>
+<meta http-equiv="refresh" content="3;url=home.jsp" />
+<title>退團成功</title>
 <style type="text/css">
 .gray
 {
@@ -518,7 +519,7 @@ li.MemInfo{
 {
     border:4px ridge white;
     width:600px;
-    height:500px;
+    height:200px;
     margin-top:25px;
     box-shadow: 10px 10px 10px rgba(29, 60, 31,0.7);
     background-image:url(images/bubblegroup-green.png);
@@ -864,17 +865,7 @@ $(function(){
 <div style="margin:0 auto;width:1000px;">
 <center>
   <div class="groupintromain">
-    <img src="" class="ccimage">
-    <div class="ccintro">
-      <p style="float:left">團名稱：</p><br/>
-      <p style="float:left">遊戲名稱：</p><br/>
-      <p style="float:left">開團開始時間：</p>
-    </div><br/>
-    <div style="width:500px;color:#008432;font-size:48px;padding-top:10px;font-weight:600;font-family:Microsoft JhengHei;">請問是否確認要退團？</div>
-    <p style="font-size:16px;color:red;font-family:Microsoft JhengHei;">請輸入解散理由：</p>
-    <textarea rows="3" cols=""></textarea>
-    <div><input type="submit" class="gicommit gictext" value="確認退團"></div>
-    <div><input type="submit" class="giback gictext" value="返回上一頁"></div>
+    <center><p style="font-size:30px;font-family:Microsoft JhengHei;font-weight:bolder;padding-top:80px;color:#005700;">退團成功！</p></center>
   </div>
   </center>
 </div>

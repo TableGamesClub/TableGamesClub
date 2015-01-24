@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>退團確認</title>
+<title>解散成功</title>
 <style type="text/css">
 .gray
 {
@@ -518,10 +518,10 @@ li.MemInfo{
 {
     border:4px ridge white;
     width:600px;
-    height:500px;
+    height:200px;
     margin-top:25px;
-    box-shadow: 10px 10px 10px rgba(29, 60, 31,0.7);
-    background-image:url(images/bubblegroup-green.png);
+    box-shadow: 10px 10px 10px rgba(30,87,153,0.7);
+    background-image:url(images/bubblegroup.png);
     border-radius:75px 75px 75px 75px; 
 }
 .groupimage
@@ -540,20 +540,20 @@ border-radius:10px 10px 10px 10px;
 background: -webkit-gradient(linear, left top, left bottom, 
 color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
 color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5));
-box-shadow: 5px 5px 5px rgba(31,81,35,0.5);
+box-shadow: 5px 5px 5px rgba(30,87,153,0.5);
 border:1px outset white; }
 .giback{width:150px;height:50px;margin-right: 130px;float: right;margin-top: -50px;
 border-radius:10px 10px 10px 10px;
 background: -webkit-gradient(linear, left top, left bottom, 
 color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
 color-stop(100%,#DDE3DE), color-stop(100%,#F5F6F5)); 
-box-shadow: 5px 5px 5px rgba(31,81,35,0.5);
+box-shadow: 5px 5px 5px rgba(30,87,153,0.5);
 border:1px outset white; }
-.gictext{font-size:20px;font-family:Microsoft JhengHei;font-weight:bolder;color:#2B6F18;}
+.gictext{font-size:20px;font-family:Microsoft JhengHei;font-weight:bolder;color:#1674e5;}
 .ccimage{width:180px;height:120px;border-radius:10px 10px 10px 10px;
 border:2px inset white;margin-top: 60px;margin-left: 40px;float: left;}
 .ccintro{width:290px;height:60px;border-radius:10px 10px 10px 10px;border:2px inset white;
-margin-top: 120px;margin-right: 40px;float: right;font-size:18px;font-weight:600;color:#008432;}
+margin-top: 120px;margin-right: 40px;float: right;font-size:18px;font-weight:600;color:#1674e5;}
 textarea{width:515px;height:145px;resize:none;border-radius:10px 10px 10px 10px;}
 </style>
 
@@ -864,17 +864,7 @@ $(function(){
 <div style="margin:0 auto;width:1000px;">
 <center>
   <div class="groupintromain">
-    <img src="" class="ccimage">
-    <div class="ccintro">
-      <p style="float:left">團名稱：</p><br/>
-      <p style="float:left">遊戲名稱：</p><br/>
-      <p style="float:left">開團開始時間：</p>
-    </div><br/>
-    <div style="width:500px;color:#008432;font-size:48px;padding-top:10px;font-weight:600;font-family:Microsoft JhengHei;">請問是否確認要退團？</div>
-    <p style="font-size:16px;color:red;font-family:Microsoft JhengHei;">請輸入解散理由：</p>
-    <textarea rows="3" cols=""></textarea>
-    <div><input type="submit" class="gicommit gictext" value="確認退團"></div>
-    <div><input type="submit" class="giback gictext" value="返回上一頁"></div>
+    <center><p style="font-size:30px;font-family:Microsoft JhengHei;font-weight:bolder;padding-top:80px;color:#1E5799;">解散成功！</p></center>
   </div>
   </center>
 </div>

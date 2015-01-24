@@ -518,7 +518,7 @@ li.MemInfo{
 {
     border:4px ridge white;
     width:600px;
-    height:400px;
+    height:500px;
     margin-top:25px;
     box-shadow: 10px 10px 10px rgba(30,87,153,0.7);
     background-image:url(images/bubblegroup.png);
@@ -535,7 +535,7 @@ li.MemInfo{
 
 }
 
-.gicommit{width:150px;height:50px;margin-left: -200px;margin-top: 70px;
+.gicommit{width:150px;height:50px;margin-left: -200px;margin-top: 30px;
 border-radius:10px 10px 10px 10px;
 background: -webkit-gradient(linear, left top, left bottom, 
 color-stop(0%,#F5F6F5), color-stop(12%,#DBE2DC), color-stop(49%,#B8C6BA), 
@@ -554,6 +554,7 @@ border:1px outset white; }
 border:2px inset white;margin-top: 60px;margin-left: 40px;float: left;}
 .ccintro{width:290px;height:60px;border-radius:10px 10px 10px 10px;border:2px inset white;
 margin-top: 120px;margin-right: 40px;float: right;font-size:18px;font-weight:600;color:#1674e5;}
+textarea{width:515px;height:145px;resize:none;border-radius:10px 10px 10px 10px;}
 </style>
 
 <script type="text/javascript">
@@ -869,7 +870,10 @@ $(function(){
       <p style="float:left">遊戲名稱：</p><br/>
       <p style="float:left">開團開始時間：</p>
     </div><br/>
+    
     <div style="width:500px;color:#1674e5;font-size:48px;padding-top:10px;font-weight:600;font-family:Microsoft JhengHei;">請問是否確認要解散？</div>
+    <p style="font-size:16px;color:red;font-family:Microsoft JhengHei;">請輸入解散理由：</p>
+    <textarea rows="3" cols=""></textarea>
     <div><input type="submit" class="gicommit gictext" value="確認解散"></div>
     <div><input type="submit" class="giback gictext" value="返回上一頁"></div>
   </div>
