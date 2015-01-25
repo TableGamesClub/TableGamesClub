@@ -952,47 +952,50 @@ li.MemInfo {
 					action="<c:url value="/RegisterServletMB"/>" method="post"
 					id="formbody">
 					<br /> <b>新增會員資料</b> <br /> 帳號: <br /> <input type="text"
-						id="username" name="username" value="goldfreeman">
+						id="username" name="username" value="">
 					<div style="display: inline"></div>
 					<br /> 密碼: <br /> <input type="password" id="pswd1" name="pswd1"
-						value="Aa@123">
+						value="">
 					<div style="display: inline"></div>
 					<br /> 密碼確認: <br /> <input type="password" id="pswd2"
-						name="pswd2" value="Aa@123">
+						name="pswd2" value="">
 					<div style="display: inline"></div>
 					<br /> 信箱: <br /> <input type="text" id="email" name="email"
-						value="goldfreeman@gmail.com">
+						value="">
 					<div style="display: inline"></div>
 					<br /> 姓氏: <br /> <input type="text" id="lastname"
-						name="lastname" value="弗利曼">
+						name="lastname" value="">
 					<div style="display: inline"></div>
 					<br /> 名字: <br /> <input type="text" id="firstname"
-						name="firstname" value="高登">
+						name="firstname" value="">
 					<div style="display: inline"></div>
 					<br /> 性別: <br /> 男<input type="radio" id="gender" name="gender"
 						checked value="男"> 女<input type="radio" id="gender"
 						name="gender" value="女">
 					<div style="display: inline"></div>
 					<br /> 暱稱: <br /> <input type="text" id="nickname"
-						name="nickname" value="自由之子">
+						name="nickname" value="">
 					<div style="display: inline"></div>
 					<br /> 生日: <br /> <input type="text" id="birthday"
-						name="birthday" value="1990-10-10">
+						name="birthday" value="">
 					<div style="display: inline"></div>
 					<br /> 身分證字號: <br /> <input type="text" id="idCard" name="idCard"
-						value="A1234567890">
+						value="">
 					<div style="display: inline"></div>
-					<br /> 會員加入日: <br /> <input type="text" id="joinDate"
-						name="joinDate" value="2014-10-10">
+<!-- 					<br /> 會員加入日: <br /> <input type="text" id="joinDate" -->
+<!-- 						name="joinDate" value="2014-10-10"> -->
 					<div style="display: inline"></div>
 					<br /> 手機: <br /> <input type="text" id="phone" name="phone"
-						value="0911222333">
+						value="">
 					<div style="display: inline"></div>
 					<br /> 地址: <br /> <input type="text" id="memberAddress"
-						name="memberAddress" value="新北市三重區集美街219號3樓">
+						name="memberAddress" value="">
 					<div style="display: inline"></div>
-					<br /> 會員圖片: <br /> <input type="file" id="memberImage"
-						name="memberImage" value="">
+					<br /> 會員圖片: <br /> 
+					<img id="blah" alt="your image" width="200" height="150"/><br>
+					<div style="margin: 2px 0 0 40px">
+						<input type="file" onchange="$('#blah')[0].src = window.URL.createObjectURL(this.files[0])" id="memberImage" name="memberImage">
+					</div>
 					<div style="display: inline"></div>
 					<br />
 					<button type="submit" class="bluebtn margtop20" id="finish">完成註冊</button>

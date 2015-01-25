@@ -23,6 +23,7 @@
 	media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css"
 	media="screen" />
+<meta http-equiv="refresh" content="3;url=home.jsp" />
 <title>HomePage</title>
 <style type="text/css">
 #tabs {
@@ -947,7 +948,7 @@ li.MemInfo {
       <div class="tab_container" id="forminside" id="tab1">
        <br/>
 							<p class="bodyleftinsidep">恭喜你，您已成功註冊!<br/>
-							現在幫你導向首頁，請再<font color='red'>登入</font>一次。</p>
+							現在幫你導向首頁。</p>
 							
 						<br/>
 						<br/>												
