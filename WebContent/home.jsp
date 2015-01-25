@@ -582,6 +582,49 @@ li.MemInfo{
 .gshowfive{margin-top: -116px;float: right;margin-right: 294px;}
 .gshowsix{margin-top: -116px;float: right;margin-right: 93px;
 }
+a.css-button {
+		font-size:40px;
+		color:#2c539e;
+		text-decoration:none;
+		display:block;
+		width:300px;
+		height:60px;
+		margin-top:-150px;
+		padding-top:40px;
+		text-align:center;
+		font-family:Microsoft JhengHei;
+        font-weight:600;
+		border-radius:15px 15px 15px 15px;
+
+		background: -webkit-gradient(linear, left top, right bottom, color-stop(49%,#ffffff), color-stop(100%,#d3eefb));
+/* 		background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE)); */
+/* 		background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF); */
+
+		-webkit-transition: all .4s ease-in-out;
+		-moz-transition: all .4s ease-in-out;
+		-o-transition: all .4s ease-in-out;
+		transition: all .4s ease-in-out;
+	}
+	a.css-button:hover {
+		color:#fff;
+		border-color:#3278BE;
+
+		background:#4195DD;
+		background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195DD), to(#003C82));
+		background:-moz-linear-gradient(0% 90% 90deg, #003C82, #4195DD);
+	}
+	a.css-button:active {
+		background:#4195DD;
+		background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#003C82), to(#4195DD));
+		background:-moz-linear-gradient(0% 90% 90deg, #4195DD, #003C82);
+	}
+
+	a.css-button.notransitions {
+		-webkit-transition: none;
+		-moz-transition: none;
+		-o-transition: none;
+		transition: none;
+	}
 </style>
 
 <script type="text/javascript">
@@ -982,6 +1025,7 @@ $(function() {
              <p id="selectfourp"">遊戲名稱</p>
             <input type="text" id="textfour" placeholder="策略遊戲">
           </div>
+          <center><p><a href="#" class="css-button">找團</a></p></center>
       </div>
     </div>
   </div>
