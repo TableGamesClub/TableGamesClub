@@ -239,7 +239,7 @@ public class CreateRoomServlet extends HttpServlet {
 			bean.setReserveGroupEndTime(java.sql.Timestamp.valueOf(endTime+":00"));
 			
 			String sub = //相差的小時數
-					service.dateSubtract(java.sql.Timestamp.valueOf(startTime), java.sql.Timestamp.valueOf(endTime+":00"));
+					service.dateSubtract(java.sql.Timestamp.valueOf(startTime+":00"), java.sql.Timestamp.valueOf(endTime+":00"));
 			bean.setGroupGameTime(service.convertDate("1970-01-01 "+sub+":00:00"));
 			bean.setRoomState(0);
 			bean.setImgFileName(filename);
