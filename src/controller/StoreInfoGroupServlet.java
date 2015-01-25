@@ -32,10 +32,9 @@ import model.Interface.RentalTimeDAO_Interface;
 import model.Interface.StoreInformationDAO_Interface;
 import model.Interface.StoreMemberDAO_Interface;
 import model.Interface.StoreScoreDAO_Interface;
-import model.service.StoreMemberService;
 
-@WebServlet("/StoreMemberInfoServlet")
-public class StoreMemberInfoServlet extends HttpServlet {
+@WebServlet("/StoreInfoGroupServlet")
+public class StoreInfoGroupServlet extends HttpServlet {
 	private StoreMemberDAO_Interface dao1;
 	private StoreInformationDAO_Interface dao2;
 	private RentalTimeDAO_Interface dao3;
@@ -48,7 +47,7 @@ public class StoreMemberInfoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public StoreMemberInfoServlet() {
+	public StoreInfoGroupServlet() {
 		// ApplicationContext context = new ClassPathXmlApplicationContext(
 		// "model-config2-JndiObjectFactoryBean.xml");
 		ApplicationContext context = new ClassPathXmlApplicationContext(
@@ -749,7 +748,7 @@ public class StoreMemberInfoServlet extends HttpServlet {
 			session.setAttribute("groupChoiceGamesMap", groupChoiceGamesMap);// 放此開團所屬的多筆桌遊名稱
 			session.setAttribute("joinerCountMap", joinerCountMap);// 放此開團的多筆人數
 
-			response.sendRedirect("StoreInformation.jsp");
+			response.sendRedirect("StoreMember-GroupInformation.jsp");
 		} else {
 			response.sendRedirect("login.jsp");
 		}
@@ -759,5 +758,4 @@ public class StoreMemberInfoServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		this.doGet(request, response);
 	}
-
 }
