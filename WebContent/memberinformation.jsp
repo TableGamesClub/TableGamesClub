@@ -837,9 +837,9 @@ li.MemInfo {
 	
 		<center><div class="middlebodytwo">
 			<a href="<c:url value='/SelectLookForGroupServlet' />"><input type="button" value="找團" class="lookforgroup"
-				style="font-size: 36px; color: #feffff;font-family: Microsoft JhengHei;"></a> <input
+				style="font-size: 36px; color: #feffff;font-family: Microsoft JhengHei;"></a><a href="<c:url value='/CreateRoomServlet' />"><input
 				type="button" value="開團" class="creategroup"
-				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;">
+				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;"></a>
 		</div></center>
 	</div>
 	<div id="dialog" title="退團理由" style="width: 400px">
