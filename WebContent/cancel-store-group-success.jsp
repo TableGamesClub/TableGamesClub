@@ -21,8 +21,12 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
+<<<<<<< HEAD
 <title>解除服務成功</title>
 <meta http-equiv="refresh" content="3;url='/TableGamesClub/StoreMemberInformation.jsp'">
+=======
+<title>解散成功</title>
+>>>>>>> branch 'tablis0814' of https://github.com/TableGamesClub/TableGamesClub.git
 <style type="text/css">
 .gray
 {
