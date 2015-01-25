@@ -23,6 +23,7 @@
 	media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css"
 	media="screen" />
+<meta http-equiv="refresh" content="3;url=home.jsp" />
 <title>HomePage</title>
 <style type="text/css">
 #tabs {

@@ -267,7 +267,7 @@ li.MemInfo{
     margin-top:25px;
     width:1300px;
     height:235px;
-    background:#FFEBF5;
+    background:white;
     padding-top:15px;
 }
 .searchin
@@ -305,7 +305,7 @@ li.MemInfo{
     width:1300px;
     min-height:400px;
 /*     height:400px; */
-    background:#FFEBFF;
+    background:white;
     border-top-left-radius:10px 10px;
     border-top-right-radius:10px 10px;
     border-bottom-left-radius:10px 10px;

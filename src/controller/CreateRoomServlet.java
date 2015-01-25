@@ -300,7 +300,7 @@ public class CreateRoomServlet extends HttpServlet {
 				joiner.setUsername(mbean.getUsername());
 				jdao.insert(joiner);
 				
-				response.sendRedirect("CreatGroupResult.jsp");
+				response.sendRedirect("creategroupsuccess.jsp");
 				return;
 			} else {
 				errorMsg.put("errorNumberOfRoom",
@@ -312,7 +312,7 @@ public class CreateRoomServlet extends HttpServlet {
 			if (!errorMsg.isEmpty()) {
 				// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
 				RequestDispatcher rd = request
-						.getRequestDispatcher("CreatGroup.jsp");
+						.getRequestDispatcher("CreateGroup.jsp");
 				rd.forward(request, response);
 				return;
 			}
