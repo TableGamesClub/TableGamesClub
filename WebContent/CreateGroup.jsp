@@ -505,7 +505,7 @@ $(function() {
 						</select>
 						<input type="button" id="CreateNewStylebutton" value="+" />
 					</div>
-					<div id="sapnType" style="width: 300px;height:200px;border:1px solid black;overflow: scroll;overflow-x:hidden;padding: 3px 3px"></div>
+					<div id="sapnType" style="width: 300px;height:200px;overflow: auto;overflow-x:hidden;padding: 3px 3px 3px 21px;margin:10px 0 10px 0;box-shadow:1px 1px 3px 2px rgba(20%,20%,40%,0.5) inset;"></div>
 				</div>
 				<div><span>預約時間:</span><span class="red">*</span></div>
 					<div style="">

@@ -41,7 +41,10 @@ public class BoardGamesDAOHibernate implements BoardGamesDAO_Interface {
 			"select boardGameKind.boardGameSerialNumber from BoardGames where boardGameName = ? group by boardGameKind.boardGameSerialNumber";
 	public Integer findNumberByGamesName(String boardGameName){
 		List<Integer> list = hibernateTemplate.find(GET_NUMBER_BY_GAMES_NAME,boardGameName);
-		return list.get(0);
+		for(Integer i : list){
+			return i;
+		}
+		return 1;
 	}
 	
 	private static final String GET_GAMES_BY_STOREID = "from BoardGames where storeId = ? order by boardGamesId";
