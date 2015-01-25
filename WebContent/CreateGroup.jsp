@@ -8,7 +8,10 @@
 <%@ page import="model.Interface.*"%>
 <%@ page import="org.springframework.context.ApplicationContext"%>
 <%@ page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
-
+<c:if test="${empty Member}">
+	<c:set var="target" value="${pageContext.request.servletPath}" scope="session"/>
+	<c:redirect url="/login.jsp"/>
+</c:if>
 <%
 	ApplicationContext context = new ClassPathXmlApplicationContext(
 			"model-config1-DriverManagerDataSource.xml");
@@ -525,7 +528,7 @@ $(function() {
 				</div>
 				<div><span>預約時間:</span><span class="red">*</span></div>
 					<div style="">
-						<span><input id="datetimepicker1" type="text" style="width:100px" name="startTime" value="2015-02-01 10:00:00"/></span>~
+						<span><input id="datetimepicker1" type="text" style="width:100px" name="startTime" value=""/></span>~
 						<span><input id="datetimepicker2" type="text" style="width:100px" name="endTime" value=""/></span>
 					</div>
 					<div id="ajaxImgSpan" style="height:25px;width:25px"><img src="res/ajax.gif" id="ajaxImg" style="display: none"></div>

@@ -78,6 +78,14 @@ public class MemberLoginServlet extends HttpServlet {
 				// session.setAttribute("nickname", bean.getNickname());
 				session.setAttribute("Member", bean);
 			}
+			
+			String contextPath = getServletContext().getContextPath();
+			String target = (String) session.getAttribute("target");
+			if(target != null){
+				session.removeAttribute("target");
+				response.sendRedirect(contextPath + target);
+				return;
+			}
 
 			response.sendRedirect("home.jsp");
 			return;
