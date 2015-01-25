@@ -48,13 +48,13 @@ public class StoreMemberCancelGroupServlet extends HttpServlet {
 			GroupRoom gRoom = service.getOneGroupRoom(roomId_Int);// 拿到那間房間資料
 			String roomName = gRoom.getGroupRoomName();// 拿出開團房名
 			String storeName = gRoom.getStoreName();// 拿出開團房所使用的店家名
-			Serializable nickName = gRoom.getMember().getNickname();// 拿出開團者暱稱
+			Serializable nickName_Creater = gRoom.getMember().getNickname();// 拿出開團者暱稱
 			String email = gRoom.getMember().getEmail();// 拿出開團者Email
 			
 			CancelRoomSuccessMail_creater mail = 
 					new CancelRoomSuccessMail_creater("qaz22881757@gmail.com",
 							"系統送發信件，您的團["+roomName+"]已被店家["+storeName+"]取消服務！",
-							"親愛的"+nickName+"您好，很抱歉!本店家因當天臨時有事，故無法營業，因此取消您所預約的租用場地服務，造成您的不便，敬請見諒。");
+							"親愛的"+nickName_Creater+"您好，很抱歉!本店家因當天臨時有事，故無法營業，因此取消您所預約的租用場地服務，造成您的不便，敬請見諒。");
 			mail.start();
 			
 			try {
