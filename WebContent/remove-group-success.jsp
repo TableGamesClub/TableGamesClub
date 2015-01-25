@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
 <meta http-equiv="refresh" content="3;url=<c:url value='/MemberInfoServlet'/>" />
-<title>退團成功</title>
+<title>刪團成功</title>
 <style type="text/css">
 .gray
 {
@@ -865,7 +865,7 @@ $(function(){
 <div style="margin:0 auto;width:1000px;">
 <center>
   <div class="groupintromain">
-    <center><p style="font-size:30px;font-family:Microsoft JhengHei;font-weight:bolder;padding-top:80px;color:#005700;">退團成功！</p></center>
+    <center><p style="font-size:30px;font-family:Microsoft JhengHei;font-weight:bolder;padding-top:80px;color:#005700;">刪團成功！</p></center>
   </div>
   </center>
 </div>

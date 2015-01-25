@@ -178,7 +178,7 @@ public class GroupRoomDAOHibernate implements GroupRoomDAO_Interface {
 //		// 修改
 //		// 刪除
 //		// 查詢單筆
-		System.out.println(dao.findByPrimeKey(1).getMember().getUsername());
+//		System.out.println(dao.findByPrimeKey(1).getMember().getUsername());
 //		// 查詢多筆
 //		List<GroupRoom> beans = dao.getAll();
 //		for (GroupRoom vo : beans) {
@@ -240,9 +240,10 @@ public class GroupRoomDAOHibernate implements GroupRoomDAO_Interface {
 //		dao.insert(bean1);
 		// 修改
 		// 刪除
+		dao.delete(1013);
 		// 查詢單筆
-		Member mem = dao.findByPrimeKey(1).getMember();
-		System.out.println(mem.getUsername());
+//		Member mem = dao.findByPrimeKey(1).getMember();
+//		System.out.println(mem.getUsername());
 		// 查詢多筆
 //		List<GroupRoom> beans = dao.getAll();
 //		for (GroupRoom vo : beans) {
