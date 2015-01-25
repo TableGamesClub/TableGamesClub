@@ -270,7 +270,7 @@ public class CreateRoomServlet extends HttpServlet {
 				//寄發開團成功信件
 				System.out.println("開始寄發系統信件");
 				CreateRoomSuccessMail mail = 
-						new CreateRoomSuccessMail("spadem45420@gmail.com",
+						new CreateRoomSuccessMail(mbean.getEmail(),
 								"系統送發信件，您的團["+roomName+"]開團成功！",
 								"親愛的"+mbean.getNickname()+"您好，恭喜你開團成功！");
 				mail.start();

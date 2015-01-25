@@ -52,7 +52,7 @@ public class StoreMemberCancelGroupServlet extends HttpServlet {
 			String email = gRoom.getMember().getEmail();// 拿出開團者Email
 			
 			CancelRoomSuccessMail_creater mail = 
-					new CancelRoomSuccessMail_creater("qaz22881757@gmail.com",
+					new CancelRoomSuccessMail_creater(email,
 							"系統送發信件，您的團["+roomName+"]已被店家["+storeName+"]取消服務！",
 							"親愛的"+nickName_Creater+"您好，很抱歉!本店因當天臨時有事，故無法營業，因此取消您所預約的租用場地服務，造成您的不便，敬請見諒。");
 			mail.start();

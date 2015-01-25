@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import mail.AddRoomSuccessMail;
 import mail.CreateRoomSuccessMail;
 import model.GroupRoom;
 import model.Joiner_Info;
@@ -46,7 +47,6 @@ public class GroupInServlet extends HttpServlet {
 
 			request.setAttribute("insertOk", insertOk);
 			request.setAttribute("insertNotOk", insertNotOk);
-
 			GroupService groupservice = new GroupService();
 
 			GroupRoom grouproom = groupservice.getOneGroupRoom(intid);
@@ -102,12 +102,21 @@ public class GroupInServlet extends HttpServlet {
 					System.out.println("加入房間成功");
 //					// 寄發開團成功信件
 					
+					//開團者電子郵件
+					String createRoomEmail = grouproom.getMember().getEmail();
+					//加團者電子郵件
+					String addRoomEmail = mbean.getEmail();
+					
 					System.out.println("開始寄發系統信件");
-					CreateRoomSuccessMail mail = new CreateRoomSuccessMail(
-							"spadem45420@gmail.com", "系統送發信件，您的團["
-									+ grouproom.getGroupRoomName() + "]開團成功！",
-							"123");
-					mail.start();
+					AddRoomSuccessMail mail1 = new AddRoomSuccessMail(//寄給開團者
+							createRoomEmail, "系統送發信件",
+							"親愛的["+grouproom.getMember().getNickname()+"]您好，您的團["
+									+ grouproom.getGroupRoomName() + "]，有["+mbean.getNickname()+"]加入了！");
+					AddRoomSuccessMail mail2 = new AddRoomSuccessMail(//寄給加團者
+							addRoomEmail,"系統送發信件",
+							"親愛的["+mbean.getNickname()+"]您好，您已經成功加入["+grouproom.getGroupRoomName()+"]");
+					mail1.start();
+					mail2.start();
 					
 					RequestDispatcher rd = request
 							.getRequestDispatcher("/joint-group-success.jsp");

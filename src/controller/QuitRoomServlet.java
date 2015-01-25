@@ -76,9 +76,9 @@ public class QuitRoomServlet extends HttpServlet {
 					//開始寄發郵件
 					System.out.println("開始寄發電子郵件");
 					QuitRoomSuccessMail_adder mail1 = 
-							new QuitRoomSuccessMail_adder("spadem45420@gmail.com","系統通知信件","親愛的["+mem.getNickname()+"]您好，您已經退出["+room.getGroupRoomName()+"]桌遊團。");
+							new QuitRoomSuccessMail_adder(quitRoomEmail,"系統通知信件","親愛的["+mem.getNickname()+"]您好，您已經退出["+room.getGroupRoomName()+"]桌遊團。");
 					QuitRoomSuccessMail_creater mail2 = 
-							new QuitRoomSuccessMail_creater("spadem45420@gmail.com","系統通知信件","親愛的["+room.getMember().getNickname()+"]您好，您的團員["+mem.getNickname()+"]已經退出<br>退團理由：<br>",reason);
+							new QuitRoomSuccessMail_creater(createRoomEmail,"系統通知信件","親愛的["+room.getMember().getNickname()+"]您好，您的團員["+mem.getNickname()+"]已經退出<br>退團理由：<br>",reason);
 					mail1.start();
 					mail2.start();
 					
