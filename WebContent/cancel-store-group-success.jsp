@@ -22,7 +22,8 @@
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
 <title>解除服務成功</title>
-<meta http-equiv="refresh" content="3;url='<c:url value='/StoreInfoGroupServlet'/>'">
+<meta http-equiv="refresh" content="3;url='/TableGamesClub/StoreMemberInformation.jsp'">
+<title>解散成功</title>
 <style type="text/css">
 .gray
 {

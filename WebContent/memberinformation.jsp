@@ -425,6 +425,17 @@ li.MemInfo {
     color:#ffffff;
     border-radius:10px 10px 10px 10px;
     }
+.editmember
+{
+    width:58px;
+    height:37px; 
+    background:#D2CBC9;
+    color:#ffffff;
+    border-radius:10px 10px 10px 10px;
+    position:relative;
+    left:1127px;
+    top:-161px;
+    }    
 .creategroup{
     width:200px;
     height:65px;
@@ -642,6 +653,8 @@ li.MemInfo {
 			<div class="text textfive">
 				<center>入會日期:${Member.joinDate}</center>
 			</div>
+			<input type="button" value="編輯" class="editmember"
+				style="font-size: 20px; color: #feffff;font-family: Microsoft JhengHei;">
 		</div>
 		<div class="middlebodyheadone">
 			<center>
@@ -799,7 +812,7 @@ li.MemInfo {
 				<c:set var="Id" scope="session" value="${Member.memberId}"/>
 				<c:if test="${Id==GroupRooms.member.memberId}">
 				<span style="float:right">
-					<button id="selectRoom00">刪除團</button>
+					<button id="removeRoom00" name="removeRoom00" value=${GroupRooms.groupSerialNumber}>刪除團</button>
 				</span>
 				</c:if>
 				<span style="float:right">
@@ -837,9 +850,9 @@ li.MemInfo {
 	
 		<center><div class="middlebodytwo">
 			<a href="<c:url value='/SelectLookForGroupServlet' />"><input type="button" value="找團" class="lookforgroup"
-				style="font-size: 36px; color: #feffff;font-family: Microsoft JhengHei;"></a> <input
+				style="font-size: 36px; color: #feffff;font-family: Microsoft JhengHei;"></a><a href="<c:url value='CreateGroup.jsp' />"><input
 				type="button" value="開團" class="creategroup"
-				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;">
+				style="font-size: 36px; color: #fefcea;font-family: Microsoft JhengHei;"></a>
 		</div></center>
 	</div>
 	<div id="dialog" title="退團理由" style="width: 400px">
@@ -853,6 +866,19 @@ li.MemInfo {
 <!-- 		<button id="testButton">test</button> -->
 <!-- 		<button id="testButton2">test2</button> -->
 	</div>
+	
+	<div id="dialog2" title="刪團" style="width: 400px">
+		<h3 style="margin:3px 10px 10px -1px;color:black">請填寫刪團的原因：</h3>
+		<form action="<c:url value="/RemoveRoomServlet"/>" method="post" id="removeform">
+			<textarea rows="5" cols="44" name="removeReason" id="removeReason"></textarea>
+			<input type="submit" value="送出" style="float:right;margin-top: 14px" id="submit2">
+			<input type="button" value="取消" style="float:right;margin-top: 14px;margin-right: 3px" id="cancel2">
+			<input type="text" value="" style="display:none" id="roomId01" name="roomId01">
+		</form>
+<!-- 		<button id="testButton">test</button> -->
+<!-- 		<button id="testButton2">test2</button> -->
+	</div>
+	
 	
   <script>
   var anotherVariable = jQuery.noConflict();
@@ -884,6 +910,34 @@ li.MemInfo {
   });
   </script>
   <script>
+//   打開刪團理由框框
+  $(function() {
+    $( "#dialog2" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 500
+      },
+      hide: {
+        effect: "blind",
+        duration: 500
+      },
+      width: 450,
+      height: 280,
+    });
+ 
+    $('button[name="removeRoom00"]').click(function() {//使用name抓取(id抓取會有語法錯誤問題)
+      $( "#dialog2" ).dialog( "open" );
+//       alert($(this).val());
+	  $('#roomId01').val($(this).val());
+      
+    });
+    $( "#cancel2" ).click(function() {
+        $( "#dialog2" ).dialog( "close" );
+      });
+  });
+  </script>
+  <script>
   var anotherVariable2 = jQuery.noConflict();
 //   按鈕特效框框
   $(function() {
@@ -901,9 +955,26 @@ li.MemInfo {
 // 		  $('#quitform').submit();
 	  })
   });
+  </script>
+  <script>
+//   按鈕特效框框(刪團)
+  $(function() {
+	  $("#cancel2,#selectRoom00,#removeRoom00" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
   
-
-  </script>	
+  $(function() {
+	  $("#submit2")
+	  .button()
+	  .click(function(){
+// 		  $('#quitform').submit();
+	  })
+  });
+  </script>
+  	
   
   <script type="text/javascript">//房間號碼測試
   	 $('#testButton').click(function(){

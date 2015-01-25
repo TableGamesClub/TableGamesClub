@@ -21,7 +21,8 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>退團確認</title>
+<meta http-equiv="refresh" content="3;url=<c:url value='/MemberInfoServlet'/>" />
+<title>刪團成功</title>
 <style type="text/css">
 .gray
 {
@@ -518,7 +519,7 @@ li.MemInfo{
 {
     border:4px ridge white;
     width:600px;
-    height:500px;
+    height:200px;
     margin-top:25px;
     box-shadow: 10px 10px 10px rgba(29, 60, 31,0.7);
     background-image:url(images/bubblegroup-green.png);
@@ -818,45 +819,43 @@ $(function(){
 </head>
 <body>
 <div id="HEADERONE"></div>
-	<div>
+<div>
   <ul id="menu">
     <li>
-      <a href="/TableGamesClub/home.jsp" id="a1">首頁</a>
+      <a href="home.jsp" id="a1">首頁</a>
     </li>
     <li>
-      <a href="/TableGamesClub/CreateGroup.jsp"
+      <a href="CreateGroup.jsp"
        id="a1">開團</a>
     </li>
     <li>
-      <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
+      <a href="#" id="a1">找團</a>
     </li>
     <li>
       <a href="#" id="a1">店家資訊</a>
     </li>
-    	<c:if test="${empty Member}">
     <li>
-      		<a href="/TableGamesClub/register.jsp" id="a1">註冊</a>
+      <a href="register.jsp" id="a1">註冊</a>
     </li>
-      	</c:if>
     <li class="User">
     	<c:if test="${empty Member}">
 			<a href="<c:url value='/login.jsp'/> " id="a1"> 登入 </a>
 		</c:if>
 		<c:if test="${ ! empty Member }">
-			<a id="a1" class="A1" href="#"><font>使用者<img src="/TableGamesClub/res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
+			<a id="a1" class="A1" href="#"><font>使用者<img src="res/arror_down.png" height="16px" style="position: relative; top:2px; left:52px"></font></a>
 			<ul>
         		<li>
-          			<a href="<c:url value='/MemberInfoServlet'/> " id="a2">會員資料</a>
+          			<a href="#" id="a2">會員資料</a>
           			
         		</li><br /><br />
         		<li>
-          			<a href="/TableGamesClub/loginout.jsp" id="a2">登出</a>
+          			<a href="loginout.jsp" id="a2">登出</a>
         		</li>
       		</ul>
       	
 	</li>
 	<li class="MemInfo">
-		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=MEMBER" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
+		<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${Member.username}&type=member" height="45px" width="45px" style="float:left;border:2px double rgb(65, 113, 200);" class="circle">
 			<p class="font_style circle">${Member.username}</p>
 			<p class="font_style circle">${Member.nickname}</p>
 	</li>
@@ -866,17 +865,7 @@ $(function(){
 <div style="margin:0 auto;width:1000px;">
 <center>
   <div class="groupintromain">
-    <img src="" class="ccimage">
-    <div class="ccintro">
-      <p style="float:left">團名稱：</p><br/>
-      <p style="float:left">遊戲名稱：</p><br/>
-      <p style="float:left">開團開始時間：</p>
-    </div><br/>
-    <div style="width:500px;color:#008432;font-size:48px;padding-top:10px;font-weight:600;font-family:Microsoft JhengHei;">請問是否確認要退團？</div>
-    <p style="font-size:16px;color:red;font-family:Microsoft JhengHei;">請輸入解散理由：</p>
-    <textarea rows="3" cols=""></textarea>
-    <div><input type="submit" class="gicommit gictext" value="確認退團"></div>
-    <div><input type="submit" class="giback gictext" value="返回上一頁"></div>
+    <center><p style="font-size:30px;font-family:Microsoft JhengHei;font-weight:bolder;padding-top:80px;color:#005700;">刪團成功！</p></center>
   </div>
   </center>
 </div>
