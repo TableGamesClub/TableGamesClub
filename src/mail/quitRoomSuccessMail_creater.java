@@ -1,5 +1,7 @@
 package mail;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -15,16 +17,18 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class createRoomSuccessMail extends Thread{
+public class quitRoomSuccessMail_creater extends Thread{
 	
 	String mail = "";
 	String header = "";
 	String text = "";
+	String reason = "";
 	
-	public createRoomSuccessMail(String mail,String header,String text){
+	public quitRoomSuccessMail_creater(String mail,String header,String text, String reason){
 		this.mail = mail;
 		this.header = header;
 		this.text = text;
+		this.reason = reason;
 	}
 	
 	@Override
@@ -48,6 +52,8 @@ public class createRoomSuccessMail extends Thread{
 	        html.append("</head>");
 	        html.append("<body>");
 	        html.append(text);
+	        html.append("<br>");
+	        html.append(reason);
 	        html.append("<hr>");
 	        html.append("<img src='cid:image'>");
 	        html.append("</body></html>");
@@ -57,7 +63,7 @@ public class createRoomSuccessMail extends Thread{
             textPart.setContent(html.toString(), "text/html; charset=UTF-8");
             
             MimeBodyPart picturePart = new MimeBodyPart();
-            FileDataSource fds = new FileDataSource("src/mail/bo.jpg");
+            FileDataSource fds = new FileDataSource("");
             picturePart.setDataHandler(new DataHandler(fds));
             picturePart.setFileName(fds.getName());
             picturePart.setHeader("Content-ID", "<image>");
@@ -73,7 +79,7 @@ public class createRoomSuccessMail extends Thread{
 	        msg.setSentDate(new Date());
 	        Transport.send(msg, "eeit76@gmail.com", "changeMe");
 	        
-	        System.out.println("寄發信件成功！");
+	        System.out.println("寄發信件成功！(開團者)");
 	        
 	    } catch (MessagingException mex) {
 	        System.out.println("send failed, exception: " + mex);
@@ -136,7 +142,7 @@ public class createRoomSuccessMail extends Thread{
 	}
 		
 	public static void main(String[] args) {
-		createRoomSuccessMail t1 = new createRoomSuccessMail("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。");
+		quitRoomSuccessMail_creater t1 = new quitRoomSuccessMail_creater("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。","");
 		t1.start();
 		System.out.println(456);
 	}

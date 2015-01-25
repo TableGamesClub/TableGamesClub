@@ -845,12 +845,13 @@ li.MemInfo {
 	<div id="dialog" title="退團理由" style="width: 400px">
 		<h3 style="margin:3px 10px 10px -1px;color:black">請填寫退團的原因：</h3>
 		<form action="<c:url value="/QuitRoomServlet"/>" method="post" id="quitform">
-			<textarea rows="5" cols="44" name="quitReason"></textarea>
+			<textarea rows="5" cols="44" name="quitReason" id="quitReason"></textarea>
 			<input type="submit" value="送出" style="float:right;margin-top: 14px" id="submit">
 			<input type="button" value="取消" style="float:right;margin-top: 14px;margin-right: 3px" id="cancel">
 			<input type="text" value="" style="display:none" id="roomId00" name="roomId00">
 		</form>
 <!-- 		<button id="testButton">test</button> -->
+<!-- 		<button id="testButton2">test2</button> -->
 	</div>
 	
   <script>
@@ -883,6 +884,7 @@ li.MemInfo {
   });
   </script>
   <script>
+  var anotherVariable2 = jQuery.noConflict();
 //   按鈕特效框框
   $(function() {
 	  $("#cancel,#selectRoom00,#opener" )
@@ -893,18 +895,20 @@ li.MemInfo {
   });
   
   $(function() {
-	  $("#submit" )
+	  $("#submit")
 	  .button()
 	  .click(function(){
-		  $('#quitform').submit();
+// 		  $('#quitform').submit();
 	  })
   });
+  
+
   </script>	
   
-<!--   <script type="text/javascript">//房間號碼測試 -->
-//   	 $('#testButton').click(function(){
-//      alert($('#roomId00').val());
-//   	 })
-<!--   </script> -->
+  <script type="text/javascript">//房間號碼測試
+  	 $('#testButton').click(function(){
+     alert($('#roomId00').val());
+  	 })
+  </script>
 </body>
 </html>

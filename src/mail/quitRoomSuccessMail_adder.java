@@ -1,9 +1,12 @@
 package mail;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,13 +18,13 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class quitRoomSuccessMail extends Thread{
+public class quitRoomSuccessMail_adder extends Thread{
 	
 	String mail = "";
 	String header = "";
 	String text = "";
 	
-	public quitRoomSuccessMail(String mail,String header,String text){
+	public quitRoomSuccessMail_adder(String mail,String header,String text){
 		this.mail = mail;
 		this.header = header;
 		this.text = text;
@@ -57,7 +60,7 @@ public class quitRoomSuccessMail extends Thread{
             textPart.setContent(html.toString(), "text/html; charset=UTF-8");
             
             MimeBodyPart picturePart = new MimeBodyPart();
-            FileDataSource fds = new FileDataSource("WebContent/res/bo.jpg");
+            FileDataSource fds = new FileDataSource("");
             picturePart.setDataHandler(new DataHandler(fds));
             picturePart.setFileName(fds.getName());
             picturePart.setHeader("Content-ID", "<image>");
@@ -73,7 +76,7 @@ public class quitRoomSuccessMail extends Thread{
 	        msg.setSentDate(new Date());
 	        Transport.send(msg, "eeit76@gmail.com", "changeMe");
 	        
-	        System.out.println("寄發信件成功！");
+	        System.out.println("寄發信件成功！(退團者)");
 	        
 	    } catch (MessagingException mex) {
 	        System.out.println("send failed, exception: " + mex);
@@ -136,7 +139,7 @@ public class quitRoomSuccessMail extends Thread{
 	}
 		
 	public static void main(String[] args) {
-		quitRoomSuccessMail t1 = new quitRoomSuccessMail("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。");
+		quitRoomSuccessMail_adder t1 = new quitRoomSuccessMail_adder("spadem45420@gmail.com","系統通知信件","親愛的用戶你好，使用者[小智]已退團。");
 		t1.start();
 		System.out.println(456);
 	}
