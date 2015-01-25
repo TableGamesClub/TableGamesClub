@@ -15,15 +15,15 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		<!-- 本機的MS SQL -->
-		<property name="url" value="jdbc:sqlserver://localhost:1433;DatabaseName=TGC" />
-		<property name="username" value="sa" />
-		<property name="password" value="123456" />
+<!-- 		<property name="url" value="jdbc:sqlserver://localhost:1433;DatabaseName=TGC" /> -->
+<!-- 		<property name="username" value="sa" /> -->
+<!-- 		<property name="password" value="123456" /> -->
 		<!-- 虛擬機器裡的MS SQL -->
 <!-- 		<property name="url" value="jdbc:sqlserver://192.168.111.128:1433;DatabaseName=TGC" /> -->
 <!-- 		<property name="username" value="sa" /> -->
 <!-- 		<property name="password" value="123456" /> -->
 		<!-- 雲端資料庫 Azure MS SQL -->
-<!-- 	 	<property name="url" value="jdbc:sqlserver://gpn4wdt9um.database.windows.net:1433;database=TGC;user=tablegamesclub@gpn4wdt9um;password={@iWant2Play};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30" /> -->
+	 	<property name="url" value="jdbc:sqlserver://gpn4wdt9um.database.windows.net:1433;database=TGC;user=tablegamesclub@gpn4wdt9um;password={@iWant2Play};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30" />
 	</bean>
 	
 		<!-- 正式上線使用的設定 -->
