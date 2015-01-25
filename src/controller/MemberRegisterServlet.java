@@ -204,7 +204,7 @@ public class MemberRegisterServlet extends HttpServlet {
 					msgOK.put("InsertOK",
 							"<Font color='red'>新增成功，請開始使用本系統</Font>");
 					session.setAttribute("Member", bean);
-					response.sendRedirect(".jsp");
+					response.sendRedirect("registersuccess.jsp");
 					// RequestDispatcher rd = request
 					// .getRequestDispatcher("ShowMyMemberData.jsp");
 					// rd.forward(request, response);
