@@ -57,7 +57,7 @@ public class CancelRoomSuccessMail_adder extends Thread{
             textPart.setContent(html.toString(), "text/html; charset=UTF-8");
             
             MimeBodyPart picturePart = new MimeBodyPart();
-            FileDataSource fds = new FileDataSource("src/mail/bo.jpg");
+            FileDataSource fds = new FileDataSource("C:/BoardGameClub/workspace/TableGamesClub/WebContent/images/bo.jpg");
             picturePart.setDataHandler(new DataHandler(fds));
             picturePart.setFileName(fds.getName());
             picturePart.setHeader("Content-ID", "<image>");
