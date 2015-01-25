@@ -67,7 +67,10 @@ public class CreateRoomServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.setAttribute("CreateRoomError", errorMsg); // 顯示錯誤訊息
 		session.setAttribute("CreateRoomOK", msgOK); // 顯示常訊息
-		
+		if(session.getAttribute("Member")==null){//驗證會員是否登入
+			response.sendRedirect("login.jsp");
+			return;
+		}
 		String roomName = "";
 		String[] boardGameStoreStr = null;
 		String[] gamesType = null;
@@ -217,13 +220,6 @@ public class CreateRoomServlet extends HttpServlet {
 			//會員
 			Member mbean = new Member();
 			mbean = (Member) session.getAttribute("Member");
-			if(mbean == null){
-				System.out.println("會員未登入");
-				RequestDispatcher rd = request
-						.getRequestDispatcher("CreateGroup.jsp");
-				rd.forward(request, response);
-				return;
-			}
 			bean.setStoreMember(sbean);
 			bean.setStoreName(sdao.findByPrimeKey(boardGameStore).getStoreName());
 			bean.setMember(mbean);
@@ -239,7 +235,7 @@ public class CreateRoomServlet extends HttpServlet {
 			
 			bean.setGroupLowerLimit(lower);
 			bean.setGroupUpperLimit(upper);
-			bean.setReserveGroupStartTime(java.sql.Timestamp.valueOf(startTime));
+			bean.setReserveGroupStartTime(java.sql.Timestamp.valueOf(startTime+":00"));
 			bean.setReserveGroupEndTime(java.sql.Timestamp.valueOf(endTime+":00"));
 			
 			String sub = //相差的小時數
