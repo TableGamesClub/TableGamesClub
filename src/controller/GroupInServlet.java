@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import mail.createRoomSuccessMail;
+import mail.CreateRoomSuccessMail;
 import model.GroupRoom;
 import model.Joiner_Info;
 import model.Member;
@@ -103,7 +103,7 @@ public class GroupInServlet extends HttpServlet {
 //					// 寄發開團成功信件
 					
 					System.out.println("開始寄發系統信件");
-					createRoomSuccessMail mail = new createRoomSuccessMail(
+					CreateRoomSuccessMail mail = new CreateRoomSuccessMail(
 							"spadem45420@gmail.com", "系統送發信件，您的團["
 									+ grouproom.getGroupRoomName() + "]開團成功！",
 							"123");

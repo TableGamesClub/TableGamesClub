@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mail.quitRoomSuccessMail_adder;
-import mail.quitRoomSuccessMail_creater;
+import mail.QuitRoomSuccessMail_adder;
+import mail.QuitRoomSuccessMail_creater;
 import model.GroupRoom;
 import model.Joiner_Info;
 import model.Member;
@@ -75,10 +75,10 @@ public class QuitRoomServlet extends HttpServlet {
 					String quitRoomEmail = mem.getEmail();
 					//開始寄發郵件
 					System.out.println("開始寄發電子郵件");
-					quitRoomSuccessMail_adder mail1 = 
-							new quitRoomSuccessMail_adder("spadem45420@gmail.com","系統通知信件","親愛的["+mem.getNickname()+"]您好，您已經退出["+room.getGroupRoomName()+"]桌遊團。");
-					quitRoomSuccessMail_creater mail2 = 
-							new quitRoomSuccessMail_creater("spadem45420@gmail.com","系統通知信件","親愛的["+room.getMember().getNickname()+"]您好，您的團員["+mem.getNickname()+"]已經退出<br>退團理由：<br>",reason);
+					QuitRoomSuccessMail_adder mail1 = 
+							new QuitRoomSuccessMail_adder("spadem45420@gmail.com","系統通知信件","親愛的["+mem.getNickname()+"]您好，您已經退出["+room.getGroupRoomName()+"]桌遊團。");
+					QuitRoomSuccessMail_creater mail2 = 
+							new QuitRoomSuccessMail_creater("spadem45420@gmail.com","系統通知信件","親愛的["+room.getMember().getNickname()+"]您好，您的團員["+mem.getNickname()+"]已經退出<br>退團理由：<br>",reason);
 					mail1.start();
 					mail2.start();
 					

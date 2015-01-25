@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mail.CancelRoomSuccessMail_creater;
+import model.GroupRoom;
 import model.service.GroupService;
 
 @WebServlet("/StoreMemberCancelGroupServlet")
@@ -41,12 +44,27 @@ public class StoreMemberCancelGroupServlet extends HttpServlet {
 			int roomId_Int = Integer.valueOf(roomId);
 			GroupService service = new GroupService();
 			
+			// 寄出通知信件
+			GroupRoom gRoom = service.getOneGroupRoom(roomId_Int);// 拿到那間房間資料
+			String roomName = gRoom.getGroupRoomName();// 拿出開團房名
+			String storeName = gRoom.getStoreName();// 拿出開團房所使用的店家名
+			Serializable nickName = gRoom.getMember().getNickname();// 拿出開團者暱稱
+			String email = gRoom.getMember().getEmail();// 拿出開團者Email
+			
+			CancelRoomSuccessMail_creater mail = 
+					new CancelRoomSuccessMail_creater("qaz22881757@gmail.com",
+							"系統送發信件，您的團["+roomName+"]已被店家["+storeName+"]取消服務！",
+							"親愛的"+nickName+"您好，很抱歉!本店家因當天臨時有事，故無法營業，因此取消您所預約的租用場地服務，造成您的不便，敬請見諒。");
+			mail.start();
+			
 			try {
-				service.deleteGroupRoom(roomId_Int);
+				service.deleteGroupRoom(roomId_Int);// 試著刪除房間，當發生問題時try/catch會回報錯誤
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("刪除出現錯誤，發生在/TableGamesClub/src/controller/StoreMemberCancelGroupServlet.java");
 			}
+			
+			// 刪除成功後導向成功頁面
 			response.sendRedirect("/TableGamesClub/cancel-store-group-success.jsp");
 			return;
 		} else{
