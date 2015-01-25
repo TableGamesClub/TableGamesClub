@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import model.GroupRoom;
+import model.StoreInformation;
 import model.Interface.GroupRoomDAO_Interface;
 import model.Interface.StoreInformationDAO_Interface;
 import model.Interface.StoreMemberDAO_Interface;
@@ -36,19 +37,20 @@ public class TimeCalculate extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Date StartTime = service.convertDate(GroupStartTime+":00");
 		Date EndTime = service.convertDate(GroupEndTime+":00");
-		GroupRoom bean = new GroupRoom();
-		GroupRoom room = service.getOneGroupRoom(Integer.parseInt(StoreNumber));
-		String StoreName = room.getStoreName();
-		int StoreUpper = dao.findByPrimeKey(Integer.parseInt(StoreNumber)).getGroupUpperLimit();
-		bean.setStoreName(StoreName);
-		System.out.println(StoreName);
-		bean.setReserveGroupStartTime(StartTime);
-		System.out.println(StartTime);
-		bean.setReserveGroupEndTime(EndTime);
-		System.out.println(EndTime);
-		int count = service.countJoinedMemberNumber(bean);
-		out.print(StoreUpper-count);
-//		service.countJoinedMemberNumber(bean);
+		GroupRoom bean = new GroupRoom();//創建GroupRoom bean
+		StoreInformation store = dao.findByPrimeKey(Integer.parseInt(StoreNumber));
+		if(store != null){
+			String StoreName = store.getStoreName();//取得店名
+			int StoreUpper = dao.findByPrimeKey(Integer.parseInt(StoreNumber)).getGroupUpperLimit();
+			bean.setStoreName(StoreName);
+			System.out.println(StoreName);
+			bean.setReserveGroupStartTime(StartTime);
+			System.out.println(StartTime);
+			bean.setReserveGroupEndTime(EndTime);
+			System.out.println(EndTime);
+			int count = service.countJoinedMemberNumber(bean);
+			out.print(StoreUpper-count);
+		}
 	}
 	
 }

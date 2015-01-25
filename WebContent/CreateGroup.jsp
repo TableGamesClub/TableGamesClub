@@ -294,10 +294,26 @@ li.MemInfo{
 	font-size: 80%; 
 	float:left;
 	border:3px outset;
-	margin: 1px 1px;
+	margin: 12px 5px -6px 4px;
+	padding: 0 0 4px 4px;
 }
 #ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
 	width: 300px;
+}
+
+#sapnType{
+	width: 300px;
+	height:200px;
+	overflow: auto;
+	overflow-x:hidden;
+	padding: 3px 3px 3px 14px;
+	margin:10px 0 10px 0;
+	box-shadow:1px 1px 3px 2px rgba(20%,20%,40%,0.5) inset;
+	border-top-left-radius:10px 10px; 
+	border-top-right-radius:10px 10px; 
+	border-bottom-left-radius:10px 10px;   
+	border-bottom-right-radius:10px 10px; 
+
 }
 </style>
 
@@ -505,7 +521,7 @@ $(function() {
 						</select>
 						<input type="button" id="CreateNewStylebutton" value="+" />
 					</div>
-					<div id="sapnType" style="width: 300px;height:200px;overflow: auto;overflow-x:hidden;padding: 3px 3px 3px 21px;margin:10px 0 10px 0;box-shadow:1px 1px 3px 2px rgba(20%,20%,40%,0.5) inset;"></div>
+					<div id="sapnType" style=""></div>
 				</div>
 				<div><span>預約時間:</span><span class="red">*</span></div>
 					<div style="">
