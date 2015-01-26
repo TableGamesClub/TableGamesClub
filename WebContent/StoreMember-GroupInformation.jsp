@@ -105,10 +105,10 @@ body
     padding-top:25px;
     padding-left:15px;
     border-radius:10px 10px 10px 10px;
-    width:895px;
+    width:905px;
     height:943px;
     border: 3px Solid #E8B09D;
-    margin-left: 7px;
+    margin-left: -6px;
     margin-top: 10px;
     background-image:url(images/woodhead.jpg);
     background-size:cover;
@@ -248,8 +248,8 @@ border:0;}
       </div>
     </div>
   </div>
-  <div class="smbodyright">
-    <div class="smbodyrighttop">
+  <div class="smbodyright" >
+    <div class="smbodyrighttop" style="overflow-x: hidden;overflow-y: auto;">
        <div style="border-bottom:6px solid #660000;padding-bottom:10px;width:900px;margin-right:15px;"><p style="font-size:32px;font-family:Microsoft JhengHei;color:#6d0019;">查看專賣店現有團資訊</p></div><br/><br/><br/>
 			<div style="font-size:25px;font-weight:600;font-family:Microsoft JhengHei;color:#660000;">我的店:<c:forEach var="store" items="${storeInfoList}">${store.storeName}</c:forEach></div>
 			<br>			
