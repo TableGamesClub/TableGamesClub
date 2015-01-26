@@ -951,44 +951,44 @@ li.MemInfo {
 				<form enctype="multipart/form-data"
 					action="<c:url value="/RegisterServletMB"/>" method="post"
 					id="formbody">
-					<br /> <b>新增會員資料</b> <br /> 帳號: <br /> <input type="text"
+					<br /> <b>新增會員資料</b> <br /> 帳號: <br /> <input type="text" placeholder="帳號"
 						id="username" name="username" value="">
 					<div style="display: inline"></div>
-					<br /> 密碼: <br /> <input type="password" id="pswd1" name="pswd1"
+					<br /> 密碼: <br /> <input type="password" id="pswd1" name="pswd1" placeholder="密碼"
 						value="">
 					<div style="display: inline"></div>
-					<br /> 密碼確認: <br /> <input type="password" id="pswd2"
+					<br /> 密碼確認: <br /> <input type="password" id="pswd2" placeholder="密碼"
 						name="pswd2" value="">
 					<div style="display: inline"></div>
-					<br /> 信箱: <br /> <input type="text" id="email" name="email"
+					<br /> 信箱: <br /> <input type="text" id="email" name="email" placeholder="信箱"
 						value="">
 					<div style="display: inline"></div>
-					<br /> 姓氏: <br /> <input type="text" id="lastname"
+					<br /> 姓氏: <br /> <input type="text" id="lastname" placeholder="姓氏"
 						name="lastname" value="">
 					<div style="display: inline"></div>
-					<br /> 名字: <br /> <input type="text" id="firstname"
+					<br /> 名字: <br /> <input type="text" id="firstname" placeholder="名字"
 						name="firstname" value="">
 					<div style="display: inline"></div>
 					<br /> 性別: <br /> 男<input type="radio" id="gender" name="gender"
 						checked value="男"> 女<input type="radio" id="gender"
 						name="gender" value="女">
 					<div style="display: inline"></div>
-					<br /> 暱稱: <br /> <input type="text" id="nickname"
+					<br /> 暱稱: <br /> <input type="text" id="nickname" placeholder="暱稱"
 						name="nickname" value="">
 					<div style="display: inline"></div>
-					<br /> 生日: <br /> <input type="text" id="birthday"
+					<br /> 生日: <br /> <input type="text" id="birthday" placeholder="生日"
 						name="birthday" value="">
 					<div style="display: inline"></div>
-					<br /> 身分證字號: <br /> <input type="text" id="idCard" name="idCard"
+					<br /> 身分證字號: <br /> <input type="text" id="idCard" name="idCard" placeholder="身分證字號"
 						value="">
 					<div style="display: inline"></div>
 <!-- 					<br /> 會員加入日: <br /> <input type="text" id="joinDate" -->
 <!-- 						name="joinDate" value="2014-10-10"> -->
 					<div style="display: inline"></div>
-					<br /> 手機: <br /> <input type="text" id="phone" name="phone"
+					<br /> 手機: <br /> <input type="text" id="phone" name="phone" placeholder="手機"
 						value="">
 					<div style="display: inline"></div>
-					<br /> 地址: <br /> <input type="text" id="memberAddress"
+					<br /> 地址: <br /> <input type="text" id="memberAddress" placeholder="地址"
 						name="memberAddress" value="">
 					<div style="display: inline"></div>
 					<br /> 會員圖片: <br /> 
@@ -1007,33 +1007,33 @@ li.MemInfo {
 			<form id="formbody"
 				action="<c:url value="/StoreMemberRegisterServlet"/>" method="post" enctype="multipart/form-data">
 				<div class="tab_container" id="forminside" id="tab1">
-					<br /> 店家帳號*: <br /> <input type="text" class="form-control" value="dackflamemaster" 
-						placeholder="Jack" id="storememberrname" name="storememberrname" 
+					<br /> 店家帳號*: <br /> <input type="text" class="form-control" value="" 
+						placeholder="userName" id="storememberrname" name="storememberrname" 
 						style="width: 200px; weight: 40px;"> <br />  <font color="red">${ErrorMsgKey.errorstoreUserNameEmpty}</font>
 					<p>
-						店家密碼*: <br /> <input type="text" class="form-control" value="123456789"
-							placeholder="123456789" id="storememberpassword" name="storememberpassword"
+						店家密碼*: <br /> <input type="password" class="form-control" value=""
+							id="storememberpassword" name="storememberpassword"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstorePasswordEmpty}</font>
 					<p>
-						店家確認密碼*: <br /> <input type="text" class="form-control" value="123456789"
-							placeholder="123456789" id="storememberpassword2" name="storememberpassword2"
+						店家確認密碼*: <br /> <input type="password" class="form-control" value=""
+							id="storememberpassword2" name="storememberpassword2"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstorePasswordEmpty2}</font>
 					<p>
-						店家手機*: <br /> <input type="text" class="form-control" value="0123456789"
-							placeholder="Jack" id="storememberphone" name="storememberphone"
+						店家手機*: <br /> <input type="text" class="form-control" value=""
+							placeholder="0981000000" id="storememberphone" name="storememberphone"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstorePhoneEmpty}</font>
 					<p>
 						店家會員圖片*: <br /> <input type="file" class="form-control" 
-							placeholder="Doe" id="storememberArialimage" name="storememberArialimage"
+							id="storememberArialimage" name="storememberArialimage"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errPicture}</font>
 					<p>
-						電子信箱*: <br /> <input type="text" class="form-control" value="dackflamemaster@tc.edu.tw"
-							placeholder="傑克豆腐" id="storememberemail" name="storememberemail"
+						電子信箱*: <br /> <input type="email" class="form-control" value=""
+							placeholder="domain@gmail.com" id="storememberemail" name="storememberemail"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstoreEmailEmpty}</font>
 					<p>
 						店家網址: <br /> <input type="text"
 							class="form-control mySelectCalendar" rel="#"
-							id="storememberaddress" placeholder="yyyy/mm/dd" name="storememberaddress" value="dackflamemaster.com"
+							id="storememberaddress" placeholder="www.domain.com" name="storememberaddress" value=""
 							  style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstoreAddressEmpty}</font>
 					<p>
 						<br /> <br />
