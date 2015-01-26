@@ -32,11 +32,6 @@ import model.service.StoreMemberService;
 public class StoreMemberRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public StoreMemberRegisterServlet() {
-		super();
-
-	}
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 	}
@@ -160,7 +155,7 @@ public class StoreMemberRegisterServlet extends HttpServlet {
 		}
 		
 		StoreMemberService storememberservice = new StoreMemberService();
-		List<StoreMember> successinsertstoremember =storememberservice.register(storemember);
+		List<StoreMember> successinsertstoremember = storememberservice.register(storemember);
 		if(successinsertstoremember != null){
 			System.out.printf("true");
 			session.setAttribute("username", storemember.getStoreUsername());
