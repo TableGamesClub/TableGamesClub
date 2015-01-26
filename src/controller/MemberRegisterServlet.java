@@ -178,7 +178,7 @@ public class MemberRegisterServlet extends HttpServlet {
 				bean.setNickname(nickname);
 				bean.setBirthday(java.sql.Date.valueOf(birthday));
 				bean.setIdCard(idCard);			
-				bean.setJoinDate(new java.sql.Timestamp(java.sql.Date.valueOf(joinDate).getTime()));
+//				bean.setJoinDate(new java.sql.Timestamp(java.sql.Date.valueOf(joinDate).getTime()));
 				bean.setPhone(phone);
 				bean.setMemberAddress(memberAddress);
 				bean.setImgFileName(filename);
