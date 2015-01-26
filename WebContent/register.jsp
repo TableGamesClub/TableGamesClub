@@ -957,7 +957,7 @@ li.MemInfo {
 					<br /> 密碼: <br /> <input type="password" id="pswd1" name="pswd1" placeholder="密碼"
 						value="">
 					<div style="display: inline"></div>
-					<br /> 密碼確認: <br /> <input type="password" id="pswd2" placeholder="密碼"
+					<br /> 密碼確認: <br /> <input type="password" id="pswd2" placeholder="密碼確認"
 						name="pswd2" value="">
 					<div style="display: inline"></div>
 					<br /> 信箱: <br /> <input type="text" id="email" name="email" placeholder="信箱"
@@ -1008,19 +1008,19 @@ li.MemInfo {
 				action="<c:url value="/StoreMemberRegisterServlet"/>" method="post" enctype="multipart/form-data">
 				<div class="tab_container" id="forminside" id="tab1">
 					<br /> 店家帳號*: <br /> <input type="text" class="form-control" value="" 
-						placeholder="userName" id="storememberrname" name="storememberrname" 
+						placeholder="店家帳號" id="storememberrname" name="storememberrname" 
 						style="width: 200px; weight: 40px;"> <br />  <font color="red">${ErrorMsgKey.errorstoreUserNameEmpty}</font>
 					<p>
 						店家密碼*: <br /> <input type="password" class="form-control" value=""
-							id="storememberpassword" name="storememberpassword"
+							placeholder="店家密碼" id="storememberpassword" name="storememberpassword"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstorePasswordEmpty}</font>
 					<p>
 						店家確認密碼*: <br /> <input type="password" class="form-control" value=""
-							id="storememberpassword2" name="storememberpassword2"
+							placeholder="店家確認密碼" id="storememberpassword2" name="storememberpassword2"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstorePasswordEmpty2}</font>
 					<p>
 						店家手機*: <br /> <input type="text" class="form-control" value=""
-							placeholder="0981000000" id="storememberphone" name="storememberphone"
+							placeholder="店家手機" id="storememberphone" name="storememberphone"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstorePhoneEmpty}</font>
 					<p>
 						店家會員圖片*: <br /> <input type="file" class="form-control" 
@@ -1028,12 +1028,12 @@ li.MemInfo {
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errPicture}</font>
 					<p>
 						電子信箱*: <br /> <input type="email" class="form-control" value=""
-							placeholder="domain@gmail.com" id="storememberemail" name="storememberemail"
+							placeholder="電子信箱" id="storememberemail" name="storememberemail"
 							style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstoreEmailEmpty}</font>
 					<p>
 						店家網址: <br /> <input type="text"
 							class="form-control mySelectCalendar" rel="#"
-							id="storememberaddress" placeholder="www.domain.com" name="storememberaddress" value=""
+							id="storememberaddress" placeholder="店家網址" name="storememberaddress" value=""
 							  style="width: 200px; weight: 40px;"> <br /> <font color="red">${ErrorMsgKey.errorstoreAddressEmpty}</font>
 					<p>
 						<br /> <br />
