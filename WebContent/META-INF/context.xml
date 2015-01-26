@@ -19,5 +19,5 @@
 maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="tablegamesclub@gpn4wdt9um"
 password="@iWant2Play" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 url="jdbc:sqlserver://gpn4wdt9um.database.windows.net:1433;database=TGC" 
-testOnBorrow="true" validationQuery="" />
+testOnBorrow="true" validationQuery="select 1" />
 </Context>
