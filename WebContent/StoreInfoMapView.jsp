@@ -1,16 +1,27 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.3/fotorama.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.3/fotorama.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<title>首頁</title>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
+<title>HomePage</title>
 <style type="text/css">
 .gray
 {
@@ -26,7 +37,10 @@
     font-weight:900;
 }
 #abgneBlock {
-    border-radius:10px 10px 10px 10px;
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    border-bottom-left-radius:10px 10px;  
+    border-bottom-right-radius:10px 10px;
 	width: 809px;
 	height: 480px;
 	position: relative;
@@ -118,7 +132,10 @@ input #textone
 }
 #HEADERONE 
 {
-    border-radius:10px 10px 10px 10px;
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    border-bottom-left-radius:10px 10px;  
+    border-bottom-right-radius:10px 10px;
 	margin:0 auto;
 	width:1300px;
 	height:75px;
@@ -129,7 +146,10 @@ input #textone
 #menu 
 {
 　　　border:2px;
-	border-radius:10px 10px 10px 10px;
+	border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    border-bottom-left-radius:10px 10px;  
+    border-bottom-right-radius:10px 10px;
 	margin: 0 auto;
 	list-style: none;
 	padding:10px;
@@ -144,7 +164,10 @@ input #textone
 	padding: 0;
 	float: left;
 	border: 2px solid #BAD6F4;
-    border-radius:10px 10px 10px 10px;
+    border-top-left-radius:5px 5px;
+    border-top-right-radius:5px 5px;
+    border-bottom-left-radius:5px 5px;  
+    border-bottom-right-radius:5px 5px;
 }
 
 #menu .li 
@@ -153,7 +176,10 @@ input #textone
 	padding: 0;
 	float: left;
 	border: 2px solid #0072E3;
-    border-radius:5px 5px 5px 5px;
+    border-top-left-radius:5px 5px;
+    border-top-right-radius:5px 5px;
+    border-bottom-left-radius:5px 5px;  
+    border-bottom-right-radius:5px 5px;
 }
 
 #menu li a 
@@ -167,7 +193,10 @@ input #textone
 	font-weight:bolder;
 }
 #menu li ul {
-    border-radius:10px 10px 10px 10px;
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    border-bottom-left-radius:10px 10px;  
+    border-bottom-right-radius:10px 10px;
 	padding: 0px;
 	list-style: none;
 	position: absolute;
@@ -203,7 +232,10 @@ element .style
                                         color-stop(0%,#feffff), 
                                         color-stop(35%,#ddf1f9), 
                                         color-stop(100%,#a0d8ef));
-    border-radius:10px 10px 10px 10px;
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    border-bottom-left-radius:10px 10px;  
+    border-bottom-right-radius:10px 10px;
     box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
 }
 .bodyleft
@@ -216,7 +248,10 @@ element .style
                                         color-stop(0%,#feffff), 
                                         color-stop(35%,#ddf1f9), 
                                         color-stop(100%,#a0d8ef));
-    border-radius:10px 10px 10px 10px;
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    border-bottom-left-radius:10px 10px;  
+    border-bottom-right-radius:10px 10px;
     box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
 }
 .bodyleftinsideone
@@ -225,6 +260,7 @@ element .style
     margin-left:25px;
     width:450px;
     height:5px;
+    background:#FFFFFF;
 }
 .bodyleftinsidetwo
 {  
@@ -235,7 +271,10 @@ element .style
     background:-webkit-gradient(linear, left top, 
                                 left bottom, color-stop(0%,#c5deea), 
                                 color-stop(0%,#8abbd7), color-stop(70%,#066dab));
-    border-radius:10px 10px 10px 10px;
+    border-top-left-radius:10px 10px;
+    border-top-right-radius:10px 10px;
+    border-bottom-left-radius:10px 10px;  
+    border-bottom-right-radius:10px 10px;
     box-shadow:2px 2px 2px rgba(20%,20%,40%,0.6),
                4px 4px 6px rgba(20%,20%,40%,0.4),
                6px 6px 12px rgba(20%,20%,40%,0.4);
@@ -255,7 +294,10 @@ margin-top: -545px;
 width: 720px;
 height: 480px;
 border: 10px solid #0a77d5;
-border-radius:10px 10px 10px 10px;
+border-top-left-radius:10px 10px; 
+border-top-right-radius:10px 10px; 
+border-bottom-left-radius:10px 10px;   
+border-bottom-right-radius:10px 10px; 
 box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
 }
 .abgne-player {
@@ -392,113 +434,58 @@ box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
 
 
 
-div#abgne_marqueeleft {
+div#abgne_marquee {
 	position: relative;
 	overflow: hidden;	/* 超出範圍的部份要隱藏 */
 	width: 580px;
 	height: 28px;
 	border: 1px solid #750000;
 }
-div#abgne_marqueeleft ul, div#abgne_marquee li {
+div#abgne_marquee ul, div#abgne_marquee li {
 	margin: 0;
 	padding: 1;
 	list-style: none;
 }
-div#abgne_marqueeleft ul {
+div#abgne_marquee ul {
 	position: absolute;
 	left: 30px;			/* 往後推個 30px */
 }
-div#abgne_marqueeleft ul li a {
+div#abgne_marquee ul li a {
     color:#EA0000;
 	display: block;
 	overflow: hidden;	/* 超出範圍的部份要隱藏 */
 	font-size:16px;
-	height: 29px;
-	line-height: 25px;
-	text-decoration: none;
-}
-div#abgne_marqueeleft div.marquee_btn {
-	position: absolute;
-	cursor: pointer;
-}
-div#abgne_marqueeleft div#marquee_next_btn {
-	left: 5px;
-}
-div#abgne_marqueeleft div#marquee_prev_btn {
-	right: 5px;
-}
-
-div#abgne_marqueeright {
-	position: relative;
-	overflow: hidden;	/* 超出範圍的部份要隱藏 */
-	width: 580px;
 	height: 28px;
-	border: 2px solid #003000;
-	float: right;
-	margin-top: -32px;
-	margin-right: 25px;
-	
-}
-div#abgne_marqueeright ul, div#abgne_marquee li {
-	margin: 0;
-	padding: 1;
-	list-style: none;
-}
-div#abgne_marqueeright ul {
-	position: absolute;
-	left: 30px;			/* 往後推個 30px */
-}
-div#abgne_marqueeright ul li a {
-    color:#066000;
-	display: block;
-	overflow: hidden;	/* 超出範圍的部份要隱藏 */
-	font-size:16px;
-	height: 29px;
 	line-height: 25px;
 	text-decoration: none;
 }
-div#abgne_marqueeright div.marquee_btn {
+div#abgne_marquee div.marquee_btn {
 	position: absolute;
 	cursor: pointer;
 }
-div#abgne_marqueeright div#marquee_next_btn {
+div#abgne_marquee div#marquee_next_btn {
 	left: 5px;
 }
-div#abgne_marqueeright div#marquee_prev_btn {
+div#abgne_marquee div#marquee_prev_btn {
 	right: 5px;
 }
 
+.advbodyleft
+{
+    width:580px;
+    height:30px;
+    border:1px solid #750000;
+}
 .advshowleft
 {
-    border-top-left-radius:10px 10px;
-    border-top-right-radius:10px 10px;
-    margin-top:-45px;
+    margin-top:-31px;
     width:200px;
-    height:40px;
+    height:35px;
     background:-webkit-gradient(linear, left top, 
                                 right top, 
                                 color-stop(1%,#e82020), 
                                 color-stop(59%,#b70303), 
                                 color-stop(100%,#7f0000));
-}
-
-.advshowright
-{
-    border-top-left-radius:10px 10px;
-    border-top-right-radius:10px 10px;
-    margin-right: 409px;
-    float:right;
-    margin-top:-72px;
-    width:200px;
-    height:40px;
-    background: -webkit-gradient(linear, left bottom, 
-                                 right top, 
-                                 color-stop(0%,#b4ddb4), 
-                                 color-stop(0%,#83c783), 
-                                 color-stop(0%,#52b152), 
-                                 color-stop(67%,#008a00), 
-                                 color-stop(83%,#005700), 
-                                 color-stop(100%,#002400));
 }
 
 li.MemInfo{
@@ -517,114 +504,16 @@ li.MemInfo{
 }
 
 .circle{
-	border-radius:5px 5px 5px 5px;
+	border-top-left-radius:5px 5px; 
+	border-top-right-radius:5px 5px; 
+	border-bottom-left-radius:5px 5px;   
+	border-bottom-right-radius:5px 5px; 
 }
 
 .A1{
 	cursor:default;
 }
 
-.advshowtext
-{
-    padding-top:10px;
-    font-size:24px;
-    color:#ffffff;
-    font-weight:bolder;
-    font-family:Microsoft JhengHei;
-}
-.bodythree
-{
-    margin-top:25px;
-    width:1300px;
-    height:180px;
-    background:-webkit-gradient(linear, left top, 
-                                        right bottom, 
-                                        color-stop(0%,#feffff), 
-                                        color-stop(35%,#ddf1f9), 
-                                        color-stop(100%,#a0d8ef));
-    border-radius:10px 10px 10px 10px;
-    box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
-}
-.bodythreehead
-{
-    border-top-left-radius:10px 10px;
-    border-top-right-radius:10px 10px;
-    width:1300px;
-    height:50px;
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#4ca3ce), color-stop(100%,#17315b));
-}
-.advshowtext{font-size:24px;color:#ffffff;font-weight:bolder;font-family:Microsoft JhengHei;text-shadow:1px 1px #cccccc;}
-.advshowtexttwo{padding-top:15px;padding-left:40px;}
-.advshowtextthree{margin-right: 40px;margin-top: -30px;}
-.groupshow
-{
-    border-radius:10px 10px 10px 10px;
-    width:380px;
-    height:110px;
-    border-top:5px solid #1E5799;
-    border-bottom:5px solid #1E5799;
-    border-right:5px solid #1E5799;
-    box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
-}
-.gsone{margin-top:5px;margin-left:15px;}
-.gstwo{margin-top: -120px;margin-left: 421px;}
-.gsthree{float: right;margin-top: -120px;margin-right: 89px;}
-.gsimage{width:120px;height:90px;margin-left:10px; margin-top:10px;border-radius:5px 5px 5px 5px;border:1px solid #01297A;}
-.groupintro{width:230px;height:90px;margin-top: -90px;margin-left: 140px;}
-.groupintrotext{font-family:Microsoft JhengHei;font-weight:bold;color:#26558b;}
-.gameshow{width:180px;height:110px;border-radius:5px 5px 5px 5px;border:3px solid #002400;box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);}
-.gameshowimage{width:180px;height:90px;}
-.gameshowintitle{font-size:16px;color:#002400;font-family:Microsoft JhengHei;font-family:Microsoft JhengHei;font-weight:bolder;}
-.gshowone{margin-top: 10px;margin-left: 20px;}
-.gshowtwo{margin-top: -116px;margin-left: 221px;}
-.gshowthree{margin-top: -116px;margin-left: 422px;}
-.gshowfour{margin-top: -116px;float: right;margin-right: 495px;}
-.gshowfive{margin-top: -116px;float: right;margin-right: 294px;}
-.gshowsix{margin-top: -116px;float: right;margin-right: 93px;
-}
-a.css-button {
-		font-size:40px;
-		color:#2c539e;
-		text-decoration:none;
-		display:block;
-		width:300px;
-		height:60px;
-		margin-top:-150px;
-		padding-top:40px;
-		text-align:center;
-		font-family:Microsoft JhengHei;
-        font-weight:600;
-		border-radius:15px 15px 15px 15px;
-
-		background: -webkit-gradient(linear, left top, right bottom, color-stop(49%,#ffffff), color-stop(100%,#d3eefb));
-/* 		background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE)); */
-/* 		background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF); */
-
-		-webkit-transition: all .4s ease-in-out;
-		-moz-transition: all .4s ease-in-out;
-		-o-transition: all .4s ease-in-out;
-		transition: all .4s ease-in-out;
-	}
-	a.css-button:hover {
-		color:#fff;
-		border-color:#3278BE;
-
-		background:#4195DD;
-		background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195DD), to(#003C82));
-		background:-moz-linear-gradient(0% 90% 90deg, #003C82, #4195DD);
-	}
-	a.css-button:active {
-		background:#4195DD;
-		background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#003C82), to(#4195DD));
-		background:-moz-linear-gradient(0% 90% 90deg, #4195DD, #003C82);
-	}
-
-	a.css-button.notransitions {
-		-webkit-transition: none;
-		-moz-transition: none;
-		-o-transition: none;
-		transition: none;
-	}
 </style>
 
 <script type="text/javascript">
@@ -697,7 +586,10 @@ $(function(){//會員圖片
 		// 同時淡入子選單(如果有的話)
 		_this.css('backgroundColor', '#DEDEEE');
 		_this.css('text-decoration', 'none');
-		_this.css('border-radius','5px 5px 5px 5px');
+		_this.css('border-top-left-radius','5px 5px');
+		_this.css('border-bottom-left-radius','5px 5px');
+		_this.css('border-top-right-radius','5px 5px');
+		_this.css('border-bottom-right-radius','5px 5px');
 		_subnav.css('box-shadow', '3px 3px 3px rgba(20%,20%,40%,0.4)')
 		_subnav.css('z-index','500')
 		_subnav.stop(true, true).fadeIn(400);
@@ -720,7 +612,10 @@ $(function(){//使用者特效
 		// 同時淡入子選單(如果有的話)
 		_this.css('backgroundColor', '#c5deea');
 		_this.css('text-decoration', 'none');
-		_this.css('border-radius','5px 5px 5px 5px');
+		_this.css('border-top-left-radius','5px 5px');
+		_this.css('border-bottom-left-radius','5px 5px');
+		_this.css('border-top-right-radius','5px 5px');
+		_this.css('border-bottom-right-radius','5px 5px');
 		_subnav.css('box-shadow', '3px 3px 3px rgba(20%,20%,40%,0.4)')
 		_subnav.css('z-index','500')
 		_subnav.stop(true, true).fadeIn(400);
@@ -819,9 +714,9 @@ $(function(){
 	// 接著把 ul 中的 li 項目再重覆加入 ul 中(等於有兩組內容)
 	// 再來取得 div#abgne_marquee 的高來決定每次跑馬燈移動的距離
 	// 設定跑馬燈移動的速度及輪播的速度
-	var $marqueeUl = $('div#abgne_marqueeleft ul'),
+	var $marqueeUl = $('div#abgne_marquee ul'),
 		$marqueeli = $marqueeUl.append($marqueeUl.html()).children(),
-		_height = $('div#abgne_marqueeleft').height() * -1,
+		_height = $('div#abgne_marquee').height() * -1,
 		scrollSpeed = 600,
 		timer,
 		speed = 3000 + scrollSpeed,
@@ -840,7 +735,7 @@ $(function(){
 	});
  
 	// 判斷要往上還是往下
-	$('div#abgne_marqueeleft .marquee_btn').click(function(){
+	$('div#abgne_marquee .marquee_btn').click(function(){
 		if(_lock) return;
 		clearTimeout(timer);
 		direction = $(this).attr('id') == 'marquee_next_btn' ? 0 : 1;
@@ -878,76 +773,6 @@ $(function(){
 		this.blur();
 	});
 });
-
-$(function(){
-	// 先取得 div#abgne_marquee ul
-	// 接著把 ul 中的 li 項目再重覆加入 ul 中(等於有兩組內容)
-	// 再來取得 div#abgne_marquee 的高來決定每次跑馬燈移動的距離
-	// 設定跑馬燈移動的速度及輪播的速度
-	var $marqueeUl = $('div#abgne_marqueeright ul'),
-		$marqueeli = $marqueeUl.append($marqueeUl.html()).children(),
-		_height = $('div#abgne_marqueeright').height() * -1,
-		scrollSpeed = 600,
-		timer,
-		speed = 3000 + scrollSpeed,
-		direction = 0,	// 0 表示往上, 1 表示往下
-		_lock = false;
- 
-	// 先把 $marqueeli 移動到第二組
-	$marqueeUl.css('top', $marqueeli.length / 2 * _height);
- 
-	// 幫左邊 $marqueeli 加上 hover 事件
-	// 當滑鼠移入時停止計時器；反之則啟動
-	$marqueeli.hover(function(){
-		clearTimeout(timer);
-	}, function(){
-		timer = setTimeout(showad, speed);
-	});
- 
-	// 判斷要往上還是往下
-	$('div#abgne_marqueeright .marquee_btn').click(function(){
-		if(_lock) return;
-		clearTimeout(timer);
-		direction = $(this).attr('id') == 'marquee_next_btn' ? 0 : 1;
-		showad();
-	});
- 
-	// 控制跑馬燈上下移動的處理函式
-	function showad(){
-		_lock = !_lock;
-		var _now = $marqueeUl.position().top / _height;
-		_now = (direction ? _now - 1 + $marqueeli.length : _now + 1)  % $marqueeli.length;
- 
-		// $marqueeUl 移動
-		$marqueeUl.animate({
-			top: _now * _height
-		}, scrollSpeed, function(){
-			// 如果已經移動到第二組時...則馬上把 top 設回到第一組的最後一筆
-			// 藉此產生不間斷的輪播
-			if(_now == $marqueeli.length - 1){
-				$marqueeUl.css('top', $marqueeli.length / 2 * _height - _height);
-			}else if(_now == 0){
-				$marqueeUl.css('top', $marqueeli.length / 2 * _height);
-			}
-			_lock = !_lock;
-		});
- 
-		// 再啟動計時器
-		timer = setTimeout(showad, speed);
-	}
- 
-	// 啟動計時器
-	timer = setTimeout(showad, speed);
- 
-	$('a').focus(function(){
-		this.blur();
-	});
-});
-
-$(function() {
-    $( "#textthree" ).datepicker(); //時間選擇
-    $( "#textfour" ).datepicker();
-  });
 </script>
 </head>
 <body>
@@ -965,7 +790,7 @@ $(function() {
       <a href="<c:url value='/SelectLookForGroupServlet'/>" id="a1">找團</a>
     </li>
     <li>
-      <a href="<c:url value='/FindStoreByMapServlet'/>" id="a1">店家資訊</a>
+      <a href="#" id="a1">店家資訊</a>
     </li>
     	<c:if test="${empty Member}">
     <li>
@@ -997,154 +822,8 @@ $(function() {
 	</c:if>
   </ul>
 </div>
-<div style="margin:0 auto;width:1300px;">
-  <div class="bodyleft">
-    <div class="bodyleftinsideone">
-    </div>
-    <div class="bodyleftinsidetwo">
-      <div>
-        <p class="bodyleftinsidep">想找什麼團呢????????</p>
-          <div class="bodyleftlimbo"><p>
-            <input type="text" id="textone" placeholder="團名稱"><br>
-      
-            <p id="selecttwop" style="font-size:16px;">遊戲人數</p>
-            <select id="selecttwo" class="gray">
-              <option>10人以下</option>
-              <option>10至20人</option>
-              <option>20人以上</option>
-            </select>
-            <p id="selecttfivep">遊戲類型選擇</p>
-             <select id="selectthree" class="gray">
-              <option>策略遊戲</option>
-              <option>益智遊戲</option>
-              <option>推理遊戲</option>
-              <option>角色扮演遊戲</option>
-              <option>小品遊戲</option>
-              <option>不設限</option>
-             </select>
-             <p id="selectfourp"">遊戲名稱</p>
-            <input type="text" id="textfour" placeholder="策略遊戲">
-          </div>
-          <center><p><a href="#" class="css-button">找團</a></p></center>
-      </div>
-    </div>
-  </div>
-  <div id="abgne-block-20110317">
-		<div class="abgne-player">
-			<ul class="abgne-list">
-				<li><a target="_blank" href="#"><img src="images/0001.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0002.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0003.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0004.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0005.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0006.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0007.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0008.jpg"></a></li>
-				<li><a target="_blank" href="#"><img src="images/0009.jpg"></a></li>
-			</ul>
-		</div>
-		<div class="abgne-control">
-			<ul class="arrows"> 
-				<li class="prev">&lt;</li> 
-				<li class="next">&gt;</li> 
-			</ul>
-		</div>
-	</div>
-</div>
-<div style="margin:0 auto;width:1300px;">
-  <div class="bodytwo">
-    <div class="advshowleft">
-      <center><p class="advshowtext">系統公告</p></center>
-    </div>
-    <div class="advbodyleft">
-      <div id="abgne_marqueeleft">
-		<div class="marquee_btn" id="marquee_next_btn"><img src="images/marquee_next_btn.jpg" /></div>
-		<ul>
-			<li><a href="http://www.flycan.com.tw/course/course_javascript.php">【快訊】12/10 系統開始設計中 敬請見諒</a></li>
-			<li><a href="http://www.flycan.com.tw/course/course_photopro.php">【快訊】12/31 祝各位新年快樂~~~</a></li>
-			<li><a href="http://abgne.tw/site-proclamation/questionnaire-1.html">【調查】桌遊排名由你來決定 - 活動獎品大調查</a></li>
-			<li><a href="http://www.ruten.com.tw/">【快訊】網站測試連線中</a></li>
-		</ul>
-		<div class="marquee_btn" id="marquee_prev_btn"><img src="images/marquee_prev_btn.jpg" /></div>
-	  </div>
-    </div>
-    <div class="advshowright">
-      <center><p class="advshowtext">店家公告</p></center>
-    </div>
-          <div id="abgne_marqueeright">
-		<div class="marquee_btn" id="marquee_next_btn"><img src="images/marquee_next_btn.jpg" /></div>
-		<ul>
-			<li><a href="http://www.flycan.com.tw/course/course_javascript.php">【開團資訊】目前已有五店家加入這個大家庭，敬請期待！</a></li>
-			<li><a href="http://www.flycan.com.tw/course/course_photopro.php">【店家活動公告】馬來貘LINE貼圖已上架</a></li>
-			<li><a href="http://abgne.tw/site-proclamation/questionnaire-1.html">【開團資訊】龍與地下城 8人團 來參考看看喔!</a></li>
-			<li><a href="http://www.ruten.com.tw/">【店家活動公告】益智遊戲專賣店(汐止店) 過新春 拿好禮 現在在本店開團即可抽大獎!</a></li>
-		</ul>
-		<div class="marquee_btn" id="marquee_prev_btn"><img src="images/marquee_prev_btn.jpg" /></div>
-	  </div>
-  </div>
-</div>
-<div style="margin:0 auto;width:1300px;">
-  <div class="bodythree">
-    <div class="bodythreehead">
-      <p class="advshowtext advshowtexttwo">近十天新開遊戲團</p><p class="advshowtext advshowtextthree" style="float:right;">MORE</p>
-    </div>
-    <div class="groupshow gsone">
-      <img src="images/groupho.jpg" class="gsimage">
-      <div class="groupintro">
-        <p class="groupintrotext">團名稱：一起打桌遊八!</p>
-        <p class="groupintrotext">遊戲名稱：西部無間</p>
-        <p class="groupintrotext">遊戲人數：6-15</p>
-        <p class="groupintrotext">開團時間：2014-12-24</p>
-      </div>
-    </div>
-    <div class="groupshow gstwo">
-      <img src="images/grouphtw.jpg" class="gsimage">
-       <div class="groupintro">
-        <p class="groupintrotext">團名稱：來打桌遊</p>
-        <p class="groupintrotext">遊戲名稱：富饒之城</p>
-        <p class="groupintrotext">遊戲人數：4-10</p>
-        <p class="groupintrotext">開團時間：2014-01-01</p>
-      </div>
-    </div>
-    <div class="groupshow gsthree">
-      <img src="images/grouphth.jpg" class="gsimage">
-       <div class="groupintro">
-        <p class="groupintrotext">團名稱：GO桌遊</p>
-        <p class="groupintrotext">遊戲名稱：卡卡頌（卡卡城，卡卡送）</p>
-        <p class="groupintrotext">遊戲人數：4-12</p>
-        <p class="groupintrotext">開團時間：2014-11-28</p>
-       </div>
-    </div>
-  </div>
-  <div class="bodythree">
-    <div class="bodythreehead">
-      <p class="advshowtext advshowtexttwo">桌遊遊戲資訊</p><p class="advshowtext advshowtextthree" style="float:right;">MORE</p>
-    </div>
-    <div class="gameshow gshowone">
-      <img src="images/gshowimage1.jpg" class="gameshowimage">
-      <center><p style="font-size:16px;color:#002400;font-family:Microsoft JhengHei;font-weight:bolder;">抵抗組織：阿瓦隆</p></center>
-    </div>
-    <div class="gameshow gshowtwo">
-      <img src="images/gshowimage2.jpg" class="gameshowimage">
-      <center><p class="gameshowintitle">落跑修女;修女也瘋狂</p></center>
-    </div>
-    <div class="gameshow gshowthree">
-      <img src="images/gshowimage3.jpg" class="gameshowimage">
-      <center><p class="gameshowintitle">空中花園</p></center>
-    </div>
-    <div class="gameshow gshowfour">
-      <img src="images/gshowimage4.jpg" class="gameshowimage">
-      <center><p class="gameshowintitle">克莉絲蒂瑣事遊戲</p></center>
-    </div>
-    <div class="gameshow gshowfive">
-      <img src="images/gshowimage5.jpg" class="gameshowimage">
-      <center><p class="gameshowintitle">開膛手傑克</p></center>
-    </div>
-    <div class="gameshow gshowsix">
-      <img src="images/gshowimage6.jpg" class="gameshowimage">
-      <center><p class="gameshowintitle">頭等車廂謀殺案</p></center>
-    </div>
-  </div>
+<div style="border:1px solid black;">
+
 </div>
 </body>
 </html>

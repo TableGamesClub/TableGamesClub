@@ -822,19 +822,6 @@ $(function(){
 	</c:if>
   </ul>
 </div>
-<<<<<<< HEAD
-<!-- 從這邊上面不要隨意修改 -->
-	<!-- 下面開始自訂 -->
-	
-	
-	
-	
-	
 
-	
-<!-- 這裡是底部 -->
-=======
-<div style="font-size:30px;">人數：<a>10</a></div>
->>>>>>> branch 'tablis0814' of https://github.com/TableGamesClub/TableGamesClub.git
 </body>
 </html>

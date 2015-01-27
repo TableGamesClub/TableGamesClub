@@ -9,6 +9,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="Scripts/jquery-brown-ui.min.css" type="text/css" media="screen" />
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <title>查看專賣店現有團資訊</title>
@@ -425,12 +426,73 @@ border:0;}
 				<br>
 			</div>
 			<br>
-			<form action="<c:url value='/StoreMemberCancelGroupServlet'/>" method="post">
-				<input type="submit" value="取消服務" class="cancelbt" id="cancelbt00">
-				<input type="text" value="${Group.groupSerialNumber}" name="cancelbt00" style="display: none">
-			</form>
+<%-- 			<form action="<c:url value='/StoreMemberCancelGroupServlet'/>" method="post"> --%>
+<!-- 				<input type="submit" value="取消服務" class="cancelbt" id="cancelbt00"> -->
+				<button class="cancelbt" id="opener" name="quitroom00" value="${Group.groupSerialNumber}">取消服務</button>
+				<input type="text" value="${Group.groupSerialNumber}" name="cancelbt00" style="display: none" id="cancelbt00">
+<!-- 			</form> -->
 			</c:forEach>
-				
+<!-- 			<span> -->
+<!-- 				<button id="opener" name="quitroom00" value=${GroupRooms.groupSerialNumber}>我要退團</button> -->
+<!-- 			</span> -->
+			<div id="dialog" title="取消理由" style="width: 400px">
+				<h3 style="margin:3px 10px 10px -1px;color:white">請填取消的原因：</h3>
+				<form action="<c:url value='/StoreMemberCancelGroupServlet'/>" method="post" id="quitform">
+					<textarea rows="5" cols="44" name="quitReason" id="quitReason"></textarea>
+					<input type="submit" value="送出" style="float:right;margin-top: 14px" id="submit">
+					<input type="button" value="取消" style="float:right;margin-top: 14px;margin-right: 3px" id="cancel">
+					<input type="text" value="" name="cancelbt00" style="display: none" id="form00">
+				</form>
+		<!-- 		<button id="testButton">test</button> -->
+		<!-- 		<button id="testButton2">test2</button> -->
+			</div>
+		  <script>
+		//   打開退團理由框框
+		  $(function() {
+		    $( "#dialog" ).dialog({
+		      autoOpen: false,
+		      show: {
+		        effect: "blind",
+		        duration: 500
+		      },
+		      hide: {
+		        effect: "blind",
+		        duration: 500
+		      },
+		      width: 450,
+		      height: 280,
+		    });
+		 
+		    $('button[name="quitroom00"]').click(function() {//使用name抓取(id抓取會有語法錯誤問題)
+		      $( "#dialog" ).dialog( "open" );
+// 		      alert($(this).val());
+			  $('#form00').val($(this).val());
+// 			  alert($('#form00').val());
+		      
+		    });
+		    $( "#cancel" ).click(function() {
+		        $( "#dialog" ).dialog( "close" );
+		      });
+		  });
+		  </script>
+		  <script>
+		//   按鈕特效框框
+		  $(function() {
+			  $("#cancel,#selectRoom00,#opener" )
+		      .button()
+		      .click(function( event ) {
+		        event.preventDefault();
+		      });
+		  });
+		  
+		  $(function() {
+			  $("#submit")
+			  .button()
+			  .click(function(){
+		// 		  $('#quitform').submit();
+			  })
+		  });
+		  </script>
     </div>
   </div>
 </div>
