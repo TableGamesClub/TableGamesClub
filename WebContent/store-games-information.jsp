@@ -1,6 +1,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="controller.*"%>
+<%@ page import="model.*"%>
+<%@ page import="model.service.*"%>
+<%@ page import="model.Interface.*"%>
+<%@ page import="org.springframework.context.ApplicationContext"%>
+<%@ page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+
+<%
+	ApplicationContext context = new ClassPathXmlApplicationContext(
+			"model-config1-DriverManagerDataSource.xml");
+	StoreMemberDAO_Interface dao = (StoreMemberDAO_Interface) context
+			.getBean("StoreMemberDAO");
+	StoreInformationDAO_Interface dao2 = (StoreInformationDAO_Interface) context
+			.getBean("StoreInformationDAO");
+	StoreMemberService service = new StoreMemberService();
+// 	List<EmpVO> list = empSvc.getAll();
+// 	Set<BoardGames> list = service.findStoreById(2).getBoardGameses();
+	List<BoardGames> list = service.findGamesByStoreId(2);
+	pageContext.setAttribute("list",list);
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,10 +40,11 @@
 	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <link rel="stylesheet" href="Jquary/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="Jquary/flexslider.css" type="text/css" media="screen" />
-<title>HomePage</title>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<title>會員查看店家資訊</title>
 <style type="text/css">
 .gray
 {
@@ -293,7 +316,7 @@ margin-left: auto;
 margin-top: -545px;
 width: 720px;
 height: 480px;
-border: 10px solid #0a77d5;
+border: 10px solid #CEECFF;
 border-top-left-radius:10px 10px; 
 border-top-right-radius:10px 10px; 
 border-bottom-left-radius:10px 10px;   
@@ -434,42 +457,6 @@ box-shadow: 3px 3px 3px rgba(20%,20%,40%,0.7);
 
 
 
-div#abgne_marquee {
-	position: relative;
-	overflow: hidden;	/* 超出範圍的部份要隱藏 */
-	width: 580px;
-	height: 28px;
-	border: 1px solid #750000;
-}
-div#abgne_marquee ul, div#abgne_marquee li {
-	margin: 0;
-	padding: 1;
-	list-style: none;
-}
-div#abgne_marquee ul {
-	position: absolute;
-	left: 30px;			/* 往後推個 30px */
-}
-div#abgne_marquee ul li a {
-    color:#EA0000;
-	display: block;
-	overflow: hidden;	/* 超出範圍的部份要隱藏 */
-	font-size:16px;
-	height: 28px;
-	line-height: 25px;
-	text-decoration: none;
-}
-div#abgne_marquee div.marquee_btn {
-	position: absolute;
-	cursor: pointer;
-}
-div#abgne_marquee div#marquee_next_btn {
-	left: 5px;
-}
-div#abgne_marquee div#marquee_prev_btn {
-	right: 5px;
-}
-
 .advbodyleft
 {
     width:580px;
@@ -513,10 +500,137 @@ li.MemInfo{
 .A1{
 	cursor:default;
 }
+.smbodyrighttop
+{
+    padding-top:10px;
+    border-radius:10px 10px 10px 10px;
+    width:910px;
+    height:1080px;
+/*     border: 3px Solid #E8B09D; */
+    margin-left: 7px;
+    margin-top: 10px;
+/*     background-image:url(images/bubblesm.jpg); */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#0066ba), color-stop(100%,#ffffff)); 
+    background-size:cover;
+    box-shadow: 3px 3px 3px rgba(117,34,1,0.4);  
+}
+.sbrtintroimg
+{
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+    width:850px;
+    height:280px;
+}
+.headimageinfo
+{
+    width:180px;
+    height:120px;
+    border:2px solid black;
+    margin-left: 100px;
+    margin-top: 3px;
+}
+.headimageinfo
+{
+    width:180px;
+    height:120px;
+    border:2px solid black;
+    margin-left: 100px;
+    margin-top: 3px;
+}
+.introimageone
+{
+    margin-left: 100px;
+    margin-top: 18px;
+    width:180px;
+    height:120px;
+    border:2px solid black;
+}
+.introimagetwo
+{
+    width:180px;
+    height:120px;
+    border:2px solid black;
+    margin-left: 302px;
+    margin-top: -124px;
+}
 
+.introimagethree
+{
+    margin-top: -124px;
+    margin-left: 504px;
+    width:180px;
+    height:120px;
+    border:2px solid black;
+}
+.introbody
+{
+    border-radius:10px;
+    width: 850px;
+    height: 500px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#123f9e), color-stop(100%,#000659));
+}
+.selectoption{font-size:20px;color:#006e2e;font-family:Microsoft JhengHei;}
+.submitcheck
+{
+    padding-top: 20px;
+    width:300px;
+    height:50px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#123f9e), color-stop(100%,#000659));
+    border-radius:5px 5px 5px 5px;
+}
+.introinfotitle
+{width: 440px;height: 40px;border-bottom: 3px dashed #CEECFF;padding-top: 20px;margin-left: 25px;}
+.introtitle{font-size:20px;color:#CEECFF;font-family:Microsoft JhengHei;}
+.introaddress{width: 440px;height: 40px;padding-top: 5px;margin-left: 12px;font-size:18px;color:#CEECFF;font-family:Microsoft JhengHei;}
+.introphone{width: 440px;height: 40px;padding-top: 5px;margin-left: 12px;font-size:18px;color:#CEECFF;font-family:Microsoft JhengHei;}
+.introtime{width: 440px;height: 40px;padding-top: 5px;margin-left: 23px;}
+.introtimein{font-size:18px;color:#CEECFF;font-family:Microsoft JhengHei;border-bottom: 3px dashed #CEECFF;padding-bottom:10px;}
+.introdetail{width: 440px;height: 220px;border-bottom:3px dashed #CEECFF;margin-left:23px;}
+#mapcanvas{width:300px;height:400px;border-radius:10px 10px 10px 10px;background:white;margin-right: 45px;float: right;margin-top: -400px;}
+.scone{margin-top: 30px;}
+.sctwo{float: right;margin-top: -70px;}
+.sccheck{font-size:28px;color:#ffffff;font-family:Microsoft JhengHei;font-weight:600;}
+.intromap{margin-top:-20px;}
 </style>
 
 <script type="text/javascript">
+var geocoder;
+var map;
+var marker;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var mapOptions = {
+    zoom: 17,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
+  marker = new google.maps.marker({
+	  position:LatLng,
+	  map:map,
+	  title:"新北市汐止區仁愛路160號",
+  });
+}
+
+function codeAddress() {
+  var address = "新北市汐止區仁愛路160號";
+  geocoder.geocode( { address: address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', codeAddress);
+
 $(function(){
 	// 幫 #menu li 加上 hover 事件
 	$('#menu>li').hover(function(){
@@ -822,20 +936,10 @@ $(function(){
 	</c:if>
   </ul>
 </div>
+  <div style="margin:0 auto;width:910px;">
     <div class="smbodyrighttop">
       <div class="sbrtintroimg">
-        <div class="headimageinfo">
-          <img src="/TableGamesClub/res/StoreInformation/StoreInformation1.jpg" style="width:180px;height:120px;">
-        </div>
-        <div class="introimageone">
-          <img src="images/store02.jpg" style="width:180px;height:120px;">
-        </div>
-        <div class="introimagetwo">
-          <img src="images/store03.jpg" style="width:180px;height:120px;">
-        </div>
-        <div class="introimagethree">
-          <img src="images/store04.jpg" style="width:180px;height:120px;">
-        </div>
+
         <div class="introbody">
           <div class="introinfotitle"><p class="introtitle">瘋桌遊-益智遊戲專賣店(汐止店)</p></div>
           <div class="introaddress"><p class="introaddress">地址&nbsp;：&nbsp;新北市汐止區仁愛路160號</p></div>
@@ -843,14 +947,36 @@ $(function(){
 
           <div class="introtime"><p class="introtimein">營業時間&nbsp;：&nbsp;平日 13:00 - 22:00 六日 10:00 - 22:00</p></div>
           <div class="introdetail">
-            <p style="font-size:28px;color:#b7df2d;font-family:Microsoft JhengHei;">店家介紹</p><br/>
-            <p style="color:#FFFFDF;font-family:Microsoft JhengHei;">為了讓推廣桌上遊戲的夢想實現，我們決定投注實體店家，讓跟多的人可接觸到桌上遊戲，進而愛上桌遊。並且從多元豐富的遊戲中，體驗到各種不同的樂趣。透過推廣桌遊，希望讓全世界的人因為桌上遊戲得到真正的快樂。 桌遊有時不只是一場遊戲，他更能夠增進彼此的關係，不論是家人，情侶，夫妻，朋友，親子。透過桌遊的魅力，讓所有人不分男女老少，緊緊相連在一起。</p>
+            <p style="font-size:28px;color:#E7EAAB;font-family:Microsoft JhengHei;">店家介紹</p><br/>
+            <p style="color:#CEECFF;font-family:Microsoft JhengHei;">為了讓推廣桌上遊戲的夢想實現，我們決定投注實體店家，讓跟多的人可接觸到桌上遊戲，進而愛上桌遊。並且從多元豐富的遊戲中，體驗到各種不同的樂趣。透過推廣桌遊，希望讓全世界的人因為桌上遊戲得到真正的快樂。 桌遊有時不只是一場遊戲，他更能夠增進彼此的關係，不論是家人，情侶，夫妻，朋友，親子。透過桌遊的魅力，讓所有人不分男女老少，緊緊相連在一起。</p>
           </div>
           <div class="intromap" id="mapcanvas"></div>
         </div>
-        <div class="submitcheck scone"><center><a href="StoreMember-GroupInformation.jsp" class="sccheck">查看此店家遊戲團</a></center></div>
-        <div class="submitcheck sctwo"><center><a href="StoreTableGames.jsp" class="sccheck">查看此店家桌遊資訊</a></center></div>
+          <div style="margin:0 auto;width:850px;">
+          <center>
+            <table class="displaytable">
+	          <%@ include file="Store/pages/page1.file" %>
+	          <tr>
+	          <c:forEach var="BoardGames" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+		      <%n++;%>
+			  <td>
+				<a href="${pageContext.servletContext.contextPath}/controller/GetImageInfo?id=${BoardGames.boardGamesId}" style="">
+					<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${BoardGames.boardGamesId}&type=BOARDGAMES" style="height:120px;width:150px;margin-top:20px;border:3px solid green;">
+				</a>
+			<br>
+			<p style="width:126px">${BoardGames.boardGameName}</p>
+			</td>
+		<%if(n%5==0){%>
+			</tr><tr>
+		<%}%>
+	</c:forEach>
+	</tr>
+           </table>
+          </center>
+          <%@ include file="Store/pages/page2.file" %>
+        </div>
       </div>
     </div>
+  </div>
 </body>
 </html>

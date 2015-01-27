@@ -21,7 +21,7 @@
  <tr> 
    <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>" >   
         <td style="color:black;font-size:16px;"  class="intro">
-           <select size="1" name="whichPage" style="width:100px;height:25px;">
+           <select size="1" name="whichPage" style="width:100px;height:25px;margin-left:15px;">
         <%for (int i=1; i<=pageNumber; i++){%>
            <option value="<%=i%>">跳至第<%=i%>頁
         <%}%> 
