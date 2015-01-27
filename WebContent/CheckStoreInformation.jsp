@@ -315,7 +315,9 @@ google.maps.event.addDomListener(window, 'load', codeAddress);
     </div>
   </div>
   <div class="smbodyright">
-    <div class="smbodyrighttop">
+  
+    
+    <div class="smbodyrighttop"> 
       <div class="sbrtintroimg">
         <div class="headimageinfo">
           <img src="/TableGamesClub/res/StoreInformation/StoreInformation1.jpg" style="width:180px;height:120px;">
@@ -347,5 +349,6 @@ google.maps.event.addDomListener(window, 'load', codeAddress);
     </div>
   </div>
 </div>
+    <input type="button" value="編輯" class="editmember" style="font-size: 20px; color: green;font-family: Microsoft JhengHei;position: relative;left: 1470px;top: -950px;">
 </body>
 </html>
