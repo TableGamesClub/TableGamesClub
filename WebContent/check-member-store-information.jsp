@@ -1013,15 +1013,16 @@ $(function(){
     <h3 class="ui-widget-header ui-corner-all" style="color:white;background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#123f9e), color-stop(100%,#000659));">桌遊列表</h3>
 <!--     要擺的桌遊上 -->
     <div style="margin:0 auto;width:850px;">
-            <table class="displaytable" style="margin-left:20px;">
+            <table class="displaytable">
 	          <%@ include file="Store/pages/page1.file" %>
 	          <tr>
 	          <c:forEach var="BoardGames" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		      <%n++;%>
 			  <td>
-				<a href="${pageContext.servletContext.contextPath}/controller/GetImageInfo?id=${BoardGames.boardGamesId}" style="">
+<%-- 				<a href="${pageContext.servletContext.contextPath}/controller/GetImageInfo?id=${BoardGames.boardGamesId}" style=""> --%>
+				<button name="choiceGames" value="${BoardGames.boardGamesId}">
 					<img src="${pageContext.servletContext.contextPath}/controller/GetImages?id=${BoardGames.boardGamesId}&type=BOARDGAMES" style="height:120px;width:150px;margin-top:20px;border:3px solid green;">
-				</a>
+				</button>
 			<br>
 			<p style="width:126px">${BoardGames.boardGameName}</p>
 			</td>
@@ -1036,6 +1037,12 @@ $(function(){
 <!--     要擺的桌遊下 -->
   </div>
 </div>
+<!-- 桌遊資訊上 -->
+<div id="dialog" title="XX桌遊" style="overflow-x:hidden;overflow-y:auto" >
+</div>
+<!-- <button id="opener">Open Dialog</button> -->
+<!-- 桌遊資訊下 -->
+
 <!-- <button id="button" class="ui-state-default ui-corner-all">Run Effect</button> --> 
 <!--   效果 -->
   <script>
@@ -1065,16 +1072,84 @@ $(function(){
       $('#gamesDemo').css("display","inline");	
       runEffect();
       n++;
-      if(n!=0){
+      if(n!=0 && n%2==1){
     	  var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
   		$body.animate({
   			scrollTop: 910
   		}, 600).delay( 1000 );
       }
-      
     });
   });
   
   </script>
+  
+  
+<!--   跳出桌遊資訊 -->
+<script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      width: 500,
+      height: 350,
+    });
+ 
+    $( "#opener" ).bind("click",function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  });
+</script>
+
+<script>
+// 桌遊ajax
+		var gameId;
+		$('button[name="choiceGames"]').bind("click",function(){
+// 			alert($(this).val());
+			gameId = $(this).val();
+			load();
+		})
+		
+		var xmlHttp;
+		function load(){
+// 			alert(gameId);
+			xmlHttp=new XMLHttpRequest();
+			xmlHttp.addEventListener("readystatechange",callback,false);
+			var url="GetGameInfoJson?id="+gameId;
+			xmlHttp.open("get",url,true);//true為非同步
+			xmlHttp.send();
+		}
+		
+		function callback(){
+			if(xmlHttp.readyState == 4){
+        		if(xmlHttp.status == 200){
+	      		var data = xmlHttp.responseText
+	      		var datas=JSON.parse(data);
+	      		var txtLi
+	      		$('#dialog').empty();
+// 	      		$('#select2').append("<option>請選擇</option>");
+				$('#dialog').append("<img src='${pageContext.servletContext.contextPath}/controller/GetImages?id="+gameId+"&type=BOARDGAMES' style='height:170px;margin:0 auto'><br>");
+	          	for(var i=0;i<datas.length;i++){
+// 				var txtLi = document.createTextNode(datas[i]);
+// 	       	  	var eleLi = document.createElement("div");
+// 				eleLi.appendChild(txtLi);
+// 				console.log(txtLi);
+// 	          	 	myDiv.appendChild(eleLi);	
+				$('#dialog').append(datas[i]+"<br>");
+	          	}
+//         		}else{
+//         			alert(xhr.status + ":" + xhr.statusText);
+                }
+        	}
+			
+			$( "#dialog" ).dialog( "open" );
+		}
+</script>
 </body>
 </html>

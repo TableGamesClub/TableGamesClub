@@ -993,7 +993,7 @@ $(function () {
         '<p style="color:#707070" id="storeSSS">連絡電話:'+value.StoreTel+'</p>'+
         '<p style="color:#707070">店家地址:'+value.StoreAddress+'</p>'+
         '<p style="color:#707070">入場費用:'+value.RentAreaCost+'</p>'+
-        '<a href="#" style="color:#0000CC;font-size:16px" class="enter00">點我進入</a>'
+        '<a href="/TableGamesClub/check-member-store-information.jsp" style="color:#0000CC;font-size:16px" class="enter00">點我進入</a>'
         '</div>'+
         '</div>';
         
