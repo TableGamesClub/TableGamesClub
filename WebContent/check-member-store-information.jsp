@@ -998,7 +998,7 @@ $(function(){
           </div>
           <div class="intromap" id="mapcanvas"></div>
         </div>
-        <div class="submitcheck scone"><center><a href="StoreMember-GroupInformation.jsp" class="sccheck">預約此店</a></center></div>
+        <div class="submitcheck scone"><center><a href="/TableGamesClub/CreateGroup.jsp" class="sccheck">預約此店</a></center></div>
         <div class="submitcheck sctwo"><center><a class="sccheck" id="gameTouch">查看此店家桌遊資訊</a></center></div>
       </div>
     </div>
@@ -1038,7 +1038,7 @@ $(function(){
   </div>
 </div>
 <!-- 桌遊資訊上 -->
-<div id="dialog" title="XX桌遊" style="overflow-x:hidden;overflow-y:auto" >
+<div id="dialog" title="桌遊介紹" style="overflow-x:hidden;overflow-y:auto" >
 </div>
 <!-- <button id="opener">Open Dialog</button> -->
 <!-- 桌遊資訊下 -->
@@ -1091,11 +1091,11 @@ $(function(){
       autoOpen: false,
       show: {
         effect: "blind",
-        duration: 1000
+        duration: 500
       },
       hide: {
         effect: "explode",
-        duration: 1000
+        duration: 500
       },
       width: 500,
       height: 350,
@@ -1146,9 +1146,8 @@ $(function(){
 //         		}else{
 //         			alert(xhr.status + ":" + xhr.statusText);
                 }
+        		$( "#dialog" ).dialog( "open" );
         	}
-			
-			$( "#dialog" ).dialog( "open" );
 		}
 </script>
 </body>
